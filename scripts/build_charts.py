@@ -212,7 +212,7 @@ def build_05_rtx6000_engines(theme: Theme) -> str:
         subtitle=("Comparing llama.cpp baseline and IQ4_NL against Strata SQ-20, PR #6520 NVFP4 (CUDA 12.8 override), and PR #6642 GGUF.",),
         footnotes=(
             "*Strata SQ-20 @128K runs were [95.0, 105.0, 41.7]; SQ-20 also OOMs at 267K on the 1M needle prompt. #6642 vs IQ4_NL is the only same-weight pair.",
-            "Track C evals (n=20 math, n=10 code) omitted temperature=0 and serve as regression sanity checks, not leaderboard rankings.",
+            "Track C evals (n=20 math, n=10 code) omitted temp=0 and serve as sanity checks, not leaderboard rankings.",
         ),
     )
     return bar_panels(caption, [single_panel, long_panel, eval_panel, eff_panel], theme, columns=2)
