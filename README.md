@@ -1,5 +1,7 @@
 # Inkling-2-Mini — Multi-Hardware & Multi-Engine NVIDIA Benchmark Suite
 
+**[Open the Live Interactive Dashboard →](https://gumbiidigital.github.io/inkling-2-fleet-bench/dashboard/)**
+
 Independent, reproducible, verify-gated benchmarks of Thinking Machines' **Inkling-2-Mini** (26.2B total / 3.4B active MoE, middle 12 layers looped 3×, 1M context) across **four NVIDIA Blackwell machines** and **four inference engines** (`llama.cpp`, `vLLM`, `SGLang`, `Strata`).
 
 > **v1.0 Release (NVIDIA Blackwell Fleet):** Publishes the 4 completed, PASS-gated NVIDIA systems. **v2.0** will add full Apple Silicon Metal results (**M3 Ultra 256 GB** & **M4 Max 128 GB**), whose 1M-context and BF16 runs are currently completing.
@@ -118,7 +120,7 @@ python3 scripts/export_csvs.py
 python3 scripts/build_charts.py
 ```
 
-- [`dashboard/index.html`](dashboard/index.html) — Self-contained interactive benchmark dashboard with Light/Dark switcher & Audit Caveats tab.
+- **[Live Interactive Dashboard](https://gumbiidigital.github.io/inkling-2-fleet-bench/dashboard/)** ([source](dashboard/index.html)) — Self-contained interactive benchmark dashboard with Light/Dark switcher & Audit Caveats tab.
 - [`data/benchmarks.json`](data/benchmarks.json) + `data/*.csv` — Single source of truth and normalized CSV tables.
 - [`charts/`](charts/) — 12 deterministic SVG charts (`-dark.svg` & `-light.svg`).
 - [`reports/`](reports/) — Archived full verify-PASS reports from every machine.
