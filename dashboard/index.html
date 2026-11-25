@@ -1,173 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Inkling-2-Mini — NVIDIA Blackwell Benchmark Dashboard</title>
+<title>Inkling-2-Mini — NVIDIA Blackwell Benchmark Suite</title>
 <style>
-  :root {
-    --bg: #0b0f17;
-    --panel: #121826;
-    --panel-2: #172033;
-    --border: #1f2937;
-    --text: #f8fafc;
-    --muted: #94a3b8;
-    --cyan: #22d3ee;
-    --emerald: #34d399;
-    --amber: #fbbf24;
-    --coral: #fb7185;
-    --violet: #a78bfa;
-    --blue: #60a5fa;
+  :root[data-theme="dark"] {
+    --bg: #111110;
+    --surface: #1a1a19;
+    --surface-hover: #212120;
+    --border: #2c2c2a;
+    --axis: #383835;
+    --ink: #f0efec;
+    --secondary: #c3c2b7;
+    --muted: #898781;
+    --blue: #3987e5;
+    --aqua: #199e70;
+    --orange: #d95926;
+    --violet: #9085e9;
+    --red: #e66767;
+    --yellow: #c98500;
+  }
+  :root[data-theme="light"] {
+    --bg: #f5f4f0;
+    --surface: #fcfcfb;
+    --surface-hover: #f3f2ed;
+    --border: #e1e0d9;
+    --axis: #c3c2b7;
+    --ink: #0b0b0b;
+    --secondary: #52514e;
+    --muted: #898781;
+    --blue: #2a78d6;
+    --aqua: #1baf7a;
+    --orange: #eb6834;
+    --violet: #6250d6;
+    --red: #e34948;
+    --yellow: #eda100;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: var(--ink);
     line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
   }
-  .container { max-width: 1240px; margin: 0 auto; padding: 32px 20px 64px; }
-  header {
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 24px;
-    margin-bottom: 28px;
-  }
-  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-  .badge {
-    font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px;
-    background: var(--panel-2); border: 1px solid var(--border); color: var(--cyan);
-  }
-  .badge.green { color: var(--emerald); }
-  .badge.amber { color: var(--amber); }
-  h1 { margin: 0 0 8px; font-size: clamp(26px, 4vw, 38px); letter-spacing: -0.02em; }
-  .subtitle { color: var(--muted); font-size: 16px; max-width: 820px; margin: 0; }
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 20px 64px; }
 
-  .kpi-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px; margin-bottom: 28px;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 22px;
+    margin-bottom: 24px;
   }
-  .kpi {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
-    padding: 18px 20px;
+  .meta-line {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
   }
-  .kpi-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
-  .kpi-value { font-size: 30px; font-weight: 800; margin: 4px 0; letter-spacing: -0.02em; }
-  .kpi-sub { font-size: 13px; color: var(--muted); }
-  .cyan { color: var(--cyan); }
-  .emerald { color: var(--emerald); }
-  .amber { color: var(--amber); }
-  .violet { color: var(--violet); }
-  .coral { color: var(--coral); }
+  h1 {
+    margin: 0 0 8px;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .subtitle {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 14px;
+    max-width: 680px;
+  }
+  .theme-toggle {
+    flex-shrink: 0;
+    background: var(--surface);
+    color: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .theme-toggle:hover { color: var(--ink); border-color: var(--axis); }
+
+  .summary-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .stat-label { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .stat-value { font-size: 22px; font-weight: 600; color: var(--ink); margin: 3px 0 2px; font-variant-numeric: tabular-nums; }
+  .stat-note { font-size: 11.5px; color: var(--secondary); }
 
   .tabs {
-    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px;
-    border-bottom: 1px solid var(--border); padding-bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
   }
   .tab-btn {
-    background: var(--panel); color: var(--muted); border: 1px solid var(--border);
-    padding: 9px 16px; border-radius: 8px; font-size: 14px; font-weight: 600;
-    cursor: pointer; transition: all 0.15s ease;
+    background: transparent;
+    color: var(--secondary);
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
   }
-  .tab-btn:hover { color: var(--text); border-color: #334155; }
-  .tab-btn.active { background: var(--cyan); color: #06101a; border-color: var(--cyan); }
+  .tab-btn:hover { color: var(--ink); background: var(--surface); }
+  .tab-btn.active {
+    background: var(--surface);
+    color: var(--ink);
+    border-color: var(--border);
+    font-weight: 600;
+  }
 
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
-  .card {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
-    padding: 22px; margin-bottom: 20px;
+  .chart-frame {
+    margin-bottom: 18px;
   }
-  .card h2 { margin: 0 0 6px; font-size: 20px; }
-  .card p.desc { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
-
-  .chart-img {
-    width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border);
-    display: block; margin-bottom: 16px; background: #0b0f17;
+  .chart-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
   }
 
-  .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; align-items: center; }
-  .filter-bar span { font-size: 13px; color: var(--muted); margin-right: 4px; }
+  .section-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+  }
+  .section-card h2 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .section-card p.desc {
+    margin: 0 0 14px;
+    font-size: 12.5px;
+    color: var(--secondary);
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+    align-items: center;
+  }
+  .filter-bar span { font-size: 12px; color: var(--muted); margin-right: 4px; }
   .pill {
-    background: var(--panel-2); color: var(--muted); border: 1px solid var(--border);
-    padding: 5px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer;
+    background: transparent;
+    color: var(--secondary);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
   }
-  .pill.active { background: rgba(34, 211, 238, 0.16); color: var(--cyan); border-color: var(--cyan); }
+  .pill.active {
+    background: var(--ink);
+    color: var(--surface);
+    border-color: var(--ink);
+    font-weight: 600;
+  }
 
-  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
-  th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
-  tr:hover td { background: rgba(255,255,255,0.02); }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; font-size: 11px; }
+  tbody tr:hover td { background: var(--surface-hover); }
   .num { text-align: right; font-variant-numeric: tabular-nums; }
   .bar-cell { display: flex; align-items: center; gap: 10px; }
-  .bar-track { flex: 1; height: 8px; background: #1e293b; border-radius: 999px; overflow: hidden; min-width: 80px; }
-  .bar-fill { height: 100%; border-radius: 999px; }
+  .bar-track { flex: 1; height: 10px; background: var(--border); border-radius: 3px; overflow: hidden; min-width: 72px; }
+  .bar-fill { height: 100%; border-radius: 0 3px 3px 0; }
+  .muted { color: var(--muted); }
 
-  .callout {
-    border-left: 3px solid var(--emerald); background: rgba(52, 211, 153, 0.08);
-    padding: 14px 16px; border-radius: 0 10px 10px 0; margin-bottom: 18px; font-size: 14px;
+  .note-box {
+    border-left: 2px solid var(--aqua);
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: var(--secondary);
   }
-  .callout.warn { border-left-color: var(--amber); background: rgba(251, 191, 36, 0.08); }
-  .table-wrap { overflow-x: auto; }
-  footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .note-box strong { color: var(--ink); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; }
+
+  footer {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 </style>
 </head>
 <body>
 <div class="container">
   <header>
-    <div class="badge-row">
-      <span class="badge">v1.0 NVIDIA Blackwell Suite</span>
-      <span class="badge green">4 Machines • Verify PASS</span>
-      <span class="badge">4 Engines: llama.cpp · vLLM · SGLang · Strata</span>
-      <span class="badge amber">Apple Silicon v2.0 Coming Next</span>
+    <div>
+      <div class="meta-line">v1.0 NVIDIA Blackwell Suite · 4 Machines · 4 Engines · Verify Gate PASS</div>
+      <h1>Inkling-2-Mini Benchmark Results</h1>
+      <p class="subtitle">
+        Independent measurements of Thinking Machines' Inkling-2-Mini (26.2B total / 3.4B active MoE, looped layers, 1M context) across DGX Spark (GB10), RTX Spark 128GB (N1X), RTX PRO 6000 Blackwell (96GB), and RTX 5090 (32GB). Median of 3 runs per point.
+      </p>
     </div>
-    <h1>Inkling-2-Mini Benchmark Dashboard</h1>
-    <p class="subtitle">
-      End-to-end evaluation of Thinking Machines' <strong>Inkling-2-Mini</strong> (26.2B total / 3.4B active MoE, middle 12 layers looped 3×, 1M context) across DGX Spark (GB10), RTX Spark 128GB (N1X), RTX PRO 6000 Blackwell (96GB), and RTX 5090 (32GB). All points are medians of 3 runs.
-    </p>
+    <button class="theme-toggle" id="theme-toggle" type="button">Light theme</button>
   </header>
 
-  <div class="kpi-grid">
-    <div class="kpi">
-      <div class="kpi-label">Fastest Single-Stream (DSpark)</div>
-      <div class="kpi-value emerald">262.9 tok/s</div>
-      <div class="kpi-sub">RTX PRO 6000 Strata Native (183.5 tok/s RTX Spark vLLM)</div>
+  <div class="summary-strip">
+    <div class="stat-card">
+      <div class="stat-label">Fastest single-stream (DSpark)</div>
+      <div class="stat-value">262.9 tok/s</div>
+      <div class="stat-note">RTX PRO 6000 Strata native (183.5 RTX Spark vLLM)</div>
     </div>
-    <div class="kpi">
-      <div class="kpi-label">Peak Aggregate @64 Streams</div>
-      <div class="kpi-value cyan">1,046.6 tok/s</div>
-      <div class="kpi-sub">RTX PRO 6000 Strata SQ-20 (922.9 tok/s RTX Spark SGLang)</div>
+    <div class="stat-card">
+      <div class="stat-label">Peak aggregate @64 streams</div>
+      <div class="stat-value">1,046.6 tok/s</div>
+      <div class="stat-note">RTX PRO 6000 Strata SQ-20 (922.9 RTX Spark SGLang)</div>
     </div>
-    <div class="kpi">
-      <div class="kpi-label">1M Context Needle Recall</div>
-      <div class="kpi-value violet">3 / 3 (100%)</div>
-      <div class="kpi-sub">DGX Spark vLLM max-bf16 via Assistant Prefill (9 tokens!)</div>
+    <div class="stat-card">
+      <div class="stat-label">1M context needle recall</div>
+      <div class="stat-value">3 / 3 (100%)</div>
+      <div class="stat-note">DGX Spark vLLM max-bf16 via assistant prefill (9 tok)</div>
     </div>
-    <div class="kpi">
-      <div class="kpi-label">RTX PRO 6000 Power Knee</div>
-      <div class="kpi-value amber">+221% @450W</div>
-      <div class="kpi-sub">450 W matches 600 W; 18 °C cooler &amp; −106 W vs 350 W cap</div>
+    <div class="stat-card">
+      <div class="stat-label">RTX PRO 6000 power knee</div>
+      <div class="stat-value">450 W = 600 W</div>
+      <div class="stat-note">+167% @128K, 18 °C cooler &amp; −106 W vs 350 W cap</div>
     </div>
   </div>
 
   <div class="tabs" id="tabs">
-    <button class="tab-btn active" data-tab="speed">Speed Ladder</button>
-    <button class="tab-btn" data-tab="dspark">DSpark Reversal</button>
-    <button class="tab-btn" data-tab="concurrency">Concurrency (1→64)</button>
-    <button class="tab-btn" data-tab="needle">1M Context &amp; Needle</button>
-    <button class="tab-btn" data-tab="power">RTX 6000 Power &amp; Engines</button>
-    <button class="tab-btn" data-tab="quality">Evals, Vision &amp; Soak</button>
+    <button class="tab-btn active" data-tab="speed">Speed ladder</button>
+    <button class="tab-btn" data-tab="dspark">DSpark reversal</button>
+    <button class="tab-btn" data-tab="concurrency">Concurrency (64×)</button>
+    <button class="tab-btn" data-tab="needle">1M context</button>
+    <button class="tab-btn" data-tab="power">RTX 6000 power &amp; engines</button>
+    <button class="tab-btn" data-tab="quality">Evals &amp; soak</button>
   </div>
 
   <!-- SPEED TAB -->
   <section class="tab-panel active" id="tab-speed">
-    <div class="card">
-      <h2>Single-Stream Decode Across Context Lengths (512 → 128K)</h2>
-      <p class="desc">Plain decode without speculative decoding, thinking off, median of 3 runs.</p>
-      <img class="chart-img" src="../charts/01_single_stream_decode.png" alt="Single-stream decode speed chart" />
+    <div class="chart-frame">
+      <img data-chart="01-single-stream-decode" src="../charts/01-single-stream-decode-dark.svg" alt="Single-stream decode speed across context lengths" />
+    </div>
+    <div class="section-card">
+      <h2>Single-stream decode table</h2>
+      <p class="desc">Thinking off, plain decode (no speculation). Select a prompt context length to compare all engines.</p>
       <div class="filter-bar" id="speed-filters">
-        <span>Filter context:</span>
+        <span>Context:</span>
         <button class="pill active" data-ctx="512">512</button>
         <button class="pill" data-ctx="8192">8K</button>
         <button class="pill" data-ctx="32768">32K</button>
@@ -179,75 +293,77 @@
 
   <!-- DSPARK TAB -->
   <section class="tab-panel" id="tab-dspark">
-    <div class="card">
-      <h2>The DSpark Speculative Decoding Reversal</h2>
-      <p class="desc">Same model, opposite outcomes: llama.cpp loses ~2× due to 6–13% acceptance; native vLLM &amp; SGLang gain 3.1×–4.1×.</p>
-      <img class="chart-img" src="../charts/02_dspark_reversal.png" alt="DSpark reversal chart" />
+    <div class="chart-frame">
+      <img data-chart="02-dspark-reversal" src="../charts/02-dspark-reversal-dark.svg" alt="DSpark speculative decoding reversal" />
+    </div>
+    <div class="section-card">
+      <h2>DSpark off vs on (ctx 512 and 32K)</h2>
+      <p class="desc">Draft acceptance sits at 6–13% on llama.cpp GGUF (net slowdown) vs 34–88% on native vLLM and SGLang.</p>
       <div class="table-wrap"><table id="dspark-table"></table></div>
     </div>
   </section>
 
   <!-- CONCURRENCY TAB -->
   <section class="tab-panel" id="tab-concurrency">
-    <div class="card">
-      <h2>Aggregate Output Throughput (1 → 64 Parallel Requests)</h2>
-      <p class="desc">On-box local HTTP load generator, zero failed workers across every engine and concurrency level.</p>
-      <img class="chart-img" src="../charts/03_concurrency_scaling.png" alt="Concurrency scaling chart" />
+    <div class="chart-frame">
+      <img data-chart="03-concurrency-scaling" src="../charts/03-concurrency-scaling-dark.svg" alt="Concurrency scaling at 64 parallel streams" />
+    </div>
+    <div class="section-card">
+      <h2>Aggregate output throughput (1 to 64 workers)</h2>
+      <p class="desc">On-box local HTTP threads, zero failed workers at every concurrency level.</p>
       <div class="table-wrap"><table id="concurrency-table"></table></div>
     </div>
   </section>
 
   <!-- NEEDLE TAB -->
   <section class="tab-panel" id="tab-needle">
-    <div class="card">
-      <h2>The 1M-Context Breakthrough (1,047,040 Tokens)</h2>
-      <p class="desc">Why every engine appeared to fail at 1M on standard chat—and the exact chat-template workaround that unlocked 3/3 recall.</p>
-      <div class="callout">
-        <strong>Root Cause &amp; Fix:</strong> Inkling-2-Mini's chat template ignores <code>reasoning_effort=none</code> (~98.4% reasoning tokens). At 1M context, every engine burns its 2K/8K output budget looping in reasoning. Passing <strong>assistant prefill (<code>continue_final_message</code>)</strong> bypasses the reasoning loop and yields <strong>3/3 exact hits</strong> (<code>XJ9-4782</code>, <code>XJ9-6498</code>, <code>XJ9-7378</code>) in <strong>9 output tokens</strong> on DGX Spark <code>vLLM max-bf16</code>.
-      </div>
-      <img class="chart-img" src="../charts/06_1m_context_breakthrough.png" alt="1M context breakthrough chart" />
+    <div class="note-box">
+      <strong>Root cause &amp; fix:</strong> Inkling-2-Mini's chat template ignores <code>reasoning_effort=none</code> (~98.4% reasoning tokens). At 1,047,040 tokens, standard chat loops until <code>finish_reason=length</code>. Using <strong>assistant prefill (<code>continue_final_message</code>)</strong> bypasses the loop and retrieves <strong>3/3 exact codes</strong> in <strong>9 output tokens</strong> on DGX Spark <code>vLLM max-bf16</code>.
+    </div>
+    <div class="chart-frame">
+      <img data-chart="06-1m-breakthrough" src="../charts/06-1m-breakthrough-dark.svg" alt="1M context needle retrieval breakthrough" />
+    </div>
+    <div class="section-card">
+      <h2>Needle-in-a-haystack ladder (16K to 1M)</h2>
+      <p class="desc">Exact code hits in final answer content (out of 9 at 16K/65K across 3 depths, out of 3 at 128K/262K/1M).</p>
       <div class="table-wrap"><table id="needle-table"></table></div>
     </div>
   </section>
 
   <!-- POWER & ENGINES TAB -->
   <section class="tab-panel" id="tab-power">
-    <div class="card">
-      <h2>RTX PRO 6000 Blackwell: 350 W vs 450 W vs 600 W Power Ladder</h2>
-      <p class="desc">Controlled same-box sweep proving the power-cap knee sits below 450 W.</p>
-      <img class="chart-img" src="../charts/04_rtx6000_power_knee.png" alt="RTX PRO 6000 power knee chart" />
+    <div class="chart-frame">
+      <img data-chart="04-rtx6000-power-knee" src="../charts/04-rtx6000-power-knee-dark.svg" alt="RTX PRO 6000 power ladder 350W vs 450W vs 600W" />
     </div>
-    <div class="card">
-      <h2>RTX PRO 6000: Engine &amp; Quant Showdown (600 W)</h2>
-      <p class="desc">Comparing llama.cpp (Q4_K_XL &amp; IQ4_NL), Strata v0.2.19 (SQ-20), Strata #6520 (NVFP4), and Strata #6642 (GGUF).</p>
-      <img class="chart-img" src="../charts/05_rtx6000_engines_and_quants.png" alt="RTX PRO 6000 engine showdown chart" />
+    <div class="chart-frame">
+      <img data-chart="05-rtx6000-engines" src="../charts/05-rtx6000-engines-dark.svg" alt="RTX PRO 6000 engine and quant trade-offs" />
     </div>
   </section>
 
   <!-- QUALITY & SOAK TAB -->
   <section class="tab-panel" id="tab-quality">
-    <div class="card">
-      <h2>Capability Evals (Math /20 + Code /10) &amp; Vision (/8)</h2>
-      <p class="desc">Sandboxed Python execution for code (10/10 on every arm). Vision misses are a deterministic shape-counting limit (8 shapes → 7/6).</p>
+    <div class="section-card">
+      <h2>Capability evals (20 math + 10 sandboxed code) &amp; vision (8 items)</h2>
+      <p class="desc">Code is 10/10 across every arm. Vision misses are a deterministic shape-counting limitation (8 shapes → 7/6).</p>
       <div class="table-wrap"><table id="eval-table"></table></div>
     </div>
-    <div class="card">
-      <h2>30-Minute Continuous Soak &amp; Power Efficiency</h2>
-      <p class="desc">3 × 10-minute continuous back-to-back request windows.</p>
+    <div class="section-card">
+      <h2>30-minute continuous soak &amp; power efficiency</h2>
+      <p class="desc">Three consecutive 10-minute back-to-back request windows.</p>
       <div class="table-wrap"><table id="soak-table"></table></div>
     </div>
   </section>
 
   <footer>
-    <span>Source of truth: <code>data/benchmarks.json</code> • Normalized CSVs in <code>data/</code></span>
+    <span>Data: <code>data/benchmarks.json</code> &amp; <code>data/*.csv</code> · Charts: deterministic stdlib SVG</span>
     <span>Apple Silicon Metal (M3 Ultra 256GB &amp; M4 Max 128GB) arriving in v2.0</span>
   </footer>
 </div>
 
 <script>
 const SPEED = [
-  {m:"RTX PRO 6000", e:"Strata SQ-20", q:"SQ-20", c:512, d:178.60, t:0.038},
-  {m:"RTX PRO 6000", e:"Strata NVFP4 (#6520)", q:"NVFP4", c:512, d:163.06, t:0.047},
+  {m:"RTX PRO 6000", e:"Strata SQ-20", q:"SQ-20", c:512, d:178.60, t:0.04},
+  {m:"RTX PRO 6000", e:"Strata NVFP4 (#6520)", q:"NVFP4", c:512, d:163.06, t:0.05},
   {m:"RTX PRO 6000", e:"llama.cpp (IQ4_NL)", q:"IQ4_NL", c:512, d:95.37, t:null},
   {m:"RTX PRO 6000", e:"Strata GGUF (#6642)", q:"IQ4_NL", c:512, d:93.64, t:null},
   {m:"RTX PRO 6000", e:"llama.cpp (600W)", q:"Q4_K_XL", c:512, d:86.76, t:0.14},
@@ -264,43 +380,43 @@ const SPEED = [
   {m:"RTX PRO 6000", e:"Strata GGUF (#6642)", q:"IQ4_NL", c:8192, d:88.34, t:null},
   {m:"RTX PRO 6000", e:"llama.cpp (IQ4_NL)", q:"IQ4_NL", c:8192, d:88.04, t:null},
   {m:"RTX PRO 6000", e:"llama.cpp (600W)", q:"Q4_K_XL", c:8192, d:82.22, t:3.62},
-  {m:"RTX 5090", e:"llama.cpp", q:"Q4_K_XL", c:8192, d:75.7, t:4.2},
+  {m:"RTX 5090", e:"llama.cpp", q:"Q4_K_XL", c:8192, d:75.7, t:4.20},
   {m:"RTX Spark", e:"vLLM", q:"NVFP4", c:8192, d:43.2, t:2.41},
   {m:"RTX Spark", e:"SGLang", q:"NVFP4", c:8192, d:41.3, t:2.21},
-  {m:"DGX Spark", e:"vLLM", q:"NVFP4", c:8192, d:35.55, t:2.5},
-  {m:"DGX Spark", e:"SGLang", q:"NVFP4", c:8192, d:35.50, t:2.3},
-  {m:"DGX Spark", e:"llama.cpp", q:"Q4_K_XL", c:8192, d:32.86, t:14.3},
-  {m:"RTX Spark", e:"llama.cpp", q:"Q4_K_XL", c:8192, d:31.68, t:16.0},
+  {m:"DGX Spark", e:"vLLM", q:"NVFP4", c:8192, d:35.55, t:2.50},
+  {m:"DGX Spark", e:"SGLang", q:"NVFP4", c:8192, d:35.50, t:2.30},
+  {m:"DGX Spark", e:"llama.cpp", q:"Q4_K_XL", c:8192, d:32.86, t:14.30},
+  {m:"RTX Spark", e:"llama.cpp", q:"Q4_K_XL", c:8192, d:31.68, t:16.00},
 
   {m:"RTX PRO 6000", e:"Strata NVFP4 (#6520)", q:"NVFP4", c:32768, d:129.69, t:4.49},
   {m:"RTX PRO 6000", e:"Strata SQ-20", q:"SQ-20", c:32768, d:92.86, t:5.27},
   {m:"RTX PRO 6000", e:"llama.cpp (IQ4_NL)", q:"IQ4_NL", c:32768, d:81.32, t:null},
   {m:"RTX PRO 6000", e:"Strata GGUF (#6642)", q:"IQ4_NL", c:32768, d:79.88, t:null},
   {m:"RTX PRO 6000", e:"llama.cpp (600W)", q:"Q4_K_XL", c:32768, d:77.69, t:17.37},
-  {m:"RTX 5090", e:"llama.cpp", q:"Q4_K_XL", c:32768, d:70.2, t:19.8},
+  {m:"RTX 5090", e:"llama.cpp", q:"Q4_K_XL", c:32768, d:70.2, t:19.80},
   {m:"RTX Spark", e:"vLLM", q:"NVFP4", c:32768, d:38.0, t:10.90},
   {m:"RTX Spark", e:"SGLang", q:"NVFP4", c:32768, d:37.7, t:9.59},
-  {m:"DGX Spark", e:"vLLM", q:"NVFP4", c:32768, d:31.86, t:11.1},
-  {m:"DGX Spark", e:"SGLang", q:"NVFP4", c:32768, d:31.56, t:9.6},
-  {m:"DGX Spark", e:"llama.cpp", q:"Q4_K_XL", c:32768, d:28.74, t:81.6},
-  {m:"RTX Spark", e:"llama.cpp", q:"Q4_K_XL", c:32768, d:28.27, t:87.1},
+  {m:"DGX Spark", e:"vLLM", q:"NVFP4", c:32768, d:31.86, t:11.10},
+  {m:"DGX Spark", e:"SGLang", q:"NVFP4", c:32768, d:31.56, t:9.60},
+  {m:"DGX Spark", e:"llama.cpp", q:"Q4_K_XL", c:32768, d:28.74, t:81.60},
+  {m:"RTX Spark", e:"llama.cpp", q:"Q4_K_XL", c:32768, d:28.27, t:87.10},
 
   {m:"RTX PRO 6000", e:"Strata NVFP4 (#6520)", q:"NVFP4", c:131072, d:96.02, t:26.49},
   {m:"RTX PRO 6000", e:"Strata SQ-20", q:"SQ-20", c:131072, d:94.98, t:45.41},
   {m:"RTX PRO 6000", e:"llama.cpp (600W)", q:"Q4_K_XL", c:131072, d:63.96, t:77.86},
   {m:"RTX PRO 6000", e:"llama.cpp (IQ4_NL)", q:"IQ4_NL", c:131072, d:63.58, t:null},
-  {m:"RTX 5090", e:"llama.cpp", q:"Q4_K_XL", c:131072, d:57.2, t:94.6},
+  {m:"RTX 5090", e:"llama.cpp", q:"Q4_K_XL", c:131072, d:57.2, t:94.60},
   {m:"RTX PRO 6000", e:"Strata GGUF (#6642)", q:"IQ4_NL", c:131072, d:57.13, t:null},
-  {m:"RTX Spark", e:"SGLang", q:"NVFP4", c:131072, d:27.2, t:52.7},
-  {m:"RTX Spark", e:"vLLM", q:"NVFP4", c:131072, d:26.3, t:63.3},
-  {m:"DGX Spark", e:"vLLM", q:"NVFP4", c:131072, d:22.44, t:58.3},
-  {m:"DGX Spark", e:"SGLang", q:"NVFP4", c:131072, d:22.20, t:50.7},
-  {m:"RTX Spark", e:"llama.cpp", q:"Q4_K_XL", c:131072, d:20.37, t:385.1},
-  {m:"DGX Spark", e:"llama.cpp", q:"Q4_K_XL", c:131072, d:19.59, t:363.6},
+  {m:"RTX Spark", e:"SGLang", q:"NVFP4", c:131072, d:27.2, t:52.70},
+  {m:"RTX Spark", e:"vLLM", q:"NVFP4", c:131072, d:26.3, t:63.30},
+  {m:"DGX Spark", e:"vLLM", q:"NVFP4", c:131072, d:22.44, t:58.30},
+  {m:"DGX Spark", e:"SGLang", q:"NVFP4", c:131072, d:22.20, t:50.70},
+  {m:"RTX Spark", e:"llama.cpp", q:"Q4_K_XL", c:131072, d:20.37, t:385.10},
+  {m:"DGX Spark", e:"llama.cpp", q:"Q4_K_XL", c:131072, d:19.59, t:363.60},
 ];
 
 const DSPARK = [
-  {m:"RTX PRO 6000", e:"Strata Native (BEAM-W4 TREE-6)", ctx:512, off:128.7, on:262.9, r:"2.04×", acc:"256/256 exact"},
+  {m:"RTX PRO 6000", e:"Strata native (BEAM-W4 TREE-6)", ctx:512, off:128.7, on:262.9, r:"2.04×", acc:"256/256 exact"},
   {m:"RTX Spark", e:"vLLM (NVFP4)", ctx:512, off:44.6, on:183.5, r:"4.11×", acc:"54% (smoke)"},
   {m:"DGX Spark", e:"vLLM (NVFP4)", ctx:512, off:37.29, on:142.01, r:"3.81×", acc:"54.2%"},
   {m:"RTX Spark", e:"SGLang (NVFP4)", ctx:512, off:44.7, on:140.3, r:"3.14×", acc:"34.4%"},
@@ -330,13 +446,13 @@ const CONC = [
 ];
 
 const NEEDLE = [
-  {m:"DGX Spark", e:"vLLM max-bf16 (Assistant Prefill)", c16:"—", c65:"—", c131:"—", c262:"—", c1m:"3/3 (100%, 9 tok, clean stop)"},
-  {m:"DGX Spark", e:"vLLM max-fp8 (Standard)", c16:"—", c65:"—", c131:"—", c262:"2/3 (median 1.0)", c1m:"0/3 (budget hit; 1/3 in reasoning)"},
-  {m:"DGX Spark", e:"SGLang max (Standard)", c16:"—", c65:"—", c131:"—", c262:"2/3 (median 1.0)", c1m:"0/3 (budget hit; 2/3 in reasoning)"},
-  {m:"RTX Spark", e:"vLLM / SGLang (Standard)", c16:"—", c65:"—", c131:"—", c262:"2/3 (median 1.0)", c1m:"0/3 (reproduces DGX Spark)"},
+  {m:"DGX Spark", e:"vLLM max-bf16 (assistant prefill)", c16:"—", c65:"—", c131:"—", c262:"—", c1m:"3/3 (100%, 9 tok, clean stop)"},
+  {m:"DGX Spark", e:"vLLM max-fp8 (standard chat)", c16:"—", c65:"—", c131:"—", c262:"2/3 (median 1.0)", c1m:"0/3 (budget hit; 1/3 in reasoning)"},
+  {m:"DGX Spark", e:"SGLang max (standard chat)", c16:"—", c65:"—", c131:"—", c262:"2/3 (median 1.0)", c1m:"0/3 (budget hit; 2/3 in reasoning)"},
+  {m:"RTX Spark", e:"vLLM / SGLang (standard chat)", c16:"—", c65:"—", c131:"—", c262:"2/3 (median 1.0)", c1m:"0/3 (matches DGX Spark)"},
   {m:"DGX Spark", e:"llama.cpp Q4_K_XL", c16:"9/9", c65:"9/9", c131:"3/3", c262:"1/3", c1m:"0/3 (degenerate at 8k probe)"},
   {m:"RTX 5090", e:"llama.cpp Q4_K_XL", c16:"9/9", c65:"6/9", c131:"3/3", c262:"1/3", c1m:"BLOCKED (~10.4 h/run w/ -nkvo)"},
-  {m:"RTX PRO 6000", e:"llama.cpp Q4_K_XL", c16:"8/9", c65:"5/9", c131:"0/3", c262:"0/3", c1m:"0/3 (runs clean, 1/3 in reasoning)"},
+  {m:"RTX PRO 6000", e:"llama.cpp Q4_K_XL", c16:"8/9", c65:"5/9", c131:"0/3", c262:"0/3", c1m:"0/3 (runs clean; 1/3 in reasoning)"},
   {m:"RTX PRO 6000", e:"Strata SQ-20", c16:"8/9", c65:"5/9", c131:"0/3", c262:"0/3", c1m:"BLOCKED (CUDA OOM @267K)"},
 ];
 
@@ -378,42 +494,48 @@ function renderSpeed(ctx) {
         <td><strong>${r.m}</strong></td>
         <td>${r.e}</td>
         <td><code>${r.q}</code></td>
-        <td class="num">${r.t === null ? "—" : r.t.toFixed(2)}</td>
+        <td class="num muted">${r.t === null ? "—" : r.t.toFixed(2)}</td>
         <td><div class="bar-cell">
-          <div class="bar-track"><div class="bar-fill" style="width:${(r.d/maxD*100).toFixed(1)}%;background:var(--cyan)"></div></div>
-          <strong style="min-width:60px;text-align:right">${r.d.toFixed(1)}</strong>
+          <div class="bar-track"><div class="bar-fill" style="width:${(r.d/maxD*100).toFixed(1)}%;background:var(--blue)"></div></div>
+          <strong style="min-width:52px;text-align:right">${r.d.toFixed(1)}</strong>
         </div></td>
       </tr>`).join("")}</tbody>`;
 }
 
 document.getElementById("dspark-table").innerHTML = `
   <thead><tr><th>Machine</th><th>Engine</th><th class="num">Ctx</th><th class="num">OFF (tok/s)</th><th class="num">ON (tok/s)</th><th class="num">Ratio</th><th>Acceptance</th></tr></thead>
-  <tbody>${DSPARK.map(r => {
-    const cls = r.on >= r.off ? "emerald" : "coral";
-    return `<tr><td><strong>${r.m}</strong></td><td>${r.e}</td><td class="num">${r.ctx.toLocaleString()}</td><td class="num">${r.off.toFixed(1)}</td><td class="num ${cls}"><strong>${r.on.toFixed(1)}</strong></td><td class="num ${cls}"><strong>${r.r}</strong></td><td>${r.acc}</td></tr>`;
-  }).join("")}</tbody>`;
+  <tbody>${DSPARK.map(r => `
+    <tr>
+      <td><strong>${r.m}</strong></td>
+      <td>${r.e}</td>
+      <td class="num muted">${r.ctx.toLocaleString()}</td>
+      <td class="num muted">${r.off.toFixed(1)}</td>
+      <td class="num"><strong>${r.on.toFixed(1)}</strong></td>
+      <td class="num"><strong>${r.r}</strong></td>
+      <td class="muted">${r.acc}</td>
+    </tr>`).join("")}</tbody>`;
 
 document.getElementById("concurrency-table").innerHTML = `
-  <thead><tr><th>Machine</th><th>Engine</th><th class="num">1×</th><th class="num">4×</th><th class="num">16×</th><th>64× Aggregate (tok/s)</th></tr></thead>
+  <thead><tr><th>Machine</th><th>Engine</th><th class="num">1×</th><th class="num">4×</th><th class="num">16×</th><th>64× aggregate (tok/s)</th></tr></thead>
   <tbody>${CONC.map(r => {
-    const color = r.p64 > 800 ? "var(--emerald)" : (r.p64 < 200 ? "var(--coral)" : "var(--cyan)");
-    return `<tr><td><strong>${r.m}</strong></td><td>${r.e}</td><td class="num">${r.p1.toFixed(1)}</td><td class="num">${r.p4.toFixed(1)}</td><td class="num">${r.p16.toFixed(1)}</td>
-    <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:${(r.p64/1050*100).toFixed(1)}%;background:${color}"></div></div><strong style="min-width:64px;text-align:right">${r.p64.toFixed(1)}</strong></div></td></tr>`;
+    const color = r.p64 > 800 ? "var(--aqua)" : (r.p64 < 200 ? "var(--red)" : "var(--blue)");
+    return `<tr><td><strong>${r.m}</strong></td><td>${r.e}</td><td class="num muted">${r.p1.toFixed(1)}</td><td class="num muted">${r.p4.toFixed(1)}</td><td class="num muted">${r.p16.toFixed(1)}</td>
+    <td><div class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:${(r.p64/1050*100).toFixed(1)}%;background:${color}"></div></div><strong style="min-width:58px;text-align:right">${r.p64.toFixed(1)}</strong></div></td></tr>`;
   }).join("")}</tbody>`;
 
 document.getElementById("needle-table").innerHTML = `
-  <thead><tr><th>Machine</th><th>Engine / Mode</th><th>16K</th><th>65K</th><th>128K</th><th>262K</th><th>1M (1,047,040)</th></tr></thead>
-  <tbody>${NEEDLE.map(r => `<tr><td><strong>${r.m}</strong></td><td>${r.e}</td><td>${r.c16}</td><td>${r.c65}</td><td>${r.c131}</td><td>${r.c262}</td><td class="${r.c1m.startsWith('3/3') ? 'emerald' : ''}"><strong>${r.c1m}</strong></td></tr>`).join("")}</tbody>`;
+  <thead><tr><th>Machine</th><th>Engine / mode</th><th>16K</th><th>65K</th><th>128K</th><th>262K</th><th>1M (1,047,040)</th></tr></thead>
+  <tbody>${NEEDLE.map(r => `<tr><td><strong>${r.m}</strong></td><td>${r.e}</td><td class="muted">${r.c16}</td><td class="muted">${r.c65}</td><td class="muted">${r.c131}</td><td class="muted">${r.c262}</td><td><strong>${r.c1m}</strong></td></tr>`).join("")}</tbody>`;
 
 document.getElementById("eval-table").innerHTML = `
   <thead><tr><th>Machine</th><th>Engine</th><th class="num">Math</th><th class="num">Code</th><th class="num">Combined</th><th class="num">Vision</th></tr></thead>
-  <tbody>${EVALS.map(r => `<tr><td><strong>${r.m}</strong></td><td>${r.e}</td><td class="num">${r.math}</td><td class="num emerald">${r.code}</td><td class="num"><strong>${r.comb}</strong></td><td class="num">${r.vis}</td></tr>`).join("")}</tbody>`;
+  <tbody>${EVALS.map(r => `<tr><td><strong>${r.m}</strong></td><td>${r.e}</td><td class="num muted">${r.math}</td><td class="num">${r.code}</td><td class="num"><strong>${r.comb}</strong></td><td class="num muted">${r.vis}</td></tr>`).join("")}</tbody>`;
 
 document.getElementById("soak-table").innerHTML = `
-  <thead><tr><th>Machine</th><th>Engine</th><th class="num">Decode (tok/s)</th><th class="num">Mean Power</th><th class="num">Max Temp</th><th class="num">tok/W</th><th>Notes</th></tr></thead>
-  <tbody>${SOAK.map(r => `<tr><td><strong>${r.m}</strong></td><td>${r.e}</td><td class="num"><strong>${r.d}</strong></td><td class="num">${r.w}</td><td class="num">${r.temp}</td><td class="num cyan">${r.eff}</td><td>${r.n}</td></tr>`).join("")}</tbody>`;
+  <thead><tr><th>Machine</th><th>Engine</th><th class="num">Decode (tok/s)</th><th class="num">Mean power</th><th class="num">Max temp</th><th class="num">tok/W</th><th>Notes</th></tr></thead>
+  <tbody>${SOAK.map(r => `<tr><td><strong>${r.m}</strong></td><td>${r.e}</td><td class="num"><strong>${r.d}</strong></td><td class="num muted">${r.w}</td><td class="num muted">${r.temp}</td><td class="num"><strong>${r.eff}</strong></td><td class="muted">${r.n}</td></tr>`).join("")}</tbody>`;
 
-// Tab switching
+// Tabs
 document.querySelectorAll(".tab-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
@@ -423,7 +545,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
   });
 });
 
-// Speed context filter
+// Speed filter
 document.querySelectorAll("#speed-filters .pill").forEach(pill => {
   pill.addEventListener("click", () => {
     document.querySelectorAll("#speed-filters .pill").forEach(p => p.classList.remove("active"));
@@ -432,6 +554,18 @@ document.querySelectorAll("#speed-filters .pill").forEach(pill => {
   });
 });
 renderSpeed(512);
+
+// Theme toggle (live-swaps SVGs between -dark.svg and -light.svg)
+const root = document.documentElement;
+const toggle = document.getElementById("theme-toggle");
+toggle.addEventListener("click", () => {
+  const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  root.setAttribute("data-theme", next);
+  toggle.textContent = next === "dark" ? "Light theme" : "Dark theme";
+  document.querySelectorAll("img[data-chart]").forEach(img => {
+    img.src = `../charts/${img.dataset.chart}-${next}.svg`;
+  });
+});
 </script>
 </body>
 </html>

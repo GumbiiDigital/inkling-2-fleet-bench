@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="463" viewBox="0 0 840 463" role="img" aria-label="RTX PRO 6000 (600 W): engine and quant trade-offs Comparing llama.cpp baseline and IQ4_NL against Strata SQ-20, PR #6520 NVFP4, and PR #6642 GGUF." font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" data-x-scale="linear" data-y-scale="linear">
+<title>RTX PRO 6000 (600 W): engine and quant trade-offs Comparing llama.cpp baseline and IQ4_NL against Strata SQ-20, PR #6520 NVFP4, and PR #6642 GGUF.</title>
+<rect x="0.5" y="0.5" width="839" height="462" fill="#1a1a19" rx="8" stroke="#2c2c2a" stroke-width="1"/>
+<text x="24" y="40" font-size="16" fill="#f0efec" font-weight="600">RTX PRO 6000 (600 W): engine and quant trade-offs</text>
+<text x="24" y="57" font-size="12" fill="#c3c2b7">Comparing llama.cpp baseline and IQ4_NL against Strata SQ-20, PR #6520 NVFP4, and PR #6642 GGUF.</text>
+<text x="24" y="88" font-size="13" fill="#f0efec" font-weight="600">Single-stream decode @512</text>
+<text x="24" y="112.5" font-size="12" fill="#c3c2b7">Strata SQ-20</text>
+<path d="M172.4,101 H234.56 Q238.56,101 238.56,105 V111 Q238.56,115 234.56,115 H172.4 Z" fill="#199e70"><title>Single-stream decode @512 · Strata SQ-20: 178.6 tok/s 2.06× base</title></path>
+<text x="246.56" y="112.5" font-size="12" fill="#f0efec" font-weight="600">178.6 tok/s</text>
+<text x="336.4" y="112.5" font-size="11" fill="#898781">2.06× base</text>
+<text x="24" y="138.5" font-size="12" fill="#c3c2b7">Strata NVFP4 (#6520)</text>
+<path d="M172.4,127 H228.8 Q232.8,127 232.8,131 V137 Q232.8,141 228.8,141 H172.4 Z" fill="#9085e9"><title>Single-stream decode @512 · Strata NVFP4 (#6520): 163.1 tok/s 1.88× base</title></path>
+<text x="240.8" y="138.5" font-size="12" fill="#f0efec" font-weight="600">163.1 tok/s</text>
+<text x="330.64" y="138.5" font-size="11" fill="#898781">1.88× base</text>
+<text x="24" y="164.5" font-size="12" fill="#c3c2b7">llama.cpp IQ4_NL</text>
+<path d="M172.4,153 H203.73 Q207.73,153 207.73,157 V163 Q207.73,167 203.73,167 H172.4 Z" fill="#3987e5"><title>Single-stream decode @512 · llama.cpp IQ4_NL: 95.4 tok/s same-wt ref</title></path>
+<text x="215.73" y="164.5" font-size="12" fill="#f0efec" font-weight="600">95.4 tok/s</text>
+<text x="298.13" y="164.5" font-size="11" fill="#898781">same-wt ref</text>
+<text x="24" y="190.5" font-size="12" fill="#c3c2b7">Strata GGUF (#6642)</text>
+<path d="M172.4,179 H203.09 Q207.09,179 207.09,183 V189 Q207.09,193 203.09,193 H172.4 Z" fill="#d95926"><title>Single-stream decode @512 · Strata GGUF (#6642): 93.6 tok/s 0.98× llama</title></path>
+<text x="215.09" y="190.5" font-size="12" fill="#f0efec" font-weight="600">93.6 tok/s</text>
+<text x="297.49" y="190.5" font-size="11" fill="#898781">0.98× llama</text>
+<text x="24" y="216.5" font-size="12" fill="#c3c2b7">llama.cpp Q4_K_XL</text>
+<path d="M172.4,205 H200.54 Q204.54,205 204.54,209 V215 Q204.54,219 200.54,219 H172.4 Z" fill="#3987e5"><title>Single-stream decode @512 · llama.cpp Q4_K_XL: 86.8 tok/s baseline</title></path>
+<text x="212.54" y="216.5" font-size="12" fill="#f0efec" font-weight="600">86.8 tok/s</text>
+<text x="294.94" y="216.5" font-size="11" fill="#898781">baseline</text>
+<line x1="172.4" y1="97" x2="172.4" y2="223" stroke="#383835" stroke-width="1"/>
+<text x="436" y="88" font-size="13" fill="#f0efec" font-weight="600">Single-stream decode @128K</text>
+<text x="436" y="112.5" font-size="12" fill="#c3c2b7">Strata NVFP4 (#6520)</text>
+<path d="M584.4,101 H646.56 Q650.56,101 650.56,105 V111 Q650.56,115 646.56,115 H584.4 Z" fill="#9085e9"><title>Single-stream decode @128K · Strata NVFP4 (#6520): 96.0 tok/s 1.50× base</title></path>
+<text x="658.56" y="112.5" font-size="12" fill="#f0efec" font-weight="600">96.0 tok/s</text>
+<text x="740.96" y="112.5" font-size="11" fill="#898781">1.50× base</text>
+<text x="436" y="138.5" font-size="12" fill="#c3c2b7">Strata SQ-20</text>
+<path d="M584.4,127 H645.84 Q649.84,127 649.84,131 V137 Q649.84,141 645.84,141 H584.4 Z" fill="#199e70"><title>Single-stream decode @128K · Strata SQ-20: 95.0 tok/s 1.48× base</title></path>
+<text x="657.84" y="138.5" font-size="12" fill="#f0efec" font-weight="600">95.0 tok/s</text>
+<text x="740.24" y="138.5" font-size="11" fill="#898781">1.48× base</text>
+<text x="436" y="164.5" font-size="12" fill="#c3c2b7">llama.cpp Q4_K_XL</text>
+<path d="M584.4,153 H624.47 Q628.47,153 628.47,157 V163 Q628.47,167 624.47,167 H584.4 Z" fill="#3987e5"><title>Single-stream decode @128K · llama.cpp Q4_K_XL: 64.0 tok/s baseline</title></path>
+<text x="636.47" y="164.5" font-size="12" fill="#f0efec" font-weight="600">64.0 tok/s</text>
+<text x="718.87" y="164.5" font-size="11" fill="#898781">baseline</text>
+<text x="436" y="190.5" font-size="12" fill="#c3c2b7">llama.cpp IQ4_NL</text>
+<path d="M584.4,179 H624.21 Q628.21,179 628.21,183 V189 Q628.21,193 624.21,193 H584.4 Z" fill="#3987e5"><title>Single-stream decode @128K · llama.cpp IQ4_NL: 63.6 tok/s same-wt ref</title></path>
+<text x="636.21" y="190.5" font-size="12" fill="#f0efec" font-weight="600">63.6 tok/s</text>
+<text x="718.61" y="190.5" font-size="11" fill="#898781">same-wt ref</text>
+<text x="436" y="216.5" font-size="12" fill="#c3c2b7">Strata GGUF (#6642)</text>
+<path d="M584.4,205 H619.76 Q623.76,205 623.76,209 V215 Q623.76,219 619.76,219 H584.4 Z" fill="#d95926"><title>Single-stream decode @128K · Strata GGUF (#6642): 57.1 tok/s 0.90× llama</title></path>
+<text x="631.76" y="216.5" font-size="12" fill="#f0efec" font-weight="600">57.1 tok/s</text>
+<text x="714.16" y="216.5" font-size="11" fill="#898781">0.90× llama</text>
+<line x1="584.4" y1="97" x2="584.4" y2="223" stroke="#383835" stroke-width="1"/>
+<text x="24" y="266" font-size="13" fill="#f0efec" font-weight="600">Combined eval score (20 math + 10 code)</text>
+<text x="24" y="290.5" font-size="12" fill="#c3c2b7">Strata NVFP4 (#6520)</text>
+<path d="M172.4,279 H234.56 Q238.56,279 238.56,283 V289 Q238.56,293 234.56,293 H172.4 Z" fill="#9085e9"><title>Combined eval score (20 math + 10 code) · Strata NVFP4 (#6520): 0.867 16/20 math</title></path>
+<text x="246.56" y="290.5" font-size="12" fill="#f0efec" font-weight="600">0.867</text>
+<text x="291.76" y="290.5" font-size="11" fill="#898781">16/20 math</text>
+<text x="24" y="316.5" font-size="12" fill="#c3c2b7">Strata SQ-20</text>
+<path d="M172.4,305 H229.45 Q233.45,305 233.45,309 V315 Q233.45,319 229.45,319 H172.4 Z" fill="#199e70"><title>Combined eval score (20 math + 10 code) · Strata SQ-20: 0.800 14/20 math</title></path>
+<text x="241.45" y="316.5" font-size="12" fill="#f0efec" font-weight="600">0.800</text>
+<text x="286.65" y="316.5" font-size="11" fill="#898781">14/20 math</text>
+<text x="24" y="342.5" font-size="12" fill="#c3c2b7">llama.cpp Q4_K_XL</text>
+<path d="M172.4,331 H229.45 Q233.45,331 233.45,335 V341 Q233.45,345 229.45,345 H172.4 Z" fill="#3987e5"><title>Combined eval score (20 math + 10 code) · llama.cpp Q4_K_XL: 0.800 14/20 math</title></path>
+<text x="241.45" y="342.5" font-size="12" fill="#f0efec" font-weight="600">0.800</text>
+<text x="286.65" y="342.5" font-size="11" fill="#898781">14/20 math</text>
+<text x="24" y="368.5" font-size="12" fill="#c3c2b7">llama.cpp IQ4_NL</text>
+<path d="M172.4,357 H224.33 Q228.33,357 228.33,361 V367 Q228.33,371 224.33,371 H172.4 Z" fill="#3987e5"><title>Combined eval score (20 math + 10 code) · llama.cpp IQ4_NL: 0.733 12/20 math</title></path>
+<text x="236.33" y="368.5" font-size="12" fill="#f0efec" font-weight="600">0.733</text>
+<text x="281.53" y="368.5" font-size="11" fill="#898781">12/20 math</text>
+<text x="24" y="394.5" font-size="12" fill="#c3c2b7">Strata GGUF (#6642)</text>
+<path d="M172.4,383 H209.07 Q213.07,383 213.07,387 V393 Q213.07,397 209.07,397 H172.4 Z" fill="#e66767"><title>Combined eval score (20 math + 10 code) · Strata GGUF (#6642): 0.533 6/20 math</title></path>
+<text x="221.07" y="394.5" font-size="12" fill="#f0efec" font-weight="600">0.533</text>
+<text x="266.27" y="394.5" font-size="11" fill="#898781">6/20 math</text>
+<line x1="172.4" y1="275" x2="172.4" y2="401" stroke="#383835" stroke-width="1"/>
+<text x="436" y="266" font-size="13" fill="#f0efec" font-weight="600">30-minute soak efficiency (tok/W)</text>
+<text x="436" y="290.5" font-size="12" fill="#c3c2b7">llama.cpp Q4_K_XL</text>
+<path d="M584.4,279 H646.56 Q650.56,279 650.56,283 V289 Q650.56,293 646.56,293 H584.4 Z" fill="#3987e5"><title>30-minute soak efficiency (tok/W) · llama.cpp Q4_K_XL: 0.299 222 W / 66 °C</title></path>
+<text x="658.56" y="290.5" font-size="12" fill="#f0efec" font-weight="600">0.299</text>
+<text x="703.76" y="290.5" font-size="11" fill="#898781">222 W / 66 °C</text>
+<text x="436" y="316.5" font-size="12" fill="#c3c2b7">llama.cpp IQ4_NL</text>
+<path d="M584.4,305 H645.23 Q649.23,305 649.23,309 V315 Q649.23,319 645.23,319 H584.4 Z" fill="#3987e5"><title>30-minute soak efficiency (tok/W) · llama.cpp IQ4_NL: 0.293 238 W / 69 °C</title></path>
+<text x="657.23" y="316.5" font-size="12" fill="#f0efec" font-weight="600">0.293</text>
+<text x="702.43" y="316.5" font-size="11" fill="#898781">238 W / 69 °C</text>
+<text x="436" y="342.5" font-size="12" fill="#c3c2b7">Strata SQ-20</text>
+<path d="M584.4,331 H641.91 Q645.91,331 645.91,335 V341 Q645.91,345 641.91,345 H584.4 Z" fill="#199e70"><title>30-minute soak efficiency (tok/W) · Strata SQ-20: 0.278 345 W / 82 °C</title></path>
+<text x="653.91" y="342.5" font-size="12" fill="#f0efec" font-weight="600">0.278</text>
+<text x="699.11" y="342.5" font-size="11" fill="#898781">345 W / 82 °C</text>
+<text x="436" y="368.5" font-size="12" fill="#c3c2b7">Strata NVFP4 (#6520)</text>
+<path d="M584.4,357 H638.37 Q642.37,357 642.37,361 V367 Q642.37,371 638.37,371 H584.4 Z" fill="#9085e9"><title>30-minute soak efficiency (tok/W) · Strata NVFP4 (#6520): 0.262 350 W / 80 °C</title></path>
+<text x="650.37" y="368.5" font-size="12" fill="#f0efec" font-weight="600">0.262</text>
+<text x="695.57" y="368.5" font-size="11" fill="#898781">350 W / 80 °C</text>
+<text x="436" y="394.5" font-size="12" fill="#c3c2b7">Strata GGUF (#6642)</text>
+<path d="M584.4,383 H626.87 Q630.87,383 630.87,387 V393 Q630.87,397 626.87,397 H584.4 Z" fill="#e66767"><title>30-minute soak efficiency (tok/W) · Strata GGUF (#6642): 0.210 299 W / 74 °C</title></path>
+<text x="638.87" y="394.5" font-size="12" fill="#f0efec" font-weight="600">0.210</text>
+<text x="684.07" y="394.5" font-size="11" fill="#898781">299 W / 74 °C</text>
+<line x1="584.4" y1="275" x2="584.4" y2="401" stroke="#383835" stroke-width="1"/>
+<text x="24" y="431" font-size="11" fill="#898781">Code eval = 10/10 on all five arms. Strata SQ-20 OOMs on the 1M needle prompt (267K prefill); llama.cpp completes 1M.</text>
+<text x="24" y="447" font-size="11" fill="#898781">Strata #6642 GGUF and llama.cpp IQ4_NL ran the exact same .gguf file for a controlled head-to-head.</text>
+</svg>

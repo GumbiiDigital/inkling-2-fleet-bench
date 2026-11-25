@@ -1,22 +1,18 @@
 # Inkling-2-Mini — Multi-Hardware & Multi-Engine NVIDIA Benchmark Suite
 
-[![Verify Gate](https://img.shields.io/badge/Verify%20Gate-PASS%20(4%2F4%20Hosts)-34D399?style=flat-square)](#hardware-matrix)
-[![Model](https://img.shields.io/badge/Model-Inkling--2--Mini%20(26.2B%20%2F%203.4B%20MoE)-22D3EE?style=flat-square)](#model-under-test)
-[![Engines](https://img.shields.io/badge/Engines-llama.cpp%20%7C%20vLLM%20%7C%20SGLang%20%7C%20Strata-A78BFA?style=flat-square)](#engine-showdown)
+Independent, reproducible, verify-gated benchmarks of Thinking Machines' **Inkling-2-Mini** (26.2B total / 3.4B active MoE, middle 12 layers looped 3×, 1M context) across **four NVIDIA Blackwell machines** and **four inference engines** (`llama.cpp`, `vLLM`, `SGLang`, `Strata`).
 
-Independent, reproducible, verify-gated benchmarks of Thinking Machines' **Inkling-2-Mini** across **four NVIDIA Blackwell machines** and **four inference engines** (`llama.cpp`, `vLLM`, `SGLang`, `Strata`), covering single-stream decode up to 256K, concurrency scaling to 64 parallel streams, DSpark speculative decoding, 30-minute thermal/power soaks, a controlled RTX PRO 6000 350W/450W/600W power ladder, varloop depth sweeps, and full **1,047,040-token (1M)** needle-in-a-haystack retrieval.
-
-> **v1.0 Release (NVIDIA Blackwell Fleet):** This release publishes the 4 completed, PASS-gated NVIDIA systems. **v2.0** will add full Apple Silicon Metal results (**M3 Ultra 256 GB** & **M4 Max 128 GB**), whose 1M-context and BF16 runs are currently completing.
+> **v1.0 Release (NVIDIA Blackwell Fleet):** Publishes the 4 completed, PASS-gated NVIDIA systems. **v2.0** will add full Apple Silicon Metal results (**M3 Ultra 256 GB** & **M4 Max 128 GB**), whose 1M-context and BF16 runs are currently completing.
 
 ---
 
 ## Executive Summary — 5 Headline Findings
 
-1. **The 1M-Context Breakthrough (0/3 → 3/3):** On standard chat prompts, *every* engine (`llama.cpp`, `vLLM`, `SGLang`) scored **0/3 at 1M** because Inkling-2-Mini's chat template ignores `reasoning_effort=none` (~98.4% reasoning tokens) and burns its output budget looping. Bypassing the reasoning loop via **assistant prefill (`continue_final_message`)** unlocked **3/3 (100%) exact 1.047M-token recall in 9 output tokens** on DGX Spark (`vLLM max-bf16`).
+1. **The 1M-Context Breakthrough (0/3 → 3/3):** Standard chat scored **0/3 at 1M** on every engine because Inkling-2-Mini's chat template ignores `reasoning_effort=none` (~98.4% reasoning tokens) and loops until hitting the output cap. Bypassing the reasoning loop via **assistant prefill (`continue_final_message`)** unlocked **3/3 (100%) exact 1.047M-token recall in 9 output tokens** on DGX Spark (`vLLM max-bf16`).
 2. **The DSpark Speculative Decoding Reversal:** On `llama.cpp`, DSpark slows decode down across every machine (**0.45×–0.58×**, 6–13% acceptance). On native `vLLM` and `SGLang`, DSpark flips into a **3.1×–4.1× speedup** (**183.5 tok/s** on RTX Spark, **142.0 tok/s** on DGX Spark) and **262.9 tok/s** (2.04×, bit-exact) on RTX PRO 6000 Strata native bench.
 3. **Engine Trade-Offs on RTX PRO 6000 Blackwell (96 GB):** `Strata v0.2.19 (SQ-20)` doubles `llama.cpp` single-stream (**178.6 vs 86.8 tok/s**) and hits **1,046.6 tok/s @64 streams**, but OOMs at 1M where `llama.cpp` finishes. `Strata #6520 (NVFP4)` achieves the highest eval score (**0.867**) but serializes batch requests (~140 tok/s flat). `Strata #6642 (GGUF)` trails `llama.cpp` on the identical `IQ4_NL` file.
 4. **The RTX PRO 6000 Power-Cap Paradox:** Escaping a 350 W power cap to 450 W yields **+167% to +221%** decode speedups while running **18 °C cooler** (66 °C vs 84 °C) and drawing **106 W less mean power** (221 W vs 327 W) during 30-minute soaks. 450 W and 600 W are identical within noise.
-5. **RTX Spark 128GB (N1X) Surprises:** Despite running inside WSL2 on Windows 11 ARM64, the RTX Spark's full **109.67 GiB** CUDA pool runs at full speed (199 GB/s past the 62.4 GiB Windows carve-out), beating DGX Spark on native decode (**+16–23%**) and concurrency (**922.9 vs 842.0 tok/s @64** on `SGLang`).
+5. **RTX Spark 128GB (N1X) Surprises:** Running inside WSL2 on Windows 11 ARM64, the RTX Spark's full **109.67 GiB** CUDA pool runs at full speed (199 GB/s past the 62.4 GiB Windows carve-out), beating DGX Spark on native decode (**+16–23%**) and concurrency (**922.9 vs 842.0 tok/s @64** on `SGLang`).
 
 ---
 
@@ -31,9 +27,12 @@ Independent, reproducible, verify-gated benchmarks of Thinking Machines' **Inkli
 
 ---
 
-## 1. Single-Stream Decode Speed (512 → 128K Context)
+## 1. Single-Stream Decode Speed (512 to 128K Context)
 
-![Single-Stream Decode Speed](charts/01_single_stream_decode.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/01-single-stream-decode-dark.svg">
+  <img alt="Single-stream decode speed across context lengths (512 to 128K)" src="charts/01-single-stream-decode-light.svg">
+</picture>
 
 Median of 3 runs, thinking off, plain decode (no speculation):
 
@@ -50,84 +49,60 @@ Median of 3 runs, thinking off, plain decode (no speculation):
 | **DGX Spark** | llama.cpp | `Q4_K_XL` | 38.5 | 32.9 | 28.7 | 19.6 | 363.6 s |
 | **RTX Spark** | llama.cpp | `Q4_K_XL` | 36.3 | 31.7 | 28.3 | 20.4 | 385.1 s |
 
-> RTX 5090 also completes an all-GPU `f16` KV extension rung at **256K** context: **46.4 tok/s** decode, **1,164 tok/s** prefill, 28.4 GB VRAM.
-
 ---
 
 ## 2. The DSpark Speculative Decoding Reversal
 
-![DSpark Speculative Decoding Reversal](charts/02_dspark_reversal.png)
-
-| Machine | Engine | Ctx | Plain (OFF) | DSpark (ON) | Speedup | Acceptance |
-| :--- | :--- | ---: | ---: | ---: | ---: | :--- |
-| **RTX PRO 6000** | Strata Native (`BEAM-W4 TREE-6`) | 512 | 128.7 | **262.9** | **2.04×** | 256/256 bit-exact |
-| **RTX Spark** | vLLM (NVFP4) | 512 | 44.6 | **183.5** | **4.11×** | 54% (smoke) |
-| **DGX Spark** | vLLM (NVFP4) | 512 | 37.3 | **142.0** | **3.81×** | 54.2% |
-| **RTX Spark** | SGLang (NVFP4) | 512 | 44.7 | **140.3** | **3.14×** | 34.4% |
-| **DGX Spark** | SGLang (NVFP4) | 512 | 37.1 | **119.7** | **3.23×** | — |
-| **RTX PRO 6000** | llama.cpp (600W) | 512 | 87.1 | 50.2 | **0.58×** | 6.0% |
-| **RTX 5090** | llama.cpp | 512 | 82.7 | 44.4 | **0.54×** | 7.5% |
-| **DGX Spark** | llama.cpp | 512 | 39.0 | 18.0 | **0.46×** | 8.3% |
-| **RTX Spark** | llama.cpp | 512 | 37.8 | 17.1 | **0.45×** | 13.4% |
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/02-dspark-reversal-dark.svg">
+  <img alt="The DSpark speculative decoding reversal: native engines vs llama.cpp" src="charts/02-dspark-reversal-light.svg">
+</picture>
 
 ---
 
-## 3. Concurrency Scaling (1 → 64 Parallel Requests)
+## 3. Concurrency Scaling (64 Parallel Streams)
 
-![Concurrency Scaling](charts/03_concurrency_scaling.png)
-
-All concurrency runs used an on-box local HTTP load generator with **0 failed workers** at every level.
-
-- **Strata SQ-20 on RTX PRO 6000** tops the fleet at **1,046.6 tok/s** aggregate @64 streams.
-- **SGLang on RTX Spark (922.9 tok/s)** and **DGX Spark (842.0 tok/s)** deliver **2.3×–2.5×** the throughput of `llama.cpp` on the same unified-memory hardware.
-- **Strata #6520 NVFP4** lacks continuous batch slots and serializes requests (flat **~140 tok/s** from 1→64).
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/03-concurrency-scaling-dark.svg">
+  <img alt="Concurrency scaling at 64 parallel streams" src="charts/03-concurrency-scaling-light.svg">
+</picture>
 
 ---
 
 ## 4. The 1M-Context Breakthrough (1,047,040 Tokens)
 
-![1M Context Breakthrough](charts/06_1m_context_breakthrough.png)
-
-Standard chat prompts failed **0/3 at 1M** across every engine (`llama.cpp`, `vLLM`, `SGLang`) because `reasoning_effort=none` is a no-op in Inkling-2-Mini's chat template (~98.4% reasoning tokens). At 1M context, the model frequently spotted the needle inside its reasoning trace but looped until hitting `finish_reason=length`.
-
-On DGX Spark (`vLLM max-bf16`, `ctx_target=1,047,040`), bypassing the reasoning loop via **assistant prefill (`continue_final_message`)** achieved:
-- **3/3 (100%) exact hits** (`XJ9-4782`, `XJ9-6498`, `XJ9-7378`)
-- **9 output tokens per run**, `finish_reason="stop"`, `reasoning_chars=0`
-- Wall time: ~1,515–1,564 s (~25.5 min/run)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/06-1m-breakthrough-dark.svg">
+  <img alt="1M-context needle retrieval: standard chat vs assistant prefill" src="charts/06-1m-breakthrough-light.svg">
+</picture>
 
 ---
 
-## 5. RTX PRO 6000 Power Ladder & Engine Showdown
+## 5. RTX PRO 6000 Power Ladder & Engine Trade-Offs
 
-![RTX PRO 6000 Power Ladder](charts/04_rtx6000_power_knee.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/04-rtx6000-power-knee-dark.svg">
+  <img alt="RTX PRO 6000 Blackwell power ladder: 350 W vs 450 W vs 600 W" src="charts/04-rtx6000-power-knee-light.svg">
+</picture>
 
-![RTX PRO 6000 Engine & Quant Showdown](charts/05_rtx6000_engines_and_quants.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/05-rtx6000-engines-dark.svg">
+  <img alt="RTX PRO 6000 (600 W): engine and quant trade-offs" src="charts/05-rtx6000-engines-light.svg">
+</picture>
 
 ---
 
-## Repository Structure & Interactive Dashboard
+## Repository Structure & Regenerating Charts
 
-- [`dashboard/index.html`](dashboard/index.html) — Self-contained interactive benchmark dashboard (open directly in any browser or serve via GitHub Pages).
-- [`data/benchmarks.json`](data/benchmarks.json) — Single source of truth for all normalized NVIDIA benchmark data.
-- [`data/*.csv`](data/) — Clean CSV exports (`speed_ladder.csv`, `precision_ladder.csv`, `concurrency.csv`, `speculative_decoding.csv`, `needle_in_haystack.csv`, `evals_and_vision.csv`, `soak_and_power.csv`, `power_ladder_rtx6000.csv`, `varloop.csv`).
-- [`charts/*.png`](charts/) — Six 1600×900 dark-mode charts ready for GitHub & X/Twitter.
-- [`social/twitter-threads.md`](social/twitter-threads.md) — Ready-to-post X/Twitter threads paired with the exact charts.
-- [`reports/`](reports/) — Archived full verify-PASS primary reports from every machine.
-
-### Regenerate CSVs & Charts
+All charts are deterministic, zero-dependency Python stdlib SVGs (dark + light variants) aligned with [`GumbiiDigital/omlx-fleet-bench`](https://github.com/GumbiiDigital/omlx-fleet-bench).
 
 ```bash
 python3 scripts/export_csvs.py
-uv run --with matplotlib --with numpy python3 scripts/generate_charts.py
+python3 scripts/build_charts.py
 ```
 
----
-
-## Methodology & Honesty Notes
-
-- **Median of 3 runs** per data point; engine-authoritative `predicted_n / predicted_ms` for decode tok/s.
-- **Architecture split in `llama.cpp`:** Unsloth GGUFs (`inkling2` arch) require Unsloth `b12588-mix`; `ggml-org` GGUFs (`inkling2_loop` arch: `IQ4_NL`, `BF16`) require mainline `llama.cpp` (`418fe97` / `b12608`).
-- **Known hardware/runtime bugs documented, never hidden:**
-  - `RTX 5090` `BF16` partial-offload (`-ngl 14`) corrupts output after any ≥10K prefill on `sm_120` (VMM compute-pool bug); recorded as `BLOCKED`.
-  - `Strata SQ-20` OOMs at 267K prefill on the 1M needle prompt on single-card RTX PRO 6000; recorded as `BLOCKED`.
-  - `WSL2` `nvidia-smi` reports `0.0` for GPU power/temp on RTX Spark native H2H; omitted rather than estimated.
+- [`dashboard/index.html`](dashboard/index.html) — Self-contained interactive benchmark dashboard with Light/Dark switcher.
+- [`data/benchmarks.json`](data/benchmarks.json) + `data/*.csv` — Single source of truth and normalized CSV tables.
+- [`charts/`](charts/) — 12 deterministic SVG charts (`-dark.svg` & `-light.svg`).
+- [`social/twitter-threads.md`](social/twitter-threads.md) — Ready-to-post X/Twitter threads.
+- [`reports/`](reports/) — Archived full verify-PASS reports from every machine.

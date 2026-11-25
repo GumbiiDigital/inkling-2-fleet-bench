@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="644" viewBox="0 0 840 644" role="img" aria-label="RTX PRO 6000 Blackwell power ladder: 350 W vs 450 W vs 600 W Same card, same weights, same harness. Escaping 350 W removes SW Power Cap throttling and cuts both watts and heat." font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" data-x-scale="linear" data-y-scale="linear">
+<title>RTX PRO 6000 Blackwell power ladder: 350 W vs 450 W vs 600 W Same card, same weights, same harness. Escaping 350 W removes SW Power Cap throttling and cuts both watts and heat.</title>
+<rect x="0.5" y="0.5" width="839" height="643" fill="#1a1a19" rx="8" stroke="#2c2c2a" stroke-width="1"/>
+<text x="24" y="40" font-size="16" fill="#f0efec" font-weight="600">RTX PRO 6000 Blackwell power ladder: 350 W vs 450 W vs 600 W</text>
+<text x="24" y="57" font-size="12" fill="#c3c2b7">Same card, same weights, same harness. Escaping 350 W removes SW Power Cap throttling and cuts both watts</text>
+<text x="24" y="74" font-size="12" fill="#c3c2b7">and heat.</text>
+<text x="24" y="105" font-size="13" fill="#f0efec" font-weight="600">Decode @128K (thinking on)</text>
+<text x="24" y="129.5" font-size="12" fill="#c3c2b7">350 W cap (throttled)</text>
+<path d="M185.84,118 H349.04 Q353.04,118 353.04,122 V128 Q353.04,132 349.04,132 H185.84 Z" fill="#e66767"><title>Decode @128K (thinking on) · 350 W cap (throttled): 24.0 tok/s baseline</title></path>
+<text x="361.04" y="129.5" font-size="12" fill="#f0efec" font-weight="600">24.0 tok/s</text>
+<text x="443.44" y="129.5" font-size="11" fill="#898781">baseline</text>
+<text x="24" y="155.5" font-size="12" fill="#c3c2b7">450 W cap (sweet spot)</text>
+<path d="M185.84,144 H628.08 Q632.08,144 632.08,148 V154 Q632.08,158 628.08,158 H185.84 Z" fill="#199e70"><title>Decode @128K (thinking on) · 450 W cap (sweet spot): 63.9 tok/s +167%</title></path>
+<text x="640.08" y="155.5" font-size="12" fill="#f0efec" font-weight="600">63.9 tok/s</text>
+<text x="722.48" y="155.5" font-size="11" fill="#898781">+167%</text>
+<text x="24" y="181.5" font-size="12" fill="#c3c2b7">600 W cap (card max)</text>
+<path d="M185.84,170 H627.87 Q631.87,170 631.87,174 V180 Q631.87,184 627.87,184 H185.84 Z" fill="#3987e5"><title>Decode @128K (thinking on) · 600 W cap (card max): 63.9 tok/s +167%</title></path>
+<text x="639.87" y="181.5" font-size="12" fill="#f0efec" font-weight="600">63.9 tok/s</text>
+<text x="722.27" y="181.5" font-size="11" fill="#898781">+167%</text>
+<line x1="185.84" y1="114" x2="185.84" y2="188" stroke="#383835" stroke-width="1"/>
+<text x="24" y="231" font-size="13" fill="#f0efec" font-weight="600">30-minute soak decode</text>
+<text x="24" y="255.5" font-size="12" fill="#c3c2b7">350 W cap (throttled)</text>
+<path d="M185.84,244 H448.61 Q452.61,244 452.61,248 V254 Q452.61,258 448.61,258 H185.84 Z" fill="#e66767"><title>30-minute soak decode · 350 W cap (throttled): 39.5 tok/s 15% fade</title></path>
+<text x="460.61" y="255.5" font-size="12" fill="#f0efec" font-weight="600">39.5 tok/s</text>
+<text x="543.01" y="255.5" font-size="11" fill="#898781">15% fade</text>
+<text x="24" y="281.5" font-size="12" fill="#c3c2b7">450 W cap (sweet spot)</text>
+<path d="M185.84,270 H625.25 Q629.25,270 629.25,274 V280 Q629.25,284 625.25,284 H185.84 Z" fill="#199e70"><title>30-minute soak decode · 450 W cap (sweet spot): 65.7 tok/s flat, +66%</title></path>
+<text x="637.25" y="281.5" font-size="12" fill="#f0efec" font-weight="600">65.7 tok/s</text>
+<text x="719.65" y="281.5" font-size="11" fill="#898781">flat, +66%</text>
+<text x="24" y="307.5" font-size="12" fill="#c3c2b7">600 W cap (card max)</text>
+<path d="M185.84,296 H628.08 Q632.08,296 632.08,300 V306 Q632.08,310 628.08,310 H185.84 Z" fill="#3987e5"><title>30-minute soak decode · 600 W cap (card max): 66.1 tok/s flat, +67%</title></path>
+<text x="640.08" y="307.5" font-size="12" fill="#f0efec" font-weight="600">66.1 tok/s</text>
+<text x="722.48" y="307.5" font-size="11" fill="#898781">flat, +67%</text>
+<line x1="185.84" y1="240" x2="185.84" y2="314" stroke="#383835" stroke-width="1"/>
+<text x="24" y="357" font-size="13" fill="#f0efec" font-weight="600">Mean soak power draw (lower is better)</text>
+<text x="24" y="381.5" font-size="12" fill="#c3c2b7">350 W cap (throttled)</text>
+<path d="M185.84,370 H628.08 Q632.08,370 632.08,374 V380 Q632.08,384 628.08,384 H185.84 Z" fill="#e66767"><title>Mean soak power draw (lower is better) · 350 W cap (throttled): 327 W 84 °C max</title></path>
+<text x="640.08" y="381.5" font-size="12" fill="#f0efec" font-weight="600">327 W</text>
+<text x="685.28" y="381.5" font-size="11" fill="#898781">84 °C max</text>
+<text x="24" y="407.5" font-size="12" fill="#c3c2b7">450 W cap (sweet spot)</text>
+<path d="M185.84,396 H483.43 Q487.43,396 487.43,400 V406 Q487.43,410 483.43,410 H185.84 Z" fill="#199e70"><title>Mean soak power draw (lower is better) · 450 W cap (sweet spot): 221 W 67 °C max</title></path>
+<text x="495.43" y="407.5" font-size="12" fill="#f0efec" font-weight="600">221 W</text>
+<text x="540.63" y="407.5" font-size="11" fill="#898781">67 °C max</text>
+<text x="24" y="433.5" font-size="12" fill="#c3c2b7">600 W cap (card max)</text>
+<path d="M185.84,422 H483.43 Q487.43,422 487.43,426 V432 Q487.43,436 483.43,436 H185.84 Z" fill="#3987e5"><title>Mean soak power draw (lower is better) · 600 W cap (card max): 221 W 66 °C max</title></path>
+<text x="495.43" y="433.5" font-size="12" fill="#f0efec" font-weight="600">221 W</text>
+<text x="540.63" y="433.5" font-size="11" fill="#898781">66 °C max</text>
+<line x1="185.84" y1="366" x2="185.84" y2="440" stroke="#383835" stroke-width="1"/>
+<text x="24" y="483" font-size="13" fill="#f0efec" font-weight="600">Sustained efficiency (tok/W)</text>
+<text x="24" y="507.5" font-size="12" fill="#c3c2b7">350 W cap (throttled)</text>
+<path d="M185.84,496 H362.43 Q366.43,496 366.43,500 V506 Q366.43,510 362.43,510 H185.84 Z" fill="#e66767"><title>Sustained efficiency (tok/W) · 350 W cap (throttled): 0.121 tok/W pinned clocks</title></path>
+<text x="374.43" y="507.5" font-size="12" fill="#f0efec" font-weight="600">0.121 tok/W</text>
+<text x="464.27" y="507.5" font-size="11" fill="#898781">pinned clocks</text>
+<text x="24" y="533.5" font-size="12" fill="#c3c2b7">450 W cap (sweet spot)</text>
+<path d="M185.84,522 H628.08 Q632.08,522 632.08,526 V532 Q632.08,536 628.08,536 H185.84 Z" fill="#199e70"><title>Sustained efficiency (tok/W) · 450 W cap (sweet spot): 0.299 tok/W 2.47× better</title></path>
+<text x="640.08" y="533.5" font-size="12" fill="#f0efec" font-weight="600">0.299 tok/W</text>
+<text x="729.92" y="533.5" font-size="11" fill="#898781">2.47× better</text>
+<text x="24" y="559.5" font-size="12" fill="#c3c2b7">600 W cap (card max)</text>
+<path d="M185.84,548 H628.08 Q632.08,548 632.08,552 V558 Q632.08,562 628.08,562 H185.84 Z" fill="#3987e5"><title>Sustained efficiency (tok/W) · 600 W cap (card max): 0.299 tok/W 2.47× better</title></path>
+<text x="640.08" y="559.5" font-size="12" fill="#f0efec" font-weight="600">0.299 tok/W</text>
+<text x="729.92" y="559.5" font-size="11" fill="#898781">2.47× better</text>
+<line x1="185.84" y1="492" x2="185.84" y2="566" stroke="#383835" stroke-width="1"/>
+<text x="24" y="596" font-size="11" fill="#898781">At 350 W, SW Power Cap throttles clocks (~1800 MHz), raising duty cycle to 327 W mean / 84 °C.</text>
+<text x="24" y="612" font-size="11" fill="#898781">At 450 W and 600 W, the workload peaks at ~230 W (not cap-bound) and finishes faster. 450 W buys 100% of 600 W</text>
+<text x="24" y="628" font-size="11" fill="#898781">performance.</text>
+</svg>
