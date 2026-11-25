@@ -244,32 +244,33 @@
     <div class="stat-card">
       <div class="stat-label">Fastest single-stream (DSpark)</div>
       <div class="stat-value">262.9 tok/s</div>
-      <div class="stat-note">RTX PRO 6000 Strata native (183.5 RTX Spark vLLM)</div>
+      <div class="stat-note">RTX PRO 6000 Strata native (2.04×, 256/256 exact)</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Peak aggregate @64 streams</div>
       <div class="stat-value">1,046.6 tok/s</div>
-      <div class="stat-note">RTX PRO 6000 Strata SQ-20 (922.9 RTX Spark SGLang)</div>
+      <div class="stat-note">RTX PRO 6000 Strata SQ-20 (llama.cpp IQ4: 977.7)</div>
     </div>
     <div class="stat-card">
-      <div class="stat-label">1M context needle recall</div>
+      <div class="stat-label">1M context KV diagnostic</div>
       <div class="stat-value">3 / 3 (100%)</div>
-      <div class="stat-note">DGX Spark vLLM max-bf16 via assistant prefill (9 tok)</div>
+      <div class="stat-note">DGX Spark vLLM max-bf16 via 4-word assistant prefill</div>
     </div>
     <div class="stat-card">
-      <div class="stat-label">RTX PRO 6000 power knee</div>
+      <div class="stat-label">RTX PRO 6000 power envelope</div>
       <div class="stat-value">450 W = 600 W</div>
-      <div class="stat-note">+167% @128K, 18 °C cooler &amp; −106 W vs 350 W cap</div>
+      <div class="stat-note">Within 0.6%; serial soak draws ~221 W mean / 66 °C</div>
     </div>
   </div>
 
   <div class="tabs" id="tabs">
     <button class="tab-btn active" data-tab="speed">Speed ladder</button>
-    <button class="tab-btn" data-tab="dspark">DSpark reversal</button>
+    <button class="tab-btn" data-tab="dspark">DSpark</button>
     <button class="tab-btn" data-tab="concurrency">Concurrency (64×)</button>
-    <button class="tab-btn" data-tab="needle">1M context</button>
+    <button class="tab-btn" data-tab="needle">1M diagnostic</button>
     <button class="tab-btn" data-tab="power">RTX 6000 power &amp; engines</button>
     <button class="tab-btn" data-tab="quality">Evals &amp; soak</button>
+    <button class="tab-btn" data-tab="caveats">Audit &amp; caveats</button>
   </div>
 
   <!-- SPEED TAB -->
@@ -351,6 +352,29 @@
       <h2>30-minute continuous soak &amp; power efficiency</h2>
       <p class="desc">Three consecutive 10-minute back-to-back request windows.</p>
       <div class="table-wrap"><table id="soak-table"></table></div>
+    </div>
+  </section>
+
+  <!-- AUDIT & CAVEATS TAB -->
+  <section class="tab-panel" id="tab-caveats">
+    <div class="section-card">
+      <h2>Adversarial audit &amp; known limitations</h2>
+      <p class="desc">Every number in this dashboard matches the raw JSON records on disk. Below are the exact methodological caveats and potential gotchas surfaced by our own raw-JSON and harness-code audit.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:220px">Area</th><th>What to know before citing</th></tr></thead>
+          <tbody>
+            <tr><td><strong>No vLLM / SGLang on PRO 6000 or 5090</strong></td><td>RTX Spark <code>SGLang</code> (922.9 tok/s @64) vs RTX PRO 6000 <code>llama.cpp Q4_K_XL</code> (906.8) is an <strong>engine comparison, not a hardware comparison</strong>. On identical <code>llama.cpp Q4_K_XL</code>, PRO 6000 is 2.42× faster (906.8 vs 374.5), and <code>IQ4_NL</code> hits 977.7 tok/s.</td></tr>
+            <tr><td><strong>Track E prefix / radix caching</strong></td><td>All 64 concurrent workers sent the exact same 512-char prompt across 3 runs without a cache-busting nonce; neither <code>--disable-radix-cache</code> nor <code>--no-enable-prefix-caching</code> was set. Run 0 was 11–23% slower on <code>llama.cpp</code>, so the median is a warm-cached run.</td></tr>
+            <tr><td><strong>Track J DSpark repetition loops</strong></td><td>On <code>vLLM</code> and <code>SGLang</code>, Track J's raw NATO-filler completions looped on 1-token words (<code>"mike mike..."</code>), inflating acceptance and creating huge variance (68–208 tok/s). Treat 3.1×–4.1× as a synthetic upper bound. Strata's native bench (2.04×, 256/256 exact) is the cleaner non-degenerate reference; <code>llama.cpp</code> used an early Unsloth <code>b12588-mix</code> GGUF drafter.</td></tr>
+            <tr><td><strong>RTX PRO 6000 day-1 350 W anomaly</strong></td><td>450 W and 600 W (both run cleanly on day 2) are identical within 0.6% (~221 W mean / 66–67 °C). The day-1 350 W run drew 327 W / 84 °C while running slower with a 116% mid-test jump on <code>A@128K</code>—pointing to likely co-resident GPU load rather than a pure power-cap effect. Per-point SM clocks were not logged.</td></tr>
+            <tr><td><strong>Track H serial soak &amp; polling</strong></td><td><code>soak.py</code> runs serial 64-token requests with synchronous <code>nvidia-smi</code> polling between requests, and effective <code>decode_tok_s</code> includes prefill + SSH/Python overhead (explaining RTX Spark's 21.6 over Tailscale SSH vs 39.8 in local WSL2).</td></tr>
+            <tr><td><strong>1M assistant-prefill scope</strong></td><td>Tested on 1 host (<code>DGX Spark</code>), 1 engine (<code>vLLM max-bf16</code>), depth 0.5 only, synthetic NATO haystack, forced 4-word assistant prefix, n=3, ~25.5 min/run. Proves 1M KV attention retains the needle—not general 1M reasoning. Raw forced-prefix Arm B hallucinated <code>3X7-5778</code>.</td></tr>
+            <tr><td><strong>Small evals &amp; default temperature</strong></td><td>Track C (n=20 math, n=10 code) omitted <code>temperature=0.0</code>, causing ±1–3 item math sampling drift across runs. Track G Vision (8 synthetic 128×128 squares, all expected <code>"8"</code>, substring check) is a multimodal wiring smoke check only.</td></tr>
+            <tr><td><strong>Strata GGUF &amp; WSL2 caveats</strong></td><td><code>Strata #6642 GGUF</code> early-EOS'd in Track E (~52 tok/req instead of 256) and math (0.30). <code>Strata SQ-20</code> OOMed at 267K on the 1M prompt and had one 41.7 tok/s outlier at 128K. RTX Spark H2H ran in WSL2 (no power/temp sensor; SGLang <code>mem-fraction-static 0.95</code> vs DGX <code>0.75</code>).</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 

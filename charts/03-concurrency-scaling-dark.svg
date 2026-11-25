@@ -1,60 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="840" height="504" viewBox="0 0 840 504" role="img" aria-label="Concurrency scaling at 64 parallel streams (on-box HTTP load) Aggregate output tok/s across 64 simultaneous 256-token requests. Every engine finished with zero failed workers." font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" data-x-scale="linear" data-y-scale="linear">
-<title>Concurrency scaling at 64 parallel streams (on-box HTTP load) Aggregate output tok/s across 64 simultaneous 256-token requests. Every engine finished with zero failed workers.</title>
-<rect x="0.5" y="0.5" width="839" height="503" fill="#1a1a19" rx="8" stroke="#2c2c2a" stroke-width="1"/>
-<text x="24" y="40" font-size="16" fill="#f0efec" font-weight="600">Concurrency scaling at 64 parallel streams (on-box HTTP load)</text>
-<text x="24" y="57" font-size="12" fill="#c3c2b7">Aggregate output tok/s across 64 simultaneous 256-token requests. Every engine finished with zero failed</text>
-<text x="24" y="74" font-size="12" fill="#c3c2b7">workers.</text>
-<text x="24" y="105" font-size="13" fill="#f0efec" font-weight="600">Aggregate output at 64 parallel streams (0 failed workers)</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="536" viewBox="0 0 840 536" role="img" aria-label="Concurrency scaling at 64 parallel streams (engine comparison, not same-engine hardware) Aggregate output tok/s across 64 simultaneous 256-token requests. On identical llama.cpp Q4_K_XL, PRO 6000 is 2.42× RTX Spark." font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" data-x-scale="linear" data-y-scale="linear">
+<title>Concurrency scaling at 64 parallel streams (engine comparison, not same-engine hardware) Aggregate output tok/s across 64 simultaneous 256-token requests. On identical llama.cpp Q4_K_XL, PRO 6000 is 2.42× RTX Spark.</title>
+<rect x="0.5" y="0.5" width="839" height="535" fill="#1a1a19" rx="8" stroke="#2c2c2a" stroke-width="1"/>
+<text x="24" y="40" font-size="16" fill="#f0efec" font-weight="600">Concurrency scaling at 64 parallel streams (engine comparison, not same-engine hardware)</text>
+<text x="24" y="57" font-size="12" fill="#c3c2b7">Aggregate output tok/s across 64 simultaneous 256-token requests. On identical llama.cpp Q4_K_XL, PRO 6000</text>
+<text x="24" y="74" font-size="12" fill="#c3c2b7">is 2.42× RTX Spark.</text>
+<text x="24" y="105" font-size="13" fill="#f0efec" font-weight="600">Aggregate output at 64 parallel streams (identical short prompt, 0 failures)</text>
 <text x="24" y="129.5" font-size="12" fill="#c3c2b7">RTX PRO 6000 · Strata SQ-20</text>
-<path d="M273.2,118 H594.72 Q598.72,118 598.72,122 V128 Q598.72,132 594.72,132 H273.2 Z" fill="#199e70"><title>Aggregate output at 64 parallel streams (0 failed workers) · RTX PRO 6000 · Strata SQ-20: 1,046.6 tok/s 5.4× vs 1-stream</title></path>
-<text x="606.72" y="129.5" font-size="12" fill="#f0efec" font-weight="600">1,046.6 tok/s</text>
-<text x="711.44" y="129.5" font-size="11" fill="#898781">5.4× vs 1-stream</text>
+<path d="M273.2,118 H584.96 Q588.96,118 588.96,122 V128 Q588.96,132 584.96,132 H273.2 Z" fill="#199e70"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX PRO 6000 · Strata SQ-20: 1,046.6 tok/s 5.4× vs 1-stream</title></path>
+<text x="596.96" y="129.5" font-size="12" fill="#f0efec" font-weight="600">1,046.6 tok/s</text>
+<text x="701.68" y="129.5" font-size="11" fill="#898781">5.4× vs 1-stream</text>
 <text x="24" y="155.5" font-size="12" fill="#c3c2b7">RTX PRO 6000 · llama.cpp IQ4_NL</text>
-<path d="M273.2,144 H573.38 Q577.38,144 577.38,148 V154 Q577.38,158 573.38,158 H273.2 Z" fill="#3987e5"><title>Aggregate output at 64 parallel streams (0 failed workers) · RTX PRO 6000 · llama.cpp IQ4_NL: 978.0 tok/s 10.6× vs 1-stream</title></path>
-<text x="585.38" y="155.5" font-size="12" fill="#f0efec" font-weight="600">978.0 tok/s</text>
-<text x="675.22" y="155.5" font-size="11" fill="#898781">10.6× vs 1-stream</text>
-<text x="24" y="181.5" font-size="12" fill="#c3c2b7">RTX Spark · SGLang (NVFP4)</text>
-<path d="M273.2,170 H556.25 Q560.25,170 560.25,174 V180 Q560.25,184 556.25,184 H273.2 Z" fill="#9085e9"><title>Aggregate output at 64 parallel streams (0 failed workers) · RTX Spark · SGLang (NVFP4): 922.9 tok/s 20.7× vs 1-stream</title></path>
-<text x="568.25" y="181.5" font-size="12" fill="#f0efec" font-weight="600">922.9 tok/s</text>
-<text x="658.09" y="181.5" font-size="11" fill="#898781">20.7× vs 1-stream</text>
+<path d="M273.2,144 H564.17 Q568.17,144 568.17,148 V154 Q568.17,158 564.17,158 H273.2 Z" fill="#3987e5"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX PRO 6000 · llama.cpp IQ4_NL: 977.7 tok/s 10.6× vs 1-stream</title></path>
+<text x="576.17" y="155.5" font-size="12" fill="#f0efec" font-weight="600">977.7 tok/s</text>
+<text x="666.01" y="155.5" font-size="11" fill="#898781">10.6× vs 1-stream</text>
+<text x="24" y="181.5" font-size="12" fill="#c3c2b7">RTX Spark · SGLang (NVFP4)*</text>
+<path d="M273.2,170 H547.64 Q551.64,170 551.64,174 V180 Q551.64,184 547.64,184 H273.2 Z" fill="#9085e9"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX Spark · SGLang (NVFP4)*: 922.9 tok/s 20.7× (warm radix)</title></path>
+<text x="559.64" y="181.5" font-size="12" fill="#f0efec" font-weight="600">922.9 tok/s</text>
+<text x="649.48" y="181.5" font-size="11" fill="#898781">20.7× (warm radix)</text>
 <text x="24" y="207.5" font-size="12" fill="#c3c2b7">RTX PRO 6000 · llama.cpp Q4_K_XL</text>
-<path d="M273.2,196 H551.23 Q555.23,196 555.23,200 V206 Q555.23,210 551.23,210 H273.2 Z" fill="#3987e5"><title>Aggregate output at 64 parallel streams (0 failed workers) · RTX PRO 6000 · llama.cpp Q4_K_XL: 906.8 tok/s 9.8× vs 1-stream</title></path>
-<text x="563.23" y="207.5" font-size="12" fill="#f0efec" font-weight="600">906.8 tok/s</text>
-<text x="653.07" y="207.5" font-size="11" fill="#898781">9.8× vs 1-stream</text>
-<text x="24" y="233.5" font-size="12" fill="#c3c2b7">DGX Spark · SGLang (NVFP4)</text>
-<path d="M273.2,222 H531.09 Q535.09,222 535.09,226 V232 Q535.09,236 531.09,236 H273.2 Z" fill="#9085e9"><title>Aggregate output at 64 parallel streams (0 failed workers) · DGX Spark · SGLang (NVFP4): 842.0 tok/s 23.3× vs 1-stream</title></path>
-<text x="543.09" y="233.5" font-size="12" fill="#f0efec" font-weight="600">842.0 tok/s</text>
-<text x="632.93" y="233.5" font-size="11" fill="#898781">23.3× vs 1-stream</text>
-<text x="24" y="259.5" font-size="12" fill="#c3c2b7">RTX Spark · vLLM (NVFP4)</text>
-<path d="M273.2,248 H495.81 Q499.81,248 499.81,252 V258 Q499.81,262 495.81,262 H273.2 Z" fill="#c98500"><title>Aggregate output at 64 parallel streams (0 failed workers) · RTX Spark · vLLM (NVFP4): 728.6 tok/s 21.7× vs 1-stream</title></path>
-<text x="507.81" y="259.5" font-size="12" fill="#f0efec" font-weight="600">728.6 tok/s</text>
-<text x="597.65" y="259.5" font-size="11" fill="#898781">21.7× vs 1-stream</text>
-<text x="24" y="285.5" font-size="12" fill="#c3c2b7">DGX Spark · vLLM (NVFP4)</text>
-<path d="M273.2,274 H469.81 Q473.81,274 473.81,278 V284 Q473.81,288 469.81,288 H273.2 Z" fill="#c98500"><title>Aggregate output at 64 parallel streams (0 failed workers) · DGX Spark · vLLM (NVFP4): 645.0 tok/s 21.8× vs 1-stream</title></path>
-<text x="481.81" y="285.5" font-size="12" fill="#f0efec" font-weight="600">645.0 tok/s</text>
-<text x="571.65" y="285.5" font-size="11" fill="#898781">21.8× vs 1-stream</text>
+<path d="M273.2,196 H542.77 Q546.77,196 546.77,200 V206 Q546.77,210 542.77,210 H273.2 Z" fill="#3987e5"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX PRO 6000 · llama.cpp Q4_K_XL: 906.8 tok/s 9.8× vs 1-stream</title></path>
+<text x="554.77" y="207.5" font-size="12" fill="#f0efec" font-weight="600">906.8 tok/s</text>
+<text x="644.61" y="207.5" font-size="11" fill="#898781">9.8× vs 1-stream</text>
+<text x="24" y="233.5" font-size="12" fill="#c3c2b7">DGX Spark · SGLang (NVFP4)*</text>
+<path d="M273.2,222 H523.24 Q527.24,222 527.24,226 V232 Q527.24,236 523.24,236 H273.2 Z" fill="#9085e9"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · DGX Spark · SGLang (NVFP4)*: 842.0 tok/s 23.3× (warm radix)</title></path>
+<text x="535.24" y="233.5" font-size="12" fill="#f0efec" font-weight="600">842.0 tok/s</text>
+<text x="625.08" y="233.5" font-size="11" fill="#898781">23.3× (warm radix)</text>
+<text x="24" y="259.5" font-size="12" fill="#c3c2b7">RTX Spark · vLLM (NVFP4)*</text>
+<path d="M273.2,248 H489.02 Q493.02,248 493.02,252 V258 Q493.02,262 489.02,262 H273.2 Z" fill="#c98500"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX Spark · vLLM (NVFP4)*: 728.6 tok/s 21.7× (prefix cache)</title></path>
+<text x="501.02" y="259.5" font-size="12" fill="#f0efec" font-weight="600">728.6 tok/s</text>
+<text x="590.86" y="259.5" font-size="11" fill="#898781">21.7× (prefix cache)</text>
+<text x="24" y="285.5" font-size="12" fill="#c3c2b7">DGX Spark · vLLM (NVFP4)*</text>
+<path d="M273.2,274 H463.8 Q467.8,274 467.8,278 V284 Q467.8,288 463.8,288 H273.2 Z" fill="#c98500"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · DGX Spark · vLLM (NVFP4)*: 645.0 tok/s 21.8× (prefix cache)</title></path>
+<text x="475.8" y="285.5" font-size="12" fill="#f0efec" font-weight="600">645.0 tok/s</text>
+<text x="565.64" y="285.5" font-size="11" fill="#898781">21.8× (prefix cache)</text>
 <text x="24" y="311.5" font-size="12" fill="#c3c2b7">RTX 5090 · llama.cpp Q4_K_XL</text>
-<path d="M273.2,300 H456.34 Q460.34,300 460.34,304 V310 Q460.34,314 456.34,314 H273.2 Z" fill="#d95926"><title>Aggregate output at 64 parallel streams (0 failed workers) · RTX 5090 · llama.cpp Q4_K_XL: 601.7 tok/s 7.0× vs 1-stream</title></path>
-<text x="468.34" y="311.5" font-size="12" fill="#f0efec" font-weight="600">601.7 tok/s</text>
-<text x="558.18" y="311.5" font-size="11" fill="#898781">7.0× vs 1-stream</text>
+<path d="M273.2,300 H450.73 Q454.73,300 454.73,304 V310 Q454.73,314 450.73,314 H273.2 Z" fill="#d95926"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX 5090 · llama.cpp Q4_K_XL: 601.7 tok/s 7.0× vs 1-stream</title></path>
+<text x="462.73" y="311.5" font-size="12" fill="#f0efec" font-weight="600">601.7 tok/s</text>
+<text x="552.57" y="311.5" font-size="11" fill="#898781">7.0× vs 1-stream</text>
 <text x="24" y="337.5" font-size="12" fill="#c3c2b7">RTX Spark · llama.cpp Q4_K_XL</text>
-<path d="M273.2,326 H385.68 Q389.68,326 389.68,330 V336 Q389.68,340 385.68,340 H273.2 Z" fill="#d95926"><title>Aggregate output at 64 parallel streams (0 failed workers) · RTX Spark · llama.cpp Q4_K_XL: 374.5 tok/s 10.1× vs 1-stream</title></path>
-<text x="397.68" y="337.5" font-size="12" fill="#f0efec" font-weight="600">374.5 tok/s</text>
-<text x="487.52" y="337.5" font-size="11" fill="#898781">10.1× vs 1-stream</text>
+<path d="M273.2,326 H382.19 Q386.19,326 386.19,330 V336 Q386.19,340 382.19,340 H273.2 Z" fill="#d95926"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX Spark · llama.cpp Q4_K_XL: 374.5 tok/s 10.1× vs 1-stream</title></path>
+<text x="394.19" y="337.5" font-size="12" fill="#f0efec" font-weight="600">374.5 tok/s</text>
+<text x="484.03" y="337.5" font-size="11" fill="#898781">10.1× vs 1-stream</text>
 <text x="24" y="363.5" font-size="12" fill="#c3c2b7">DGX Spark · llama.cpp Q4_K_XL</text>
-<path d="M273.2,352 H383.89 Q387.89,352 387.89,356 V362 Q387.89,366 383.89,366 H273.2 Z" fill="#d95926"><title>Aggregate output at 64 parallel streams (0 failed workers) · DGX Spark · llama.cpp Q4_K_XL: 368.8 tok/s 10.0× vs 1-stream</title></path>
-<text x="395.89" y="363.5" font-size="12" fill="#f0efec" font-weight="600">368.8 tok/s</text>
-<text x="485.73" y="363.5" font-size="11" fill="#898781">10.0× vs 1-stream</text>
+<path d="M273.2,352 H380.45 Q384.45,352 384.45,356 V362 Q384.45,366 380.45,366 H273.2 Z" fill="#d95926"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · DGX Spark · llama.cpp Q4_K_XL: 368.8 tok/s 10.0× vs 1-stream</title></path>
+<text x="392.45" y="363.5" font-size="12" fill="#f0efec" font-weight="600">368.8 tok/s</text>
+<text x="482.29" y="363.5" font-size="11" fill="#898781">10.0× vs 1-stream</text>
 <text x="24" y="389.5" font-size="12" fill="#c3c2b7">RTX PRO 6000 · Strata NVFP4 (#6520)</text>
-<path d="M273.2,378 H312.84 Q316.84,378 316.84,382 V388 Q316.84,392 312.84,392 H273.2 Z" fill="#e66767"><title>Aggregate output at 64 parallel streams (0 failed workers) · RTX PRO 6000 · Strata NVFP4 (#6520): 140.3 tok/s serializes (1.0×)</title></path>
-<text x="324.84" y="389.5" font-size="12" fill="#f0efec" font-weight="600">140.3 tok/s</text>
-<text x="414.68" y="389.5" font-size="11" fill="#898781">serializes (1.0×)</text>
-<text x="24" y="415.5" font-size="12" fill="#c3c2b7">RTX PRO 6000 · Strata GGUF (#6642)</text>
-<path d="M273.2,404 H308.7 Q312.7,404 312.7,408 V414 Q312.7,418 308.7,418 H273.2 Z" fill="#e66767"><title>Aggregate output at 64 parallel streams (0 failed workers) · RTX PRO 6000 · Strata GGUF (#6642): 127.0 tok/s 1.4× vs 1-stream</title></path>
-<text x="320.7" y="415.5" font-size="12" fill="#f0efec" font-weight="600">127.0 tok/s</text>
-<text x="410.54" y="415.5" font-size="11" fill="#898781">1.4× vs 1-stream</text>
+<path d="M273.2,378 H311.53 Q315.53,378 315.53,382 V388 Q315.53,392 311.53,392 H273.2 Z" fill="#e66767"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX PRO 6000 · Strata NVFP4 (#6520): 140.3 tok/s serializes (1.0×)</title></path>
+<text x="323.53" y="389.5" font-size="12" fill="#f0efec" font-weight="600">140.3 tok/s</text>
+<text x="413.37" y="389.5" font-size="11" fill="#898781">serializes (1.0×)</text>
+<text x="24" y="415.5" font-size="12" fill="#c3c2b7">RTX PRO 6000 · Strata GGUF (#6642)†</text>
+<path d="M273.2,404 H307.4 Q311.4,404 311.4,408 V414 Q311.4,418 307.4,418 H273.2 Z" fill="#e66767"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX PRO 6000 · Strata GGUF (#6642)†: 126.6 tok/s early-EOS (~52 tok)</title></path>
+<text x="319.4" y="415.5" font-size="12" fill="#f0efec" font-weight="600">126.6 tok/s</text>
+<text x="409.24" y="415.5" font-size="11" fill="#898781">early-EOS (~52 tok)</text>
 <line x1="273.2" y1="114" x2="273.2" y2="422" stroke="#383835" stroke-width="1"/>
 <text x="420" y="446" font-size="11" fill="#898781" text-anchor="middle">Aggregate output throughput at 64 concurrent streams (tok/s)</text>
-<text x="24" y="472" font-size="11" fill="#898781">RTX Spark running SGLang (922.9 tok/s) matches single-card RTX PRO 6000 running llama.cpp Q4_K_XL (906.8 tok/s).</text>
-<text x="24" y="488" font-size="11" fill="#898781">Strata #6520 NVFP4 has no continuous batch slots and serializes concurrent requests (~140 tok/s flat from 1 to 64).</text>
+<text x="24" y="472" font-size="11" fill="#898781">*vLLM/SGLang were NOT tested on PRO 6000 or 5090. All 64 workers sent the same 512-char prompt with prefix/radix</text>
+<text x="24" y="488" font-size="11" fill="#898781">caching active (warm median).</text>
+<text x="24" y="504" font-size="11" fill="#898781">†Strata #6642 GGUF truncated early (~52 tok/req instead of 256), making its 126.6 tok/s non-comparable. #6520 NVFP4</text>
+<text x="24" y="520" font-size="11" fill="#898781">has no batch slots.</text>
 </svg>
