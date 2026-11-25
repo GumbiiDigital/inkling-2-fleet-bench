@@ -1,0 +1,13 @@
+machine,engine,decode_tps,power_mean_w,temp_max_c,tok_per_w,note
+DGX Spark,llama.cpp,30.18,37.43,64,0.81,Flat over 30 min
+DGX Spark,vLLM,29.27,30.79,64,0.95,Best measured tok/W
+DGX Spark,SGLang,28.58,31.22,65,0.92,Flat over 30 min
+RTX Spark,llama.cpp,21.55,22.2,59,0.98,Sensor reads low; not wall-comparable
+RTX Spark,vLLM,39.8,,,,WSL2 nvidia-smi power/temp unavailable
+RTX Spark,SGLang,38.8,,,,WSL2 nvidia-smi power/temp unavailable
+RTX 5090,llama.cpp,50.9,184.0,56,0.277,"1,433 reqs, zero drift"
+RTX PRO 6000,llama.cpp (350W cap),39.54,327.0,84,0.121,"SW Power Cap throttled, 15% fade"
+RTX PRO 6000,llama.cpp (450W cap),65.72,221.0,67,0.299,"Not cap-bound, zero fade"
+RTX PRO 6000,llama.cpp (600W cap),66.14,221.6,66,0.299,"Identical to 450W, 1,862 reqs"
+RTX PRO 6000,Strata SQ-20 (600W),96.14,345.0,82,0.278,"2,711 reqs, zero fade"
+RTX PRO 6000,Strata NVFP4 (#6520),91.5,350.0,80,0.262,"2,569 reqs, zero fade"

@@ -1,0 +1,269 @@
+{
+  "metadata": {
+    "title": "Inkling-2-Mini — Multi-Hardware & Multi-Engine NVIDIA Benchmark Suite",
+    "version": "1.0.0-nvidia",
+    "date": "2026-11-25",
+    "model": {
+      "name": "Thinking Machines Inkling-2-Mini",
+      "total_params_b": 26.2,
+      "active_params_b": 3.4,
+      "architecture": "MoE, 24 physical layers with middle 12 looped 3x (48 logical layers), hybrid local/global attention, vision-capable",
+      "trained_context": 1048576
+    },
+    "methodology": {
+      "runs_per_point": 3,
+      "statistic": "median",
+      "decode_metric": "engine-authoritative predicted_n / predicted_ms",
+      "concurrency_load": "on-box local HTTP threads (zero SSH fan-out bottleneck)",
+      "soak_protocol": "3 x 10-minute continuous back-to-back request windows",
+      "verify_gate": "PASS across all 4 NVIDIA hosts (zero unrecorded failures)"
+    },
+    "roadmap_note": "v1.0 publishes the 4 completed, PASS-gated NVIDIA Blackwell machines (DGX Spark GB10, RTX Spark N1X 128GB, RTX PRO 6000 96GB, RTX 5090 32GB). Apple Silicon Metal results (M3 Ultra 256GB & M4 Max 128GB) are completing 1M/BF16 runs and will be added in v2.0."
+  },
+  "machines": [
+    {
+      "id": "dgx-spark",
+      "name": "DGX Spark (GB10)",
+      "short_name": "DGX Spark",
+      "gpu": "NVIDIA GB10 (Blackwell sm_121)",
+      "memory_gb": 121.7,
+      "memory_type": "Unified LPDDR5x",
+      "os": "DGX OS (Ubuntu 24.04 aarch64)",
+      "cuda": "13.0",
+      "engines_tested": ["llama.cpp", "vLLM", "SGLang", "Strata (pilot)"],
+      "status": "FINAL (PASS)"
+    },
+    {
+      "id": "rtx-spark",
+      "name": "RTX Spark 128GB (N1X)",
+      "short_name": "RTX Spark",
+      "gpu": "NVIDIA RTX Spark N1X (Blackwell sm_121)",
+      "memory_gb": 128.0,
+      "usable_cuda_gb": 109.67,
+      "memory_type": "Unified LPDDR5x-9400 (62.4 GiB Win carve-out / 109.7 GiB CUDA)",
+      "os": "Windows 11 ARM64 (llama.cpp) + WSL2 Ubuntu 24.04 (vLLM/SGLang)",
+      "cuda": "13.5 / WSL2",
+      "engines_tested": ["llama.cpp", "vLLM", "SGLang"],
+      "status": "FINAL (PASS)"
+    },
+    {
+      "id": "rtx-6000",
+      "name": "RTX PRO 6000 Blackwell (96GB)",
+      "short_name": "RTX PRO 6000",
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition (sm_120)",
+      "memory_gb": 96.0,
+      "memory_type": "GDDR7 ECC (97,887 MiB)",
+      "os": "Linux x86_64",
+      "cuda": "12.8",
+      "power_caps_tested_w": [350, 450, 600],
+      "engines_tested": ["llama.cpp", "Strata v0.2.19 (SQ-20)", "Strata #6642 (GGUF)", "Strata #6520 (NVFP4)"],
+      "status": "FINAL (PASS)"
+    },
+    {
+      "id": "rtx-5090",
+      "name": "RTX 5090 (32GB)",
+      "short_name": "RTX 5090",
+      "gpu": "NVIDIA GeForce RTX 5090 (Blackwell sm_120)",
+      "memory_gb": 32.0,
+      "memory_type": "GDDR7 (32,607 MiB)",
+      "os": "Linux x86_64",
+      "cuda": "12.8",
+      "engines_tested": ["llama.cpp"],
+      "status": "FINAL (PASS)"
+    }
+  ],
+  "speed_ladder": [
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 512, "decode_tps": 38.53, "prefill_tps": 432.0, "ttft_s": 0.33},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 8192, "decode_tps": 32.86, "prefill_tps": 547.0, "ttft_s": 14.3},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 32768, "decode_tps": 28.74, "prefill_tps": 397.0, "ttft_s": 81.6},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 131072, "decode_tps": 19.59, "prefill_tps": 359.0, "ttft_s": 363.6},
+
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "vLLM", "quant": "NVFP4", "ctx": 512, "decode_tps": 37.85, "prefill_tps": null, "ttft_s": 0.19},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "vLLM", "quant": "NVFP4", "ctx": 8192, "decode_tps": 35.55, "prefill_tps": null, "ttft_s": 2.5},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "vLLM", "quant": "NVFP4", "ctx": 32768, "decode_tps": 31.86, "prefill_tps": null, "ttft_s": 11.1},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "vLLM", "quant": "NVFP4", "ctx": 131072, "decode_tps": 22.44, "prefill_tps": null, "ttft_s": 58.3},
+
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "SGLang", "quant": "NVFP4", "ctx": 512, "decode_tps": 37.91, "prefill_tps": null, "ttft_s": 0.20},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "SGLang", "quant": "NVFP4", "ctx": 8192, "decode_tps": 35.50, "prefill_tps": null, "ttft_s": 2.3},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "SGLang", "quant": "NVFP4", "ctx": 32768, "decode_tps": 31.56, "prefill_tps": null, "ttft_s": 9.6},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "SGLang", "quant": "NVFP4", "ctx": 131072, "decode_tps": 22.20, "prefill_tps": null, "ttft_s": 50.7},
+
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 512, "decode_tps": 36.31, "prefill_tps": 256.0, "ttft_s": 0.58},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 8192, "decode_tps": 31.68, "prefill_tps": 490.0, "ttft_s": 16.0},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 32768, "decode_tps": 28.27, "prefill_tps": 372.0, "ttft_s": 87.1},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 131072, "decode_tps": 20.37, "prefill_tps": 340.0, "ttft_s": 385.1},
+
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "vLLM", "quant": "NVFP4", "ctx": 512, "decode_tps": 46.0, "prefill_tps": null, "ttft_s": 0.33},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "vLLM", "quant": "NVFP4", "ctx": 8192, "decode_tps": 43.2, "prefill_tps": null, "ttft_s": 2.41},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "vLLM", "quant": "NVFP4", "ctx": 32768, "decode_tps": 38.0, "prefill_tps": null, "ttft_s": 10.90},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "vLLM", "quant": "NVFP4", "ctx": 131072, "decode_tps": 26.3, "prefill_tps": null, "ttft_s": 63.3},
+
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "SGLang", "quant": "NVFP4", "ctx": 512, "decode_tps": 44.7, "prefill_tps": null, "ttft_s": 0.17},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "SGLang", "quant": "NVFP4", "ctx": 8192, "decode_tps": 41.3, "prefill_tps": null, "ttft_s": 2.21},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "SGLang", "quant": "NVFP4", "ctx": 32768, "decode_tps": 37.7, "prefill_tps": null, "ttft_s": 9.59},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "SGLang", "quant": "NVFP4", "ctx": 131072, "decode_tps": 27.2, "prefill_tps": null, "ttft_s": 52.7},
+
+    {"machine_id": "rtx-5090", "machine": "RTX 5090", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 512, "decode_tps": 80.0, "prefill_tps": 680.0, "ttft_s": 0.2},
+    {"machine_id": "rtx-5090", "machine": "RTX 5090", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 8192, "decode_tps": 75.7, "prefill_tps": 1852.0, "ttft_s": 4.2},
+    {"machine_id": "rtx-5090", "machine": "RTX 5090", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 32768, "decode_tps": 70.2, "prefill_tps": 1636.0, "ttft_s": 19.8},
+    {"machine_id": "rtx-5090", "machine": "RTX 5090", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 131072, "decode_tps": 57.2, "prefill_tps": 1382.0, "ttft_s": 94.6},
+    {"machine_id": "rtx-5090", "machine": "RTX 5090", "engine": "llama.cpp", "quant": "Q4_K_XL", "ctx": 262144, "decode_tps": 46.4, "prefill_tps": 1164.0, "ttft_s": 224.8},
+
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "llama.cpp (600W)", "quant": "Q4_K_XL", "ctx": 512, "decode_tps": 86.76, "prefill_tps": 992.0, "ttft_s": 0.14},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "llama.cpp (600W)", "quant": "Q4_K_XL", "ctx": 8192, "decode_tps": 82.22, "prefill_tps": 2162.0, "ttft_s": 3.62},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "llama.cpp (600W)", "quant": "Q4_K_XL", "ctx": 32768, "decode_tps": 77.69, "prefill_tps": 1865.0, "ttft_s": 17.37},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "llama.cpp (600W)", "quant": "Q4_K_XL", "ctx": 131072, "decode_tps": 63.96, "prefill_tps": 1679.0, "ttft_s": 77.86},
+
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata SQ-20", "quant": "SQ-20", "ctx": 512, "decode_tps": 178.60, "prefill_tps": 3395.0, "ttft_s": 0.038},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata SQ-20", "quant": "SQ-20", "ctx": 8192, "decode_tps": 125.49, "prefill_tps": 8477.0, "ttft_s": 0.921},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata SQ-20", "quant": "SQ-20", "ctx": 32768, "decode_tps": 92.86, "prefill_tps": 6150.0, "ttft_s": 5.265},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata SQ-20", "quant": "SQ-20", "ctx": 131072, "decode_tps": 94.98, "prefill_tps": 2878.0, "ttft_s": 45.413},
+
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata NVFP4 (#6520)", "quant": "NVFP4", "ctx": 512, "decode_tps": 163.06, "prefill_tps": 2723.0, "ttft_s": 0.047},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata NVFP4 (#6520)", "quant": "NVFP4", "ctx": 8192, "decode_tps": 143.02, "prefill_tps": 8066.0, "ttft_s": 0.968},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata NVFP4 (#6520)", "quant": "NVFP4", "ctx": 32768, "decode_tps": 129.69, "prefill_tps": 7212.0, "ttft_s": 4.490},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata NVFP4 (#6520)", "quant": "NVFP4", "ctx": 131072, "decode_tps": 96.02, "prefill_tps": 4933.0, "ttft_s": 26.493},
+
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata GGUF (#6642)", "quant": "IQ4_NL", "ctx": 512, "decode_tps": 93.64, "prefill_tps": null, "ttft_s": null},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata GGUF (#6642)", "quant": "IQ4_NL", "ctx": 8192, "decode_tps": 88.34, "prefill_tps": null, "ttft_s": null},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata GGUF (#6642)", "quant": "IQ4_NL", "ctx": 32768, "decode_tps": 79.88, "prefill_tps": null, "ttft_s": null},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata GGUF (#6642)", "quant": "IQ4_NL", "ctx": 131072, "decode_tps": 57.13, "prefill_tps": null, "ttft_s": null},
+
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "llama.cpp GGUF (IQ4_NL)", "quant": "IQ4_NL", "ctx": 512, "decode_tps": 95.37, "prefill_tps": null, "ttft_s": null},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "llama.cpp GGUF (IQ4_NL)", "quant": "IQ4_NL", "ctx": 8192, "decode_tps": 88.04, "prefill_tps": null, "ttft_s": null},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "llama.cpp GGUF (IQ4_NL)", "quant": "IQ4_NL", "ctx": 32768, "decode_tps": 81.32, "prefill_tps": null, "ttft_s": null},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "llama.cpp GGUF (IQ4_NL)", "quant": "IQ4_NL", "ctx": 131072, "decode_tps": 63.58, "prefill_tps": null, "ttft_s": null}
+  ],
+  "precision_ladder": [
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "quant": "Q4_K_XL", "runtime": "unsloth b12588", "decode_512": 38.2, "decode_32k": 28.9, "prefill_512": 431.0, "status": "ok"},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "quant": "IQ4_NL", "runtime": "mainline 418fe97", "decode_512": 36.9, "decode_32k": 28.0, "prefill_512": null, "status": "ok"},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "quant": "Q8_K_XL", "runtime": "unsloth b12588", "decode_512": 29.9, "decode_32k": 23.6, "prefill_512": null, "status": "ok"},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "quant": "BF16", "runtime": "mainline 418fe97", "decode_512": 19.9, "decode_32k": 16.7, "prefill_512": 520.0, "status": "ok"},
+
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "quant": "Q4_K_XL", "runtime": "unsloth b12588", "decode_512": 37.37, "decode_32k": 29.24, "prefill_512": 601.0, "status": "ok"},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "quant": "IQ4_NL", "runtime": "mainline b12608", "decode_512": 38.37, "decode_32k": 28.64, "prefill_512": 538.0, "status": "ok"},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "quant": "Q8_K_XL", "runtime": "unsloth b12588", "decode_512": 30.03, "decode_32k": 24.59, "prefill_512": 591.0, "status": "ok"},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "quant": "BF16", "runtime": "mainline b12608", "decode_512": 20.60, "decode_32k": 17.64, "prefill_512": 413.0, "status": "ok"},
+
+    {"machine_id": "rtx-5090", "machine": "RTX 5090", "quant": "Q4_K_XL", "runtime": "unsloth b12588", "decode_512": 81.8, "decode_32k": 71.5, "prefill_512": 1676.0, "status": "ok"},
+    {"machine_id": "rtx-5090", "machine": "RTX 5090", "quant": "IQ4_NL", "runtime": "mainline 418fe97", "decode_512": 89.3, "decode_32k": 75.5, "prefill_512": 1837.0, "status": "ok"},
+    {"machine_id": "rtx-5090", "machine": "RTX 5090", "quant": "Q8_K_XL", "runtime": "unsloth b12588", "decode_512": 74.7, "decode_32k": 66.7, "prefill_512": 1573.0, "status": "ok"},
+    {"machine_id": "rtx-5090", "machine": "RTX 5090", "quant": "BF16", "runtime": "mainline 418fe97", "decode_512": null, "decode_32k": null, "prefill_512": null, "status": "BLOCKED (sm_120 VMM corruption after >=10k prefill)"},
+
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "quant": "Q4_K_XL", "runtime": "unsloth b12588", "decode_512": 87.34, "decode_32k": 77.61, "prefill_512": 2171.0, "status": "ok"},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "quant": "IQ4_NL", "runtime": "mainline 418fe97", "decode_512": 94.66, "decode_32k": 81.11, "prefill_512": 2392.0, "status": "ok"},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "quant": "Q8_K_XL", "runtime": "unsloth b12588", "decode_512": 81.41, "decode_32k": 72.70, "prefill_512": 2205.0, "status": "ok"},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "quant": "BF16", "runtime": "mainline 418fe97", "decode_512": 70.37, "decode_32k": 62.80, "prefill_512": 1694.0, "status": "ok"}
+  ],
+  "concurrency": [
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "llama.cpp", "p1": 36.78, "p4": 86.09, "p16": 196.23, "p64": 368.75, "failed": 0},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "vLLM", "p1": 29.53, "p4": 93.56, "p16": 279.74, "p64": 645.00, "failed": 0},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "SGLang", "p1": 36.09, "p4": 119.55, "p16": 386.82, "p64": 842.02, "failed": 0},
+
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "llama.cpp", "p1": 37.0, "p4": 92.8, "p16": 210.9, "p64": 374.5, "failed": 0},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "vLLM", "p1": 33.5, "p4": 105.4, "p16": 385.7, "p64": 728.6, "failed": 0},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "SGLang", "p1": 44.5, "p4": 148.3, "p16": 453.3, "p64": 922.9, "failed": 0},
+
+    {"machine_id": "rtx-5090", "machine": "RTX 5090", "engine": "llama.cpp", "p1": 85.5, "p4": 197.4, "p16": 403.4, "p64": 601.7, "failed": 0},
+
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "llama.cpp (600W)", "p1": 92.65, "p4": 228.28, "p16": 519.81, "p64": 906.77, "failed": 0},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "llama.cpp IQ4_NL", "p1": 92.0, "p4": 244.0, "p16": 552.0, "p64": 978.0, "failed": 0},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata SQ-20", "p1": 193.7, "p4": 298.7, "p16": 583.0, "p64": 1046.6, "failed": 0},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata NVFP4 (#6520)", "p1": 141.0, "p4": 140.4, "p16": 140.8, "p64": 140.3, "failed": 0},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata GGUF (#6642)", "p1": 88.0, "p4": 158.0, "p16": 96.0, "p64": 127.0, "failed": 0}
+  ],
+  "speculative_decoding": [
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "llama.cpp", "ctx": 512, "off_tps": 38.97, "on_tps": 17.95, "ratio": 0.46, "acceptance": 0.083},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "llama.cpp", "ctx": 32768, "off_tps": 29.26, "on_tps": 15.81, "ratio": 0.54, "acceptance": 0.135},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "vLLM", "ctx": 512, "off_tps": 37.29, "on_tps": 142.01, "ratio": 3.81, "acceptance": 0.542},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "vLLM", "ctx": 32768, "off_tps": 31.32, "on_tps": 110.90, "ratio": 3.54, "acceptance": null},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "SGLang", "ctx": 512, "off_tps": 37.10, "on_tps": 119.69, "ratio": 3.23, "acceptance": null},
+    {"machine_id": "dgx-spark", "machine": "DGX Spark", "engine": "SGLang", "ctx": 32768, "off_tps": 30.98, "on_tps": 109.03, "ratio": 3.52, "acceptance": null},
+
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "llama.cpp", "ctx": 512, "off_tps": 37.78, "on_tps": 17.06, "ratio": 0.45, "acceptance": 0.134},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "llama.cpp", "ctx": 32768, "off_tps": 29.33, "on_tps": 13.77, "ratio": 0.47, "acceptance": 0.095},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "vLLM", "ctx": 512, "off_tps": 44.6, "on_tps": 183.5, "ratio": 4.11, "acceptance": 0.54},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "vLLM", "ctx": 32768, "off_tps": 37.1, "on_tps": 134.6, "ratio": 3.63, "acceptance": 0.885},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "SGLang", "ctx": 512, "off_tps": 44.7, "on_tps": 140.3, "ratio": 3.14, "acceptance": 0.344},
+    {"machine_id": "rtx-spark", "machine": "RTX Spark", "engine": "SGLang", "ctx": 32768, "off_tps": 36.9, "on_tps": 136.1, "ratio": 3.69, "acceptance": 0.703},
+
+    {"machine_id": "rtx-5090", "machine": "RTX 5090", "engine": "llama.cpp", "ctx": 512, "off_tps": 82.7, "on_tps": 44.4, "ratio": 0.54, "acceptance": 0.075},
+    {"machine_id": "rtx-5090", "machine": "RTX 5090", "engine": "llama.cpp", "ctx": 32768, "off_tps": 71.7, "on_tps": 41.5, "ratio": 0.58, "acceptance": 0.100},
+
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "llama.cpp (600W)", "ctx": 512, "off_tps": 87.13, "on_tps": 50.21, "ratio": 0.58, "acceptance": 0.06},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "llama.cpp (600W)", "ctx": 32768, "off_tps": 77.22, "on_tps": 49.36, "ratio": 0.64, "acceptance": 0.14},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata Serve API", "ctx": 512, "off_tps": 155.47, "on_tps": 155.53, "ratio": 1.00, "acceptance": null},
+    {"machine_id": "rtx-6000", "machine": "RTX PRO 6000", "engine": "Strata Native Bench (BEAM-W4 TREE-6)", "ctx": 512, "off_tps": 128.7, "on_tps": 262.9, "ratio": 2.04, "acceptance": null}
+  ],
+  "needle_in_haystack": [
+    {"machine": "DGX Spark", "engine": "llama.cpp", "mode": "standard chat", "c16k": "9/9", "c65k": "9/9", "c131k": "3/3", "c262k": "1/3 (2/3 in reasoning)", "c1m": "0/3 (degenerate at 8k probe)"},
+    {"machine": "DGX Spark", "engine": "vLLM (max-fp8)", "mode": "standard chat", "c16k": "—", "c65k": "—", "c131k": "—", "c262k": "2/3 (median 1.0)", "c1m": "0/3 (budget hit; 1/3 in reasoning)"},
+    {"machine": "DGX Spark", "engine": "SGLang (max 0.75)", "mode": "standard chat", "c16k": "—", "c65k": "—", "c131k": "—", "c262k": "2/3 (median 1.0)", "c1m": "0/3 (budget hit; 2/3 in reasoning)"},
+    {"machine": "DGX Spark", "engine": "vLLM (max-bf16)", "mode": "assistant prefill (bypass reasoning loop)", "c16k": "—", "c65k": "—", "c131k": "—", "c262k": "—", "c1m": "3/3 (100%, 9 output tokens, clean stop!)"},
+    {"machine": "RTX Spark", "engine": "llama.cpp", "mode": "standard chat", "c16k": "9/9", "c65k": "4/9 (9/9 in reasoning)", "c131k": "1/3 (2/3 in reasoning)", "c262k": "0/3 (3/3 in reasoning)", "c1m": "0/3 (degenerate at 8k probe)"},
+    {"machine": "RTX Spark", "engine": "vLLM (max-fp8)", "mode": "standard chat", "c16k": "—", "c65k": "—", "c131k": "—", "c262k": "2/3 (median 1.0)", "c1m": "0/3 (budget hit; 1/3 in reasoning)"},
+    {"machine": "RTX Spark", "engine": "SGLang (max 0.95)", "mode": "standard chat", "c16k": "—", "c65k": "—", "c131k": "—", "c262k": "2/3 (median 1.0)", "c1m": "0/3 (budget hit; 2/3 in reasoning)"},
+    {"machine": "RTX PRO 6000", "engine": "llama.cpp (600W)", "mode": "standard chat", "c16k": "8/9", "c65k": "5/9", "c131k": "0/3 (2/3 in reasoning)", "c262k": "0/3 (2/3 in reasoning)", "c1m": "0/3 (1/3 in reasoning, runs clean)"},
+    {"machine": "RTX PRO 6000", "engine": "Strata SQ-20", "mode": "standard chat", "c16k": "8/9", "c65k": "5/9", "c131k": "0/3", "c262k": "0/3", "c1m": "BLOCKED (CUDA OOM at 267k prefill)"},
+    {"machine": "RTX 5090", "engine": "llama.cpp", "mode": "standard chat", "c16k": "9/9", "c65k": "6/9 (9/9 in reasoning)", "c131k": "3/3", "c262k": "1/3 (3/3 in reasoning)", "c1m": "BLOCKED (cost: ~10.4 h/run w/ -nkvo)"}
+  ],
+  "evals_and_vision": [
+    {"machine": "DGX Spark", "engine": "llama.cpp (Q4_K_XL)", "math_20": 15, "code_10": 10, "combined": 0.833, "vision_8": 5},
+    {"machine": "DGX Spark", "engine": "vLLM (NVFP4)", "math_20": 15, "code_10": 10, "combined": 0.833, "vision_8": 4},
+    {"machine": "DGX Spark", "engine": "SGLang (NVFP4)", "math_20": 13, "code_10": 10, "combined": 0.767, "vision_8": 4},
+    {"machine": "RTX Spark", "engine": "llama.cpp (Q4_K_XL)", "math_20": 15, "code_10": 10, "combined": 0.833, "vision_8": 5},
+    {"machine": "RTX Spark", "engine": "vLLM (NVFP4)", "math_20": 15, "code_10": 10, "combined": 0.833, "vision_8": 4},
+    {"machine": "RTX Spark", "engine": "SGLang (NVFP4)", "math_20": 16, "code_10": 10, "combined": 0.867, "vision_8": 4},
+    {"machine": "RTX 5090", "engine": "llama.cpp (Q4_K_XL)", "math_20": 15, "code_10": 10, "combined": 0.833, "vision_8": 5},
+    {"machine": "RTX PRO 6000", "engine": "llama.cpp (Q4_K_XL 600W)", "math_20": 14, "code_10": 10, "combined": 0.800, "vision_8": 5},
+    {"machine": "RTX PRO 6000", "engine": "Strata (SQ-20)", "math_20": 14, "code_10": 10, "combined": 0.800, "vision_8": 5},
+    {"machine": "RTX PRO 6000", "engine": "Strata NVFP4 (#6520)", "math_20": 16, "code_10": 10, "combined": 0.867, "vision_8": null},
+    {"machine": "RTX PRO 6000", "engine": "llama.cpp (IQ4_NL)", "math_20": 12, "code_10": 10, "combined": 0.733, "vision_8": null},
+    {"machine": "RTX PRO 6000", "engine": "Strata GGUF (#6642 IQ4_NL)", "math_20": 6, "code_10": 10, "combined": 0.533, "vision_8": null}
+  ],
+  "soak_and_power": [
+    {"machine": "DGX Spark", "engine": "llama.cpp", "decode_tps": 30.18, "power_mean_w": 37.43, "temp_max_c": 64, "tok_per_w": 0.81, "note": "Flat over 30 min"},
+    {"machine": "DGX Spark", "engine": "vLLM", "decode_tps": 29.27, "power_mean_w": 30.79, "temp_max_c": 64, "tok_per_w": 0.95, "note": "Best measured tok/W"},
+    {"machine": "DGX Spark", "engine": "SGLang", "decode_tps": 28.58, "power_mean_w": 31.22, "temp_max_c": 65, "tok_per_w": 0.92, "note": "Flat over 30 min"},
+    {"machine": "RTX Spark", "engine": "llama.cpp", "decode_tps": 21.55, "power_mean_w": 22.2, "temp_max_c": 59, "tok_per_w": 0.98, "note": "Sensor reads low; not wall-comparable"},
+    {"machine": "RTX Spark", "engine": "vLLM", "decode_tps": 39.8, "power_mean_w": null, "temp_max_c": null, "tok_per_w": null, "note": "WSL2 nvidia-smi power/temp unavailable"},
+    {"machine": "RTX Spark", "engine": "SGLang", "decode_tps": 38.8, "power_mean_w": null, "temp_max_c": null, "tok_per_w": null, "note": "WSL2 nvidia-smi power/temp unavailable"},
+    {"machine": "RTX 5090", "engine": "llama.cpp", "decode_tps": 50.9, "power_mean_w": 184.0, "temp_max_c": 56, "tok_per_w": 0.277, "note": "1,433 reqs, zero drift"},
+    {"machine": "RTX PRO 6000", "engine": "llama.cpp (350W cap)", "decode_tps": 39.54, "power_mean_w": 327.0, "temp_max_c": 84, "tok_per_w": 0.121, "note": "SW Power Cap throttled, 15% fade"},
+    {"machine": "RTX PRO 6000", "engine": "llama.cpp (450W cap)", "decode_tps": 65.72, "power_mean_w": 221.0, "temp_max_c": 67, "tok_per_w": 0.299, "note": "Not cap-bound, zero fade"},
+    {"machine": "RTX PRO 6000", "engine": "llama.cpp (600W cap)", "decode_tps": 66.14, "power_mean_w": 221.6, "temp_max_c": 66, "tok_per_w": 0.299, "note": "Identical to 450W, 1,862 reqs"},
+    {"machine": "RTX PRO 6000", "engine": "Strata SQ-20 (600W)", "decode_tps": 96.14, "power_mean_w": 345.0, "temp_max_c": 82, "tok_per_w": 0.278, "note": "2,711 reqs, zero fade"},
+    {"machine": "RTX PRO 6000", "engine": "Strata NVFP4 (#6520)", "decode_tps": 91.50, "power_mean_w": 350.0, "temp_max_c": 80, "tok_per_w": 0.262, "note": "2,569 reqs, zero fade"}
+  ],
+  "power_ladder_rtx6000": [
+    {"power_cap_w": 350, "a_decode_512": 67.27, "a_decode_32k": 28.10, "a_decode_131k": 23.95, "e_par1": 28.82, "e_par64": 897.28, "h_decode": 39.54, "h_mean_w": 327, "h_max_temp_c": 84, "h_tok_per_w": 0.121, "suite_min": 231},
+    {"power_cap_w": 450, "a_decode_512": 87.26, "a_decode_32k": 77.55, "a_decode_131k": 63.92, "e_par1": 92.79, "e_par64": 904.20, "h_decode": 65.72, "h_mean_w": 221, "h_max_temp_c": 67, "h_tok_per_w": 0.299, "suite_min": 155},
+    {"power_cap_w": 600, "a_decode_512": 86.76, "a_decode_32k": 77.69, "a_decode_131k": 63.89, "e_par1": 92.65, "e_par64": 906.77, "h_decode": 66.14, "h_mean_w": 221, "h_max_temp_c": 66, "h_tok_per_w": 0.299, "suite_min": 153}
+  ],
+  "varloop": [
+    {"machine": "DGX Spark", "engine": "vLLM", "passes": 1, "shared_kv": false, "decode_tps": 61.53, "math_20": 12},
+    {"machine": "DGX Spark", "engine": "vLLM", "passes": 2, "shared_kv": false, "decode_tps": 44.24, "math_20": 10},
+    {"machine": "DGX Spark", "engine": "vLLM", "passes": 3, "shared_kv": false, "decode_tps": 34.26, "math_20": 8},
+    {"machine": "DGX Spark", "engine": "vLLM", "passes": 3, "shared_kv": true, "decode_tps": 34.47, "math_20": 14},
+    {"machine": "DGX Spark", "engine": "SGLang", "passes": 1, "shared_kv": false, "decode_tps": 60.97, "math_20": 11},
+    {"machine": "DGX Spark", "engine": "SGLang", "passes": 2, "shared_kv": false, "decode_tps": 43.77, "math_20": 12},
+    {"machine": "DGX Spark", "engine": "SGLang", "passes": 3, "shared_kv": false, "decode_tps": 33.98, "math_20": 12},
+    {"machine": "DGX Spark", "engine": "SGLang", "passes": 3, "shared_kv": true, "decode_tps": 34.03, "math_20": 12},
+    {"machine": "RTX Spark", "engine": "vLLM", "passes": 1, "shared_kv": false, "decode_tps": 68.3, "math_20": 12},
+    {"machine": "RTX Spark", "engine": "vLLM", "passes": 2, "shared_kv": false, "decode_tps": 47.0, "math_20": 10},
+    {"machine": "RTX Spark", "engine": "vLLM", "passes": 3, "shared_kv": false, "decode_tps": 37.1, "math_20": 8},
+    {"machine": "RTX Spark", "engine": "vLLM", "passes": 3, "shared_kv": true, "decode_tps": 36.9, "math_20": 14},
+    {"machine": "RTX Spark", "engine": "SGLang", "passes": 1, "shared_kv": false, "decode_tps": 69.4, "math_20": 11},
+    {"machine": "RTX Spark", "engine": "SGLang", "passes": 2, "shared_kv": false, "decode_tps": 48.7, "math_20": 11},
+    {"machine": "RTX Spark", "engine": "SGLang", "passes": 3, "shared_kv": false, "decode_tps": 38.2, "math_20": 11},
+    {"machine": "RTX Spark", "engine": "SGLang", "passes": 3, "shared_kv": true, "decode_tps": 38.1, "math_20": 12}
+  ],
+  "two_node_rpc": {
+    "machine": "DGX Spark (2x GB10 over 200G fabric)",
+    "single_node_512_tps": 38.53,
+    "rpc_512_tps": 5.83,
+    "single_node_32k_tps": 28.74,
+    "rpc_32k_tps": 6.41,
+    "note": "RPC offload works over 200G fabric (~1.4 ms RTT), but drops decode ~6x for a model that already fits on one node."
+  }
+}

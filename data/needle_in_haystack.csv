@@ -1,0 +1,11 @@
+machine,engine,mode,c16k,c65k,c131k,c262k,c1m
+DGX Spark,llama.cpp,standard chat,9/9,9/9,3/3,1/3 (2/3 in reasoning),0/3 (degenerate at 8k probe)
+DGX Spark,vLLM (max-fp8),standard chat,—,—,—,2/3 (median 1.0),0/3 (budget hit; 1/3 in reasoning)
+DGX Spark,SGLang (max 0.75),standard chat,—,—,—,2/3 (median 1.0),0/3 (budget hit; 2/3 in reasoning)
+DGX Spark,vLLM (max-bf16),assistant prefill (bypass reasoning loop),—,—,—,—,"3/3 (100%, 9 output tokens, clean stop!)"
+RTX Spark,llama.cpp,standard chat,9/9,4/9 (9/9 in reasoning),1/3 (2/3 in reasoning),0/3 (3/3 in reasoning),0/3 (degenerate at 8k probe)
+RTX Spark,vLLM (max-fp8),standard chat,—,—,—,2/3 (median 1.0),0/3 (budget hit; 1/3 in reasoning)
+RTX Spark,SGLang (max 0.95),standard chat,—,—,—,2/3 (median 1.0),0/3 (budget hit; 2/3 in reasoning)
+RTX PRO 6000,llama.cpp (600W),standard chat,8/9,5/9,0/3 (2/3 in reasoning),0/3 (2/3 in reasoning),"0/3 (1/3 in reasoning, runs clean)"
+RTX PRO 6000,Strata SQ-20,standard chat,8/9,5/9,0/3,0/3,BLOCKED (CUDA OOM at 267k prefill)
+RTX 5090,llama.cpp,standard chat,9/9,6/9 (9/9 in reasoning),3/3,1/3 (3/3 in reasoning),BLOCKED (cost: ~10.4 h/run w/ -nkvo)

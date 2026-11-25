@@ -1,0 +1,17 @@
+machine_id,machine,quant,runtime,decode_512,decode_32k,prefill_512,status
+dgx-spark,DGX Spark,Q4_K_XL,unsloth b12588,38.2,28.9,431.0,ok
+dgx-spark,DGX Spark,IQ4_NL,mainline 418fe97,36.9,28.0,,ok
+dgx-spark,DGX Spark,Q8_K_XL,unsloth b12588,29.9,23.6,,ok
+dgx-spark,DGX Spark,BF16,mainline 418fe97,19.9,16.7,520.0,ok
+rtx-spark,RTX Spark,Q4_K_XL,unsloth b12588,37.37,29.24,601.0,ok
+rtx-spark,RTX Spark,IQ4_NL,mainline b12608,38.37,28.64,538.0,ok
+rtx-spark,RTX Spark,Q8_K_XL,unsloth b12588,30.03,24.59,591.0,ok
+rtx-spark,RTX Spark,BF16,mainline b12608,20.6,17.64,413.0,ok
+rtx-5090,RTX 5090,Q4_K_XL,unsloth b12588,81.8,71.5,1676.0,ok
+rtx-5090,RTX 5090,IQ4_NL,mainline 418fe97,89.3,75.5,1837.0,ok
+rtx-5090,RTX 5090,Q8_K_XL,unsloth b12588,74.7,66.7,1573.0,ok
+rtx-5090,RTX 5090,BF16,mainline 418fe97,,,,BLOCKED (sm_120 VMM corruption after >=10k prefill)
+rtx-6000,RTX PRO 6000,Q4_K_XL,unsloth b12588,87.34,77.61,2171.0,ok
+rtx-6000,RTX PRO 6000,IQ4_NL,mainline 418fe97,94.66,81.11,2392.0,ok
+rtx-6000,RTX PRO 6000,Q8_K_XL,unsloth b12588,81.41,72.7,2205.0,ok
+rtx-6000,RTX PRO 6000,BF16,mainline 418fe97,70.37,62.8,1694.0,ok

@@ -1,0 +1,13 @@
+machine_id,machine,engine,p1,p4,p16,p64,failed
+dgx-spark,DGX Spark,llama.cpp,36.78,86.09,196.23,368.75,0
+dgx-spark,DGX Spark,vLLM,29.53,93.56,279.74,645.0,0
+dgx-spark,DGX Spark,SGLang,36.09,119.55,386.82,842.02,0
+rtx-spark,RTX Spark,llama.cpp,37.0,92.8,210.9,374.5,0
+rtx-spark,RTX Spark,vLLM,33.5,105.4,385.7,728.6,0
+rtx-spark,RTX Spark,SGLang,44.5,148.3,453.3,922.9,0
+rtx-5090,RTX 5090,llama.cpp,85.5,197.4,403.4,601.7,0
+rtx-6000,RTX PRO 6000,llama.cpp (600W),92.65,228.28,519.81,906.77,0
+rtx-6000,RTX PRO 6000,llama.cpp IQ4_NL,92.0,244.0,552.0,978.0,0
+rtx-6000,RTX PRO 6000,Strata SQ-20,193.7,298.7,583.0,1046.6,0
+rtx-6000,RTX PRO 6000,Strata NVFP4 (#6520),141.0,140.4,140.8,140.3,0
+rtx-6000,RTX PRO 6000,Strata GGUF (#6642),88.0,158.0,96.0,127.0,0

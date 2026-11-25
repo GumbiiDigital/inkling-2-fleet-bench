@@ -1,0 +1,17 @@
+machine,engine,passes,shared_kv,decode_tps,math_20
+DGX Spark,vLLM,1,False,61.53,12
+DGX Spark,vLLM,2,False,44.24,10
+DGX Spark,vLLM,3,False,34.26,8
+DGX Spark,vLLM,3,True,34.47,14
+DGX Spark,SGLang,1,False,60.97,11
+DGX Spark,SGLang,2,False,43.77,12
+DGX Spark,SGLang,3,False,33.98,12
+DGX Spark,SGLang,3,True,34.03,12
+RTX Spark,vLLM,1,False,68.3,12
+RTX Spark,vLLM,2,False,47.0,10
+RTX Spark,vLLM,3,False,37.1,8
+RTX Spark,vLLM,3,True,36.9,14
+RTX Spark,SGLang,1,False,69.4,11
+RTX Spark,SGLang,2,False,48.7,11
+RTX Spark,SGLang,3,False,38.2,11
+RTX Spark,SGLang,3,True,38.1,12
