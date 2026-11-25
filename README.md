@@ -121,5 +121,10 @@ python3 scripts/build_charts.py
 - [`dashboard/index.html`](dashboard/index.html) — Self-contained interactive benchmark dashboard with Light/Dark switcher & Audit Caveats tab.
 - [`data/benchmarks.json`](data/benchmarks.json) + `data/*.csv` — Single source of truth and normalized CSV tables.
 - [`charts/`](charts/) — 12 deterministic SVG charts (`-dark.svg` & `-light.svg`).
-- [`social/twitter-threads.md`](social/twitter-threads.md) — Ready-to-post X/Twitter threads with preemptive caveats.
 - [`reports/`](reports/) — Archived full verify-PASS reports from every machine.
+
+---
+
+## Credits and license
+
+Inkling-2-Mini, `llama.cpp`, `vLLM`, `SGLang`, and `Strata` belong to their respective authors. This is an independent engineering record, and no endorsement is implied. Apache License 2.0. See [LICENSE](LICENSE).
