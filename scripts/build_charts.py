@@ -89,12 +89,14 @@ def build_02_dspark_reversal(theme: Theme) -> str:
         ],
     )
     llama_panel = BarPanel(
-        title="llama.cpp Unsloth mix GGUF drafter (DSpark ON — net slowdown)",
+        title="llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative)",
         rows=[
-            BarRow("RTX PRO 6000 · llama.cpp", 50.21, "50.2 tok/s", "red", "0.58× vs 87.1 (6% acc)"),
+            BarRow("RTX PRO 6000 · llama.cpp", 50.21, "50.2 tok/s", "red", "0.58× vs 87.1 (6.0% acc)"),
             BarRow("RTX 5090 · llama.cpp", 44.4, "44.4 tok/s", "red", "0.54× vs 82.7 (7.5% acc)"),
+            BarRow("M4 Max · llama.cpp (Metal)", 18.50, "18.5 tok/s", "orange", "0.57× vs 32.6 (10.1% acc)"),
             BarRow("DGX Spark · llama.cpp", 17.95, "18.0 tok/s", "orange", "0.46× vs 39.0 (8.3% acc)"),
             BarRow("RTX Spark · llama.cpp", 17.06, "17.1 tok/s", "orange", "0.45× vs 37.8 (13.4% acc)"),
+            BarRow("M3 Ultra · llama.cpp (Metal)", 16.00, "16.0 tok/s", "orange", "0.58× vs 27.7 (7.1% acc)"),
         ],
     )
     caption = Caption(
@@ -122,6 +124,8 @@ def build_03_concurrency(theme: Theme) -> str:
             BarRow("RTX 5090 · llama.cpp Q4_K_XL", 601.7, "601.7 tok/s", "orange", "7.0× vs 1-stream"),
             BarRow("RTX Spark · llama.cpp Q4_K_XL", 374.5, "374.5 tok/s", "orange", "10.1× vs 1-stream"),
             BarRow("DGX Spark · llama.cpp Q4_K_XL", 368.75, "368.8 tok/s", "orange", "10.0× vs 1-stream"),
+            BarRow("M3 Ultra · llama.cpp (Metal)", 278.01, "278.0 tok/s", "yellow", "10.1× vs 1-stream"),
+            BarRow("M4 Max · llama.cpp (Metal)", 264.10, "264.1 tok/s", "yellow", "8.4× vs 1-stream"),
             BarRow("RTX PRO 6000 · Strata NVFP4 (#6520)", 140.3, "140.3 tok/s", "red", "serializes (1.0×)"),
             BarRow("RTX PRO 6000 · Strata GGUF (#6642)†", 126.6, "126.6 tok/s", "red", "early-EOS (~52 tok)"),
         ],
@@ -241,6 +245,54 @@ def build_06_1m_breakthrough(theme: Theme) -> str:
     return bar_panels(caption, [panel_1m], theme, columns=1, axis_label="Exact needle code retrieved in final answer (%)")
 
 
+def build_07_apple_vs_nvidia(theme: Theme) -> str:
+    q4_512 = BarPanel(
+        title="llama.cpp Q4_K_XL decode @512 (same engine)",
+        rows=[
+            BarRow("DGX Spark (GB10, CUDA)", 38.53, "38.5 tok/s", "blue", "1.38× M3U"),
+            BarRow("RTX Spark (N1X, CUDA)", 36.31, "36.3 tok/s", "violet", "1.30× M3U"),
+            BarRow("M4 Max 128GB (Metal)", 33.0, "33.0 tok/s", "aqua", "1.18× M3U"),
+            BarRow("M3 Ultra 256GB (Metal)", 27.86, "27.9 tok/s", "orange", "baseline"),
+        ],
+    )
+    q4_128k = BarPanel(
+        title="llama.cpp Q4_K_XL decode @128K (crossover!)",
+        rows=[
+            BarRow("M3 Ultra 256GB (Metal)", 21.04, "21.0 tok/s", "orange", "passes Sparks!"),
+            BarRow("RTX Spark (N1X, CUDA)", 20.37, "20.4 tok/s", "violet", "−3.2% vs M3U"),
+            BarRow("DGX Spark (GB10, CUDA)", 19.59, "19.6 tok/s", "blue", "−6.9% vs M3U"),
+            BarRow("M4 Max 128GB (Metal)", 18.4, "18.4 tok/s", "aqua", "−12.5% vs M3U"),
+        ],
+    )
+    bf16_512 = BarPanel(
+        title="llama.cpp BF16 decode @512 (full precision)",
+        rows=[
+            BarRow("M4 Max 128GB (Metal)", 26.47, "26.5 tok/s", "aqua", "+33% vs DGX"),
+            BarRow("M3 Ultra 256GB (Metal)", 25.62, "25.6 tok/s", "orange", "+29% vs DGX"),
+            BarRow("RTX Spark (N1X, CUDA)", 20.60, "20.6 tok/s", "violet", "+3.5% vs DGX"),
+            BarRow("DGX Spark (GB10, CUDA)", 19.9, "19.9 tok/s", "blue", "baseline"),
+        ],
+    )
+    bf16_32k = BarPanel(
+        title="llama.cpp BF16 decode @32K (bandwidth wins)",
+        rows=[
+            BarRow("M3 Ultra 256GB (Metal)", 23.13, "23.1 tok/s", "orange", "+39% vs DGX"),
+            BarRow("M4 Max 128GB (Metal)", 20.64, "20.6 tok/s", "aqua", "+24% vs DGX"),
+            BarRow("RTX Spark (N1X, CUDA)", 17.64, "17.6 tok/s", "violet", "+5.6% vs DGX"),
+            BarRow("DGX Spark (GB10, CUDA)", 16.7, "16.7 tok/s", "blue", "baseline"),
+        ],
+    )
+    caption = Caption(
+        title="Apple Silicon Metal vs NVIDIA Unified-Memory Sparks (same llama.cpp engine)",
+        subtitle=("Identical GGUF weights and harness. Sparks win short-ctx Q4 and prefill; Apple Silicon's memory bandwidth wins BF16 and 128K decode.",),
+        footnotes=(
+            "Prefill @128K remains an NVIDIA win: DGX Spark 364 s vs M3 Ultra 935 s vs M4 Max 1,443 s (and 51–63 s on native Spark vLLM/SGLang).",
+            "At 1M ctx on llama.cpp Q4_K_XL: M3 Ultra ~12.5 h/run (5.6 tok/s decode) vs M4 Max ~18.2–28.2 h/run (3.0–3.6 tok/s decode); both 0/3 chat.",
+        ),
+    )
+    return bar_panels(caption, [q4_512, q4_128k, bf16_512, bf16_32k], theme, columns=2)
+
+
 def main() -> None:
     write_themed("01-single-stream-decode", build_01_speed_ladder)
     write_themed("02-dspark-reversal", build_02_dspark_reversal)
@@ -248,6 +300,7 @@ def main() -> None:
     write_themed("04-rtx6000-power-knee", build_04_power_knee)
     write_themed("05-rtx6000-engines", build_05_rtx6000_engines)
     write_themed("06-1m-breakthrough", build_06_1m_breakthrough)
+    write_themed("07-apple-silicon-vs-nvidia", build_07_apple_vs_nvidia)
 
 
 if __name__ == "__main__":

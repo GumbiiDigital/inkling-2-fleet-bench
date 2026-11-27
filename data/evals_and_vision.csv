@@ -11,3 +11,5 @@ RTX PRO 6000,Strata (SQ-20),14,10,0.8,5
 RTX PRO 6000,Strata NVFP4 (#6520),16,10,0.867,
 RTX PRO 6000,llama.cpp (IQ4_NL),12,10,0.733,
 RTX PRO 6000,Strata GGUF (#6642 IQ4_NL),6,10,0.533,
+M3 Ultra,llama.cpp Metal (Q4_K_XL),15,10,0.833,5
+M4 Max,llama.cpp Metal (Q4_K_XL),14,10,0.8,5

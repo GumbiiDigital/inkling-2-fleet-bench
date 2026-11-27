@@ -17,3 +17,7 @@ rtx-6000,RTX PRO 6000,llama.cpp (600W),512,87.13,50.21,0.58,0.06
 rtx-6000,RTX PRO 6000,llama.cpp (600W),32768,77.22,49.36,0.64,0.14
 rtx-6000,RTX PRO 6000,Strata Serve API,512,155.47,155.53,1.0,
 rtx-6000,RTX PRO 6000,Strata Native Bench (BEAM-W4 TREE-6),512,128.7,262.9,2.04,
+m3-ultra,M3 Ultra,llama.cpp (Metal),512,27.68,16.0,0.58,0.071
+m3-ultra,M3 Ultra,llama.cpp (Metal),32768,24.94,13.94,0.56,0.105
+m4-max,M4 Max,llama.cpp (Metal),512,32.55,18.5,0.57,0.101
+m4-max,M4 Max,llama.cpp (Metal),32768,26.13,12.51,0.48,0.123

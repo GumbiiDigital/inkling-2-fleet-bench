@@ -11,3 +11,5 @@ RTX PRO 6000,llama.cpp (450W cap),65.72,221.0,67,0.299,"Not cap-bound, zero fade
 RTX PRO 6000,llama.cpp (600W cap),66.14,221.6,66,0.299,"Identical to 450W, 1,862 reqs"
 RTX PRO 6000,Strata SQ-20 (600W),96.14,345.0,82,0.278,"2,711 reqs, zero fade"
 RTX PRO 6000,Strata NVFP4 (#6520),91.5,350.0,80,0.262,"2,569 reqs, zero fade"
+M3 Ultra,llama.cpp (Metal),24.4,,,,"Flat 3x10m, pmset nominal (no sudo for watts)"
+M4 Max,llama.cpp (Metal),27.27,,,,"Flat 3x10m, pmset nominal (no sudo for watts)"

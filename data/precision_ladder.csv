@@ -15,3 +15,11 @@ rtx-6000,RTX PRO 6000,Q4_K_XL,unsloth b12588,87.34,77.61,2171.0,ok
 rtx-6000,RTX PRO 6000,IQ4_NL,mainline 418fe97,94.66,81.11,2392.0,ok
 rtx-6000,RTX PRO 6000,Q8_K_XL,unsloth b12588,81.41,72.7,2205.0,ok
 rtx-6000,RTX PRO 6000,BF16,mainline 418fe97,70.37,62.8,1694.0,ok
+m3-ultra,M3 Ultra,Q4_K_XL,unsloth b12588 (Metal),27.89,24.97,570.6,ok
+m3-ultra,M3 Ultra,IQ4_NL,mainline 418fe97 (Metal),30.19,26.7,543.7,ok
+m3-ultra,M3 Ultra,Q8_K_XL,unsloth b12588 (Metal),26.5,23.95,573.4,ok
+m3-ultra,M3 Ultra,BF16,mainline 418fe97 (Metal),25.62,23.13,579.1,ok
+m4-max,M4 Max,Q4_K_XL,unsloth b12588 (Metal),32.57,26.03,481.9,ok
+m4-max,M4 Max,IQ4_NL,mainline 418fe97 (Metal),35.23,27.64,470.9,ok
+m4-max,M4 Max,Q8_K_XL,unsloth b12588 (Metal),29.63,23.72,483.8,ok
+m4-max,M4 Max,BF16,mainline 418fe97 (Metal),26.47,20.64,496.2,ok

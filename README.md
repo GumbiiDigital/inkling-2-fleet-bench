@@ -1,10 +1,10 @@
-# Inkling-2-Mini — Multi-Hardware & Multi-Engine NVIDIA Benchmark Suite
+# Inkling-2-Mini — 6-Machine NVIDIA Blackwell & Apple Silicon Benchmark Suite
 
 **[Open the Live Interactive Dashboard →](https://gumbiidigital.github.io/inkling-2-fleet-bench/dashboard/)**
 
-Independent, reproducible, verify-gated benchmarks of Thinking Machines' **Inkling-2-Mini** (26.2B total / 3.4B active MoE, middle 12 layers looped 3×, 1M context) across **four NVIDIA Blackwell machines** and **four inference engines** (`llama.cpp`, `vLLM`, `SGLang`, `Strata`).
+Independent, reproducible, verify-gated benchmarks of Thinking Machines' **Inkling-2-Mini** (26.2B total / 3.4B active MoE, middle 12 layers looped 3×, 1M context) across **six machines** (4 NVIDIA Blackwell + 2 Apple Silicon Metal) and **four inference engines** (`llama.cpp`, `vLLM`, `SGLang`, `Strata`).
 
-> **v1.0 Release (NVIDIA Blackwell Fleet):** Publishes the 4 completed, PASS-gated NVIDIA systems. **v2.0** will add full Apple Silicon Metal results (**M3 Ultra 256 GB** & **M4 Max 128 GB**), whose 1M-context and BF16 runs are currently completing.
+> **v2.0 Release (Full 6-Machine Fleet):** Adds full Apple Silicon Metal benchmarks (**Mac Studio M3 Ultra 256 GB** — Verify PASS incl. 1M & BF16 — and **M4 Max 128 GB** — Verify PASS ≤262K + all 3×1M runs completed on-box) alongside the 4 NVIDIA Blackwell systems.
 
 ---
 
@@ -26,6 +26,8 @@ Independent, reproducible, verify-gated benchmarks of Thinking Machines' **Inkli
 | **RTX Spark 128GB** | NVIDIA RTX Spark N1X (`sm_121`) | 128 GB LPDDR5x-9400 (109.7 GiB CUDA) | Win11 ARM64 + WSL2 Ubuntu 24.04 | `llama.cpp`, `vLLM`, `SGLang` | [llama.cpp](reports/rtx-spark-llamacpp.md) · [H2H](reports/rtx-spark-vllm-sglang-h2h.md) |
 | **RTX PRO 6000 Blackwell** | Workstation Edition (`sm_120`) | 96 GB GDDR7 ECC | Linux x86_64, CUDA 12.8 | `llama.cpp` (450/600W + 350W*), `Strata SQ-20`, `#6642 GGUF`, `#6520 NVFP4` | [Full Report](reports/rtx-pro-6000-blackwell.md) |
 | **RTX 5090** | GeForce RTX 5090 (`sm_120`) | 32 GB GDDR7 | Linux x86_64, CUDA 12.8 | `llama.cpp` (all-GPU through 256K) | [Full Report](reports/rtx-5090-llamacpp.md) |
+| **Mac Studio M3 Ultra** | Apple M3 Ultra (Metal) | 256 GB Unified (~800 GB/s) | macOS 27.2.1 (arm64) | `llama.cpp` Metal (Q4/IQ4/Q8/BF16, 1M PASS) | [Full Report](reports/m3-ultra-256gb-metal.md) |
+| **M4 Max** | Apple M4 Max (Metal) | 128 GB Unified (~546 GB/s) | macOS 27.2.1 (arm64) | `llama.cpp` Metal (Q4/IQ4/Q8/BF16, 3×1M archived) | [Full Report](reports/m4-max-128gb-metal.md) |
 
 ---
 
@@ -96,6 +98,20 @@ Median of 3 runs, plain decode (no speculation):
 
 ---
 
+## 6. Apple Silicon Metal vs NVIDIA Unified-Memory Sparks (Same `llama.cpp` Engine)
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/07-apple-silicon-vs-nvidia-dark.svg">
+  <img alt="Apple Silicon Metal vs NVIDIA Unified-Memory Sparks on llama.cpp" src="charts/07-apple-silicon-vs-nvidia-light.svg">
+</picture>
+
+- **Q4_K_XL crossover at long context:** On identical `llama.cpp` weights, the NVIDIA Sparks lead at 512 ctx (`38.5` / `36.3` vs M4 Max `33.0` / M3 Ultra `27.9 tok/s`), but **M3 Ultra (`21.0 tok/s`) overtakes both Sparks (`19.6` / `20.4`) and M4 Max (`18.4`) at 128K** as KV-cache bandwidth dominates.
+- **Full-precision BF16 win for Apple Silicon:** Both Macs (**M4 Max `26.5`** / **M3 Ultra `25.6`** @512; **M3 Ultra `23.1`** @32K) beat both NVIDIA Sparks (**`19.9–20.6`** @512; **`16.7–17.6`** @32K) by **+25% to +39%**.
+- **Prefill stays an NVIDIA strength:** At 128K `llama.cpp`, DGX Spark prefills in `364 s` vs M3 Ultra `935 s` vs M4 Max `1,443 s` (and `51–63 s` on native Spark `vLLM`/`SGLang`). At 1M context, M3 Ultra completed all 3 runs in ~12.5 h/run (`23.1 tok/s` prefill, `5.6 tok/s` decode, `0/3` chat, `1/3` found in reasoning); M4 Max completed all 3 runs on-box in `18.2 / 18.8 / 28.2 h` (`3.0–3.6 tok/s` decode).
+- **Fleet-wide `llama.cpp` DSpark confirmation (6/6 hosts):** Both Macs confirm the exact same `llama.cpp` GGUF drafter slowdown (M3 Ultra `0.58×`, M4 Max `0.57×`).
+
+---
+
 ## Can I Trust These Numbers? — Known Limitations & Preemptive Audit Notes
 
 Before sharing this dataset, we ran an adversarial raw-JSON and harness-code audit across all four workspaces. Every number above matches the raw JSON records on disk, **and** here are the exact limitations and caveats you should know before drawing conclusions:
@@ -108,6 +124,7 @@ Before sharing this dataset, we ran an adversarial raw-JSON and harness-code aud
 6. **1M-context assistant-prefill proof is a narrow KV-retention diagnostic:** Tested on 1 box (`DGX Spark`), 1 engine (`vLLM max-bf16`), 1 depth (`0.5`), synthetic NATO haystack, forced 4-word assistant prefix (`"The hidden code is"`), `n=3`, ~25.5 min/run. It proves the 1M KV state retains the needle when the broken reasoning loop is bypassed—not general-purpose 1M reasoning. (Raw forced-prefix Arm B hallucinated `3X7-5778`.)
 7. **Small eval sample sizes & default sampling temperature:** Track C (`20` math + `10` code items) did not pass `temperature=0.0`, so engines used default sampling temperature (explaining ±1–3 item math drift across runs). Track G Vision (`8` synthetic 128×128 squares, all expected `"8"`, substring check) is strictly a **multimodal wiring smoke check**, not a vision capability benchmark.
 8. **Different weights, OSes, and blocked cells:** Cross-engine comparisons are "recommended ecosystem stacks" (`Q4_K_XL` vs `NVFP4` vs `SQ-20`); only `Strata #6642` vs `llama.cpp IQ4_NL` ran the exact same `.gguf` file (and `#6642` truncated early at ~52 tok/req in Track E). RTX Spark H2H ran inside WSL2 (missing `nvidia-smi` power/temp, SGLang `mem-fraction-static 0.95` vs DGX Spark `0.75`). RTX 5090 BF16 is blocked by an `sm_120` VMM partial-offload corruption bug; Strata SQ-20 OOMs at 267K on the 1M prompt.
+9. **Apple Silicon notes (v2.0):** Both Macs ran `llama.cpp` Metal only (no `vLLM`/`SGLang`/`Strata` on macOS) and have no `sudo powermetrics` wattage telemetry (`pmset -g therm` remained `nominal` with flat 30-min soak throughput). On M4 Max (`m41`), all 3 × 1M runs completed on-box (`18.22 h`, `18.80 h`, `28.17 h`; Run 3 JSON + full 3-run server log archived), while a control-host reboot during Run 3 dropped the in-memory Run 1–2 chat bodies before `needle.py` wrote the final point JSON; rather than re-running ~60 hours, we archived the full server log and Run 3 JSON directly.
 
 ---
 

@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="840" height="536" viewBox="0 0 840 536" role="img" aria-label="Concurrency scaling at 64 parallel streams (engine comparison, not same-engine hardware) Aggregate output tok/s across 64 simultaneous 256-token requests. On identical llama.cpp Q4_K_XL, PRO 6000 is 2.42× RTX Spark." font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" data-x-scale="linear" data-y-scale="linear">
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="588" viewBox="0 0 840 588" role="img" aria-label="Concurrency scaling at 64 parallel streams (engine comparison, not same-engine hardware) Aggregate output tok/s across 64 simultaneous 256-token requests. On identical llama.cpp Q4_K_XL, PRO 6000 is 2.42× RTX Spark." font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" data-x-scale="linear" data-y-scale="linear">
 <title>Concurrency scaling at 64 parallel streams (engine comparison, not same-engine hardware) Aggregate output tok/s across 64 simultaneous 256-token requests. On identical llama.cpp Q4_K_XL, PRO 6000 is 2.42× RTX Spark.</title>
-<rect x="0.5" y="0.5" width="839" height="535" fill="#fcfcfb" rx="8" stroke="#e1e0d9" stroke-width="1"/>
+<rect x="0.5" y="0.5" width="839" height="587" fill="#fcfcfb" rx="8" stroke="#e1e0d9" stroke-width="1"/>
 <text x="24" y="40" font-size="16" fill="#0b0b0b" font-weight="600">Concurrency scaling at 64 parallel streams (engine comparison, not same-engine hardware)</text>
 <text x="24" y="57" font-size="12" fill="#52514e">Aggregate output tok/s across 64 simultaneous 256-token requests. On identical llama.cpp Q4_K_XL, PRO 6000</text>
 <text x="24" y="74" font-size="12" fill="#52514e">is 2.42× RTX Spark.</text>
@@ -45,18 +45,26 @@
 <path d="M273.2,352 H372.7 Q376.7,352 376.7,356 V362 Q376.7,366 372.7,366 H273.2 Z" fill="#eb6834"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · DGX Spark · llama.cpp Q4_K_XL: 368.8 tok/s 10.0× vs 1-stream</title></path>
 <text x="384.7" y="363.5" font-size="12" fill="#0b0b0b" font-weight="600">368.8 tok/s</text>
 <text x="474.54" y="363.5" font-size="11" fill="#898781">10.0× vs 1-stream</text>
-<text x="24" y="389.5" font-size="12" fill="#52514e">RTX PRO 6000 · Strata NVFP4 (#6520)</text>
-<path d="M273.2,378 H308.58 Q312.58,378 312.58,382 V388 Q312.58,392 308.58,392 H273.2 Z" fill="#e34948"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX PRO 6000 · Strata NVFP4 (#6520): 140.3 tok/s serializes (1.0×)</title></path>
-<text x="320.58" y="389.5" font-size="12" fill="#0b0b0b" font-weight="600">140.3 tok/s</text>
-<text x="410.42" y="389.5" font-size="11" fill="#898781">serializes (1.0×)</text>
-<text x="24" y="415.5" font-size="12" fill="#52514e">RTX PRO 6000 · Strata GGUF (#6642)†</text>
-<path d="M273.2,404 H304.73 Q308.73,404 308.73,408 V414 Q308.73,418 304.73,418 H273.2 Z" fill="#e34948"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX PRO 6000 · Strata GGUF (#6642)†: 126.6 tok/s early-EOS (~52 tok)</title></path>
-<text x="316.73" y="415.5" font-size="12" fill="#0b0b0b" font-weight="600">126.6 tok/s</text>
-<text x="406.57" y="415.5" font-size="11" fill="#898781">early-EOS (~52 tok)</text>
-<line x1="273.2" y1="114" x2="273.2" y2="422" stroke="#c3c2b7" stroke-width="1"/>
-<text x="420" y="446" font-size="11" fill="#898781" text-anchor="middle">Aggregate output throughput at 64 concurrent streams (tok/s)</text>
-<text x="24" y="472" font-size="11" fill="#898781">*vLLM/SGLang were NOT tested on PRO 6000 or 5090. All 64 workers sent the same 512-char prompt with prefix/radix</text>
-<text x="24" y="488" font-size="11" fill="#898781">caching active (warm median).</text>
-<text x="24" y="504" font-size="11" fill="#898781">†Strata #6642 GGUF truncated early (~52 tok/req instead of 256), making its 126.6 tok/s non-comparable. #6520 NVFP4</text>
-<text x="24" y="520" font-size="11" fill="#898781">has no batch slots.</text>
+<text x="24" y="389.5" font-size="12" fill="#52514e">M3 Ultra · llama.cpp (Metal)</text>
+<path d="M273.2,378 H347.23 Q351.23,378 351.23,382 V388 Q351.23,392 347.23,392 H273.2 Z" fill="#eda100"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · M3 Ultra · llama.cpp (Metal): 278.0 tok/s 10.1× vs 1-stream</title></path>
+<text x="359.23" y="389.5" font-size="12" fill="#0b0b0b" font-weight="600">278.0 tok/s</text>
+<text x="449.07" y="389.5" font-size="11" fill="#898781">10.1× vs 1-stream</text>
+<text x="24" y="415.5" font-size="12" fill="#52514e">M4 Max · llama.cpp (Metal)</text>
+<path d="M273.2,404 H343.33 Q347.33,404 347.33,408 V414 Q347.33,418 343.33,418 H273.2 Z" fill="#eda100"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · M4 Max · llama.cpp (Metal): 264.1 tok/s 8.4× vs 1-stream</title></path>
+<text x="355.33" y="415.5" font-size="12" fill="#0b0b0b" font-weight="600">264.1 tok/s</text>
+<text x="445.17" y="415.5" font-size="11" fill="#898781">8.4× vs 1-stream</text>
+<text x="24" y="441.5" font-size="12" fill="#52514e">RTX PRO 6000 · Strata NVFP4 (#6520)</text>
+<path d="M273.2,430 H308.58 Q312.58,430 312.58,434 V440 Q312.58,444 308.58,444 H273.2 Z" fill="#e34948"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX PRO 6000 · Strata NVFP4 (#6520): 140.3 tok/s serializes (1.0×)</title></path>
+<text x="320.58" y="441.5" font-size="12" fill="#0b0b0b" font-weight="600">140.3 tok/s</text>
+<text x="410.42" y="441.5" font-size="11" fill="#898781">serializes (1.0×)</text>
+<text x="24" y="467.5" font-size="12" fill="#52514e">RTX PRO 6000 · Strata GGUF (#6642)†</text>
+<path d="M273.2,456 H304.73 Q308.73,456 308.73,460 V466 Q308.73,470 304.73,470 H273.2 Z" fill="#e34948"><title>Aggregate output at 64 parallel streams (identical short prompt, 0 failures) · RTX PRO 6000 · Strata GGUF (#6642)†: 126.6 tok/s early-EOS (~52 tok)</title></path>
+<text x="316.73" y="467.5" font-size="12" fill="#0b0b0b" font-weight="600">126.6 tok/s</text>
+<text x="406.57" y="467.5" font-size="11" fill="#898781">early-EOS (~52 tok)</text>
+<line x1="273.2" y1="114" x2="273.2" y2="474" stroke="#c3c2b7" stroke-width="1"/>
+<text x="420" y="498" font-size="11" fill="#898781" text-anchor="middle">Aggregate output throughput at 64 concurrent streams (tok/s)</text>
+<text x="24" y="524" font-size="11" fill="#898781">*vLLM/SGLang were NOT tested on PRO 6000 or 5090. All 64 workers sent the same 512-char prompt with prefix/radix</text>
+<text x="24" y="540" font-size="11" fill="#898781">caching active (warm median).</text>
+<text x="24" y="556" font-size="11" fill="#898781">†Strata #6642 GGUF truncated early (~52 tok/req instead of 256), making its 126.6 tok/s non-comparable. #6520 NVFP4</text>
+<text x="24" y="572" font-size="11" fill="#898781">has no batch slots.</text>
 </svg>

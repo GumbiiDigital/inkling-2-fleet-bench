@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Inkling-2-Mini — NVIDIA Blackwell Benchmark Suite</title>
+<title>Inkling-2-Mini — 6-Machine NVIDIA Blackwell &amp; Apple Silicon Benchmark Suite</title>
 <style>
   :root[data-theme="dark"] {
     --bg: #111110;
@@ -231,10 +231,10 @@
 <div class="container">
   <header>
     <div>
-      <div class="meta-line">v1.0 NVIDIA Blackwell Suite · 4 Machines · 4 Engines · Verify Gate PASS</div>
+      <div class="meta-line">v2.0 Full Fleet · 6 Machines (4 NVIDIA Blackwell + 2 Apple Silicon Metal) · 4 Engines</div>
       <h1>Inkling-2-Mini Benchmark Results</h1>
       <p class="subtitle">
-        Independent measurements of Thinking Machines' Inkling-2-Mini (26.2B total / 3.4B active MoE, looped layers, 1M context) across DGX Spark (GB10), RTX Spark 128GB (N1X), RTX PRO 6000 Blackwell (96GB), and RTX 5090 (32GB). Median of 3 runs per point.
+        Independent measurements of Thinking Machines' Inkling-2-Mini (26.2B total / 3.4B active MoE, looped layers, 1M context) across DGX Spark (GB10), RTX Spark 128GB (N1X), RTX PRO 6000 Blackwell (96GB), RTX 5090 (32GB), Mac Studio M3 Ultra (256GB), and M4 Max (128GB). Median of 3 runs per point.
       </p>
     </div>
     <button class="theme-toggle" id="theme-toggle" type="button">Light theme</button>
@@ -265,6 +265,7 @@
 
   <div class="tabs" id="tabs">
     <button class="tab-btn active" data-tab="speed">Speed ladder</button>
+    <button class="tab-btn" data-tab="apple">Apple Silicon vs NVIDIA</button>
     <button class="tab-btn" data-tab="dspark">DSpark</button>
     <button class="tab-btn" data-tab="concurrency">Concurrency (64×)</button>
     <button class="tab-btn" data-tab="needle">1M diagnostic</button>
@@ -289,6 +290,31 @@
         <button class="pill" data-ctx="131072">128K</button>
       </div>
       <div class="table-wrap"><table id="speed-table"></table></div>
+    </div>
+  </section>
+
+  <!-- APPLE SILICON VS NVIDIA TAB -->
+  <section class="tab-panel" id="tab-apple">
+    <div class="chart-frame">
+      <img data-chart="07-apple-silicon-vs-nvidia" src="../charts/07-apple-silicon-vs-nvidia-dark.svg" alt="Apple Silicon Metal vs NVIDIA Unified-Memory Sparks on llama.cpp" />
+    </div>
+    <div class="section-card">
+      <h2>Apple Silicon Metal highlights (same llama.cpp weights &amp; harness)</h2>
+      <p class="desc">M3 Ultra 256GB (~800 GB/s) and M4 Max 128GB (~546 GB/s) vs NVIDIA DGX Spark and RTX Spark (~273 GB/s) on identical GGUFs.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Metric (llama.cpp)</th><th class="num">M3 Ultra 256GB</th><th class="num">M4 Max 128GB</th><th class="num">DGX Spark</th><th class="num">RTX Spark</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Q4_K_XL decode @512</strong></td><td class="num">27.9 tok/s</td><td class="num">33.0 tok/s</td><td class="num"><strong>38.5 tok/s</strong></td><td class="num">36.3 tok/s</td></tr>
+            <tr><td><strong>Q4_K_XL decode @128K</strong></td><td class="num"><strong>21.0 tok/s</strong></td><td class="num">18.4 tok/s</td><td class="num">19.6 tok/s</td><td class="num">20.4 tok/s</td></tr>
+            <tr><td><strong>IQ4_NL decode @512 / @32K</strong></td><td class="num">30.2 / 26.7</td><td class="num">35.2 / 27.6</td><td class="num">36.9 / 28.0</td><td class="num"><strong>38.4 / 28.6</strong></td></tr>
+            <tr><td><strong>BF16 decode @512 / @32K</strong></td><td class="num">25.6 / <strong>23.1</strong></td><td class="num"><strong>26.5</strong> / 20.6</td><td class="num">19.9 / 16.7</td><td class="num">20.6 / 17.6</td></tr>
+            <tr><td><strong>128K TTFT (prefill)</strong></td><td class="num">935.4 s</td><td class="num">1,442.9 s</td><td class="num"><strong>363.6 s</strong></td><td class="num">385.1 s</td></tr>
+            <tr><td><strong>Concurrency @64 (aggregate)</strong></td><td class="num">278.0 tok/s</td><td class="num">264.1 tok/s</td><td class="num">368.8 tok/s</td><td class="num"><strong>374.5 tok/s</strong></td></tr>
+            <tr><td><strong>1M context time / run</strong></td><td class="num">~12.5 h (5.6 t/s)</td><td class="num">18.2–28.2 h (3.0–3.6 t/s)</td><td class="num">~4 t/s decode</td><td class="num">fits 62.4 GiB</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -372,6 +398,7 @@
             <tr><td><strong>1M assistant-prefill scope</strong></td><td>Tested on 1 host (<code>DGX Spark</code>), 1 engine (<code>vLLM max-bf16</code>), depth 0.5 only, synthetic NATO haystack, forced 4-word assistant prefix, n=3, ~25.5 min/run. Proves 1M KV attention retains the needle—not general 1M reasoning. Raw forced-prefix Arm B hallucinated <code>3X7-5778</code>.</td></tr>
             <tr><td><strong>Small evals &amp; default temperature</strong></td><td>Track C (n=20 math, n=10 code) omitted <code>temperature=0.0</code>, causing ±1–3 item math sampling drift across runs. Track G Vision (8 synthetic 128×128 squares, all expected <code>"8"</code>, substring check) is a multimodal wiring smoke check only.</td></tr>
             <tr><td><strong>Strata GGUF &amp; WSL2 caveats</strong></td><td><code>Strata #6642 GGUF</code> early-EOS'd in Track E (~52 tok/req instead of 256) and math (0.30). <code>Strata SQ-20</code> OOMed at 267K on the 1M prompt and had one 41.7 tok/s outlier at 128K. RTX Spark H2H ran in WSL2 (no power/temp sensor; SGLang <code>mem-fraction-static 0.95</code> vs DGX <code>0.75</code>).</td></tr>
+            <tr><td><strong>Apple Silicon Metal notes (v2.0)</strong></td><td>Both Macs ran <code>llama.cpp</code> Metal only (no vLLM/SGLang/Strata on macOS) and have no <code>sudo powermetrics</code> wattage telemetry (<code>pmset -g therm</code> stayed nominal). On M4 Max, all 3 × 1M runs completed on-box (18.2–28.2 h/run; Run 3 JSON + full 3-run server log archived), while a Mac 1 reboot mid-Run 3 dropped the in-memory Run 1–2 chat bodies before <code>needle.py</code> wrote the final JSON.</td></tr>
           </tbody>
         </table>
       </div>
@@ -380,7 +407,7 @@
 
   <footer>
     <span>Data: <code>data/benchmarks.json</code> &amp; <code>data/*.csv</code> · Charts: deterministic stdlib SVG</span>
-    <span>Apple Silicon Metal (M3 Ultra 256GB &amp; M4 Max 128GB) arriving in v2.0</span>
+    <span>v2.0 · 4 NVIDIA Blackwell + 2 Apple Silicon Metal hosts</span>
   </footer>
 </div>
 
@@ -398,6 +425,8 @@ const SPEED = [
   {m:"DGX Spark", e:"SGLang", q:"NVFP4", c:512, d:37.91, t:0.20},
   {m:"DGX Spark", e:"vLLM", q:"NVFP4", c:512, d:37.85, t:0.19},
   {m:"RTX Spark", e:"llama.cpp", q:"Q4_K_XL", c:512, d:36.31, t:0.58},
+  {m:"M4 Max", e:"llama.cpp (Metal)", q:"Q4_K_XL", c:512, d:33.0, t:0.51},
+  {m:"M3 Ultra", e:"llama.cpp (Metal)", q:"Q4_K_XL", c:512, d:27.86, t:0.44},
 
   {m:"RTX PRO 6000", e:"Strata NVFP4 (#6520)", q:"NVFP4", c:8192, d:143.02, t:0.97},
   {m:"RTX PRO 6000", e:"Strata SQ-20", q:"SQ-20", c:8192, d:125.49, t:0.92},
@@ -411,6 +440,8 @@ const SPEED = [
   {m:"DGX Spark", e:"SGLang", q:"NVFP4", c:8192, d:35.50, t:2.30},
   {m:"DGX Spark", e:"llama.cpp", q:"Q4_K_XL", c:8192, d:32.86, t:14.30},
   {m:"RTX Spark", e:"llama.cpp", q:"Q4_K_XL", c:8192, d:31.68, t:16.00},
+  {m:"M4 Max", e:"llama.cpp (Metal)", q:"Q4_K_XL", c:8192, d:30.3, t:24.60},
+  {m:"M3 Ultra", e:"llama.cpp (Metal)", q:"Q4_K_XL", c:8192, d:26.41, t:19.60},
 
   {m:"RTX PRO 6000", e:"Strata NVFP4 (#6520)", q:"NVFP4", c:32768, d:129.69, t:4.49},
   {m:"RTX PRO 6000", e:"Strata SQ-20", q:"SQ-20", c:32768, d:92.86, t:5.27},
@@ -424,6 +455,8 @@ const SPEED = [
   {m:"DGX Spark", e:"SGLang", q:"NVFP4", c:32768, d:31.56, t:9.60},
   {m:"DGX Spark", e:"llama.cpp", q:"Q4_K_XL", c:32768, d:28.74, t:81.60},
   {m:"RTX Spark", e:"llama.cpp", q:"Q4_K_XL", c:32768, d:28.27, t:87.10},
+  {m:"M4 Max", e:"llama.cpp (Metal)", q:"Q4_K_XL", c:32768, d:26.1, t:172.60},
+  {m:"M3 Ultra", e:"llama.cpp (Metal)", q:"Q4_K_XL", c:32768, d:24.90, t:114.40},
 
   {m:"RTX PRO 6000", e:"Strata NVFP4 (#6520)", q:"NVFP4", c:131072, d:96.02, t:26.49},
   {m:"RTX PRO 6000", e:"Strata SQ-20", q:"SQ-20", c:131072, d:94.98, t:45.41},
@@ -437,6 +470,8 @@ const SPEED = [
   {m:"DGX Spark", e:"SGLang", q:"NVFP4", c:131072, d:22.20, t:50.70},
   {m:"RTX Spark", e:"llama.cpp", q:"Q4_K_XL", c:131072, d:20.37, t:385.10},
   {m:"DGX Spark", e:"llama.cpp", q:"Q4_K_XL", c:131072, d:19.59, t:363.60},
+  {m:"M3 Ultra", e:"llama.cpp (Metal)", q:"Q4_K_XL", c:131072, d:21.04, t:935.40},
+  {m:"M4 Max", e:"llama.cpp (Metal)", q:"Q4_K_XL", c:131072, d:18.4, t:1442.90},
 ];
 
 const DSPARK = [
@@ -452,11 +487,13 @@ const DSPARK = [
   {m:"RTX 5090", e:"llama.cpp", ctx:512, off:82.7, on:44.4, r:"0.54×", acc:"7.5%"},
   {m:"DGX Spark", e:"llama.cpp", ctx:512, off:38.97, on:17.95, r:"0.46×", acc:"8.3%"},
   {m:"RTX Spark", e:"llama.cpp", ctx:512, off:37.78, on:17.06, r:"0.45×", acc:"13.4%"},
+  {m:"M4 Max", e:"llama.cpp (Metal)", ctx:512, off:32.55, on:18.50, r:"0.57×", acc:"10.1%"},
+  {m:"M3 Ultra", e:"llama.cpp (Metal)", ctx:512, off:27.68, on:16.00, r:"0.58×", acc:"7.1%"},
 ];
 
 const CONC = [
   {m:"RTX PRO 6000", e:"Strata SQ-20", p1:193.7, p4:298.7, p16:583.0, p64:1046.6},
-  {m:"RTX PRO 6000", e:"llama.cpp (IQ4_NL)", p1:92.0, p4:244.0, p16:552.0, p64:978.0},
+  {m:"RTX PRO 6000", e:"llama.cpp (IQ4_NL)", p1:92.0, p4:244.0, p16:552.0, p64:977.7},
   {m:"RTX Spark", e:"SGLang (NVFP4)", p1:44.5, p4:148.3, p16:453.3, p64:922.9},
   {m:"RTX PRO 6000", e:"llama.cpp (Q4_K_XL 600W)", p1:92.65, p4:228.28, p16:519.81, p64:906.77},
   {m:"DGX Spark", e:"SGLang (NVFP4)", p1:36.09, p4:119.55, p16:386.82, p64:842.02},
@@ -465,8 +502,10 @@ const CONC = [
   {m:"RTX 5090", e:"llama.cpp (Q4_K_XL)", p1:85.5, p4:197.4, p16:403.4, p64:601.7},
   {m:"RTX Spark", e:"llama.cpp (Q4_K_XL)", p1:37.0, p4:92.8, p16:210.9, p64:374.5},
   {m:"DGX Spark", e:"llama.cpp (Q4_K_XL)", p1:36.78, p4:86.09, p16:196.23, p64:368.75},
+  {m:"M3 Ultra", e:"llama.cpp (Metal)", p1:27.54, p4:70.97, p16:132.57, p64:278.01},
+  {m:"M4 Max", e:"llama.cpp (Metal)", p1:31.57, p4:71.41, p16:100.45, p64:264.10},
   {m:"RTX PRO 6000", e:"Strata NVFP4 (#6520)", p1:141.0, p4:140.4, p16:140.8, p64:140.3},
-  {m:"RTX PRO 6000", e:"Strata GGUF (#6642)", p1:88.0, p4:158.0, p16:96.0, p64:127.0},
+  {m:"RTX PRO 6000", e:"Strata GGUF (#6642)", p1:88.0, p4:158.0, p16:96.0, p64:126.6},
 ];
 
 const NEEDLE = [
@@ -478,6 +517,8 @@ const NEEDLE = [
   {m:"RTX 5090", e:"llama.cpp Q4_K_XL", c16:"9/9", c65:"6/9", c131:"3/3", c262:"1/3", c1m:"BLOCKED (~10.4 h/run w/ -nkvo)"},
   {m:"RTX PRO 6000", e:"llama.cpp Q4_K_XL", c16:"8/9", c65:"5/9", c131:"0/3", c262:"0/3", c1m:"0/3 (runs clean; 1/3 in reasoning)"},
   {m:"RTX PRO 6000", e:"Strata SQ-20", c16:"8/9", c65:"5/9", c131:"0/3", c262:"0/3", c1m:"BLOCKED (CUDA OOM @267K)"},
+  {m:"M3 Ultra", e:"llama.cpp (Metal)", c16:"9/9", c65:"6/9", c131:"1/3", c262:"0/3", c1m:"0/3 (1/3 in reasoning; ~12.5 h/run)"},
+  {m:"M4 Max", e:"llama.cpp (Metal)", c16:"9/9", c65:"6/9", c131:"1/3", c262:"0/3", c1m:"3× completed on-box (Run 3 empty; archived)"},
 ];
 
 const EVALS = [
@@ -488,6 +529,8 @@ const EVALS = [
   {m:"RTX Spark", e:"llama.cpp (Q4_K_XL)", math:"15/20", code:"10/10", comb:"0.833", vis:"5/8 (0.625)"},
   {m:"RTX Spark", e:"vLLM (NVFP4)", math:"15/20", code:"10/10", comb:"0.833", vis:"4/8 (0.500)"},
   {m:"RTX 5090", e:"llama.cpp (Q4_K_XL)", math:"15/20", code:"10/10", comb:"0.833", vis:"5/8 (0.625)"},
+  {m:"M3 Ultra", e:"llama.cpp Metal (Q4_K_XL)", math:"15/20", code:"10/10", comb:"0.833", vis:"5/8 (0.625)"},
+  {m:"M4 Max", e:"llama.cpp Metal (Q4_K_XL)", math:"14/20", code:"10/10", comb:"0.800", vis:"5/8 (0.625)"},
   {m:"RTX PRO 6000", e:"llama.cpp (Q4_K_XL 600W)", math:"14/20", code:"10/10", comb:"0.800", vis:"5/8 (0.625)"},
   {m:"RTX PRO 6000", e:"Strata (SQ-20)", math:"14/20", code:"10/10", comb:"0.800", vis:"5/8 (0.625)"},
   {m:"DGX Spark", e:"SGLang (NVFP4)", math:"13/20", code:"10/10", comb:"0.767", vis:"4/8 (0.500)"},
@@ -500,12 +543,14 @@ const SOAK = [
   {m:"RTX PRO 6000", e:"Strata NVFP4 (#6520)", d:"91.50", w:"350 W", temp:"80 °C", eff:"0.262", n:"2,569 reqs, flat"},
   {m:"RTX PRO 6000", e:"llama.cpp (600W)", d:"66.14", w:"222 W", temp:"66 °C", eff:"0.299", n:"1,862 reqs, flat"},
   {m:"RTX PRO 6000", e:"llama.cpp (450W)", d:"65.72", w:"221 W", temp:"67 °C", eff:"0.299", n:"Identical to 600W"},
-  {m:"RTX PRO 6000", e:"llama.cpp (350W)", d:"39.54", w:"327 W", temp:"84 °C", eff:"0.121", n:"SW Power Cap throttled"},
+  {m:"RTX PRO 6000", e:"llama.cpp (350W)", d:"39.54", w:"327 W", temp:"84 °C", eff:"0.121", n:"Day-1 anomaly (suspect)"},
   {m:"RTX 5090", e:"llama.cpp", d:"50.90", w:"184 W", temp:"56 °C", eff:"0.277", n:"1,433 reqs, flat"},
   {m:"RTX Spark", e:"vLLM / SGLang (WSL2)", d:"39.8 / 38.8", w:"n/a", temp:"n/a", eff:"n/a", n:"Flat; WSL2 sensor 0.0"},
   {m:"DGX Spark", e:"llama.cpp", d:"30.18", w:"37.4 W", temp:"64 °C", eff:"0.810", n:"Flat over 30 min"},
   {m:"DGX Spark", e:"vLLM", d:"29.27", w:"30.8 W", temp:"64 °C", eff:"0.950", n:"Highest measured tok/W"},
   {m:"DGX Spark", e:"SGLang", d:"28.58", w:"31.2 W", temp:"65 °C", eff:"0.920", n:"Flat over 30 min"},
+  {m:"M4 Max", e:"llama.cpp (Metal)", d:"27.27", w:"n/a", temp:"nominal", eff:"n/a", n:"Flat 3x10m (no sudo)"},
+  {m:"M3 Ultra", e:"llama.cpp (Metal)", d:"24.40", w:"n/a", temp:"nominal", eff:"n/a", n:"Flat 3x10m (no sudo)"},
 ];
 
 function renderSpeed(ctx) {
