@@ -6,35 +6,35 @@
 <text x="24" y="74" font-size="12" fill="#52514e">600 W are identical.</text>
 <text x="24" y="105" font-size="13" fill="#0b0b0b" font-weight="600">Decode @512 and @128K (450 W vs 600 W)</text>
 <text x="24" y="129.5" font-size="12" fill="#52514e">450 W · decode @512</text>
-<path d="M192.56,118 H551.92 Q555.92,118 555.92,122 V128 Q555.92,132 551.92,132 H192.56 Z" fill="#1baf7a"><title>Decode @512 and @128K (450 W vs 600 W) · 450 W · decode @512: 87.3 tok/s matches 600 W</title></path>
-<text x="563.92" y="129.5" font-size="12" fill="#0b0b0b" font-weight="600">87.3 tok/s</text>
-<text x="646.32" y="129.5" font-size="11" fill="#898781">matches 600 W</text>
+<path d="M192.56,118 H521.92 Q525.92,118 525.92,122 V128 Q525.92,132 521.92,132 H192.56 Z" fill="#1baf7a"><title>Decode @512 and @128K (450 W vs 600 W) · 450 W · decode @512: 87.3 tok/s matches 600 W</title></path>
+<text x="533.92" y="129.5" font-size="12" fill="#0b0b0b" font-weight="600">87.3 tok/s</text>
+<text x="616.32" y="129.5" font-size="11" fill="#898781">matches 600 W</text>
 <text x="24" y="155.5" font-size="12" fill="#52514e">600 W · decode @512</text>
-<path d="M192.56,144 H549.84 Q553.84,144 553.84,148 V154 Q553.84,158 549.84,158 H192.56 Z" fill="#2a78d6"><title>Decode @512 and @128K (450 W vs 600 W) · 600 W · decode @512: 86.8 tok/s card max</title></path>
-<text x="561.84" y="155.5" font-size="12" fill="#0b0b0b" font-weight="600">86.8 tok/s</text>
-<text x="644.24" y="155.5" font-size="11" fill="#898781">card max</text>
+<path d="M192.56,144 H520.01 Q524.01,144 524.01,148 V154 Q524.01,158 520.01,158 H192.56 Z" fill="#2a78d6"><title>Decode @512 and @128K (450 W vs 600 W) · 600 W · decode @512: 86.8 tok/s card max</title></path>
+<text x="532.01" y="155.5" font-size="12" fill="#0b0b0b" font-weight="600">86.8 tok/s</text>
+<text x="614.41" y="155.5" font-size="11" fill="#898781">card max</text>
 <text x="24" y="181.5" font-size="12" fill="#52514e">450 W · decode @128K</text>
-<path d="M192.56,170 H454.73 Q458.73,170 458.73,174 V180 Q458.73,184 454.73,184 H192.56 Z" fill="#1baf7a"><title>Decode @512 and @128K (450 W vs 600 W) · 450 W · decode @128K: 63.9 tok/s matches 600 W</title></path>
-<text x="466.73" y="181.5" font-size="12" fill="#0b0b0b" font-weight="600">63.9 tok/s</text>
-<text x="549.13" y="181.5" font-size="11" fill="#898781">matches 600 W</text>
+<path d="M192.56,170 H432.75 Q436.75,170 436.75,174 V180 Q436.75,184 432.75,184 H192.56 Z" fill="#1baf7a"><title>Decode @512 and @128K (450 W vs 600 W) · 450 W · decode @128K: 63.9 tok/s matches 600 W</title></path>
+<text x="444.75" y="181.5" font-size="12" fill="#0b0b0b" font-weight="600">63.9 tok/s</text>
+<text x="527.15" y="181.5" font-size="11" fill="#898781">matches 600 W</text>
 <text x="24" y="207.5" font-size="12" fill="#52514e">600 W · decode @128K</text>
-<path d="M192.56,196 H454.6 Q458.6,196 458.6,200 V206 Q458.6,210 454.6,210 H192.56 Z" fill="#2a78d6"><title>Decode @512 and @128K (450 W vs 600 W) · 600 W · decode @128K: 63.9 tok/s card max</title></path>
-<text x="466.6" y="207.5" font-size="12" fill="#0b0b0b" font-weight="600">63.9 tok/s</text>
-<text x="549" y="207.5" font-size="11" fill="#898781">card max</text>
+<path d="M192.56,196 H432.64 Q436.64,196 436.64,200 V206 Q436.64,210 432.64,210 H192.56 Z" fill="#2a78d6"><title>Decode @512 and @128K (450 W vs 600 W) · 600 W · decode @128K: 63.9 tok/s card max</title></path>
+<text x="444.64" y="207.5" font-size="12" fill="#0b0b0b" font-weight="600">63.9 tok/s</text>
+<text x="527.04" y="207.5" font-size="11" fill="#898781">card max</text>
 <line x1="192.56" y1="114" x2="192.56" y2="214" stroke="#c3c2b7" stroke-width="1"/>
 <text x="24" y="257" font-size="13" fill="#0b0b0b" font-weight="600">30-minute serial soak (450 W vs 600 W)</text>
 <text x="24" y="281.5" font-size="12" fill="#52514e">450 W · soak decode</text>
-<path d="M192.56,270 H549.61 Q553.61,270 553.61,274 V280 Q553.61,284 549.61,284 H192.56 Z" fill="#1baf7a"><title>30-minute serial soak (450 W vs 600 W) · 450 W · soak decode: 65.7 tok/s 221 W mean, 67 °C</title></path>
-<text x="561.61" y="281.5" font-size="12" fill="#0b0b0b" font-weight="600">65.7 tok/s</text>
-<text x="644.01" y="281.5" font-size="11" fill="#898781">221 W mean, 67 °C</text>
+<path d="M192.56,270 H519.8 Q523.8,270 523.8,274 V280 Q523.8,284 519.8,284 H192.56 Z" fill="#1baf7a"><title>30-minute serial soak (450 W vs 600 W) · 450 W · soak decode: 65.7 tok/s 221 W mean, 67 °C</title></path>
+<text x="531.8" y="281.5" font-size="12" fill="#0b0b0b" font-weight="600">65.7 tok/s</text>
+<text x="614.2" y="281.5" font-size="11" fill="#898781">221 W mean, 67 °C</text>
 <text x="24" y="307.5" font-size="12" fill="#52514e">600 W · soak decode</text>
-<path d="M192.56,296 H551.92 Q555.92,296 555.92,300 V306 Q555.92,310 551.92,310 H192.56 Z" fill="#2a78d6"><title>30-minute serial soak (450 W vs 600 W) · 600 W · soak decode: 66.1 tok/s 222 W mean, 66 °C</title></path>
-<text x="563.92" y="307.5" font-size="12" fill="#0b0b0b" font-weight="600">66.1 tok/s</text>
-<text x="646.32" y="307.5" font-size="11" fill="#898781">222 W mean, 66 °C</text>
+<path d="M192.56,296 H521.92 Q525.92,296 525.92,300 V306 Q525.92,310 521.92,310 H192.56 Z" fill="#2a78d6"><title>30-minute serial soak (450 W vs 600 W) · 600 W · soak decode: 66.1 tok/s 222 W mean, 66 °C</title></path>
+<text x="533.92" y="307.5" font-size="12" fill="#0b0b0b" font-weight="600">66.1 tok/s</text>
+<text x="616.32" y="307.5" font-size="11" fill="#898781">222 W mean, 66 °C</text>
 <text x="24" y="333.5" font-size="12" fill="#52514e">350 W* · day-1 baseline</text>
-<path d="M192.56,322 H405.78 Q409.78,322 409.78,326 V332 Q409.78,336 405.78,336 H192.56 Z" fill="#e34948"><title>30-minute serial soak (450 W vs 600 W) · 350 W* · day-1 baseline: 39.5 tok/s 327 W / 84 °C (suspect)</title></path>
-<text x="417.78" y="333.5" font-size="12" fill="#0b0b0b" font-weight="600">39.5 tok/s</text>
-<text x="500.18" y="333.5" font-size="11" fill="#898781">327 W / 84 °C (suspect)</text>
+<path d="M192.56,322 H387.85 Q391.85,322 391.85,326 V332 Q391.85,336 387.85,336 H192.56 Z" fill="#e34948"><title>30-minute serial soak (450 W vs 600 W) · 350 W* · day-1 baseline: 39.5 tok/s 327 W / 84 °C (suspect)</title></path>
+<text x="399.85" y="333.5" font-size="12" fill="#0b0b0b" font-weight="600">39.5 tok/s</text>
+<text x="482.25" y="333.5" font-size="11" fill="#898781">327 W / 84 °C (suspect)</text>
 <line x1="192.56" y1="266" x2="192.56" y2="340" stroke="#c3c2b7" stroke-width="1"/>
 <text x="24" y="396" font-size="11" fill="#898781">*Audit note: the day-1 350 W run drew 327 W mean / 84 °C while running slower (physically inconsistent with a pure</text>
 <text x="24" y="412" font-size="11" fill="#898781">power cap; likely co-resident load).</text>

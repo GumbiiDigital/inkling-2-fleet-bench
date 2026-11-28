@@ -6,51 +6,51 @@
 <text x="24" y="74" font-size="12" fill="#52514e">Unsloth b12588-mix Q8_0 drafter.</text>
 <text x="24" y="105" font-size="13" fill="#0b0b0b" font-weight="600">Native engines (DSpark ON — upper bound on synthetic NATO completions*)</text>
 <text x="24" y="129.5" font-size="12" fill="#52514e">RTX PRO 6000 · Strata native†</text>
-<path d="M232.88,118 H539.6 Q543.6,118 543.6,122 V128 Q543.6,132 539.6,132 H232.88 Z" fill="#1baf7a"><title>Native engines (DSpark ON — upper bound on synthetic NATO completions*) · RTX PRO 6000 · Strata native†: 262.9 tok/s 2.04× vs 128.7 (exact)</title></path>
-<text x="551.6" y="129.5" font-size="12" fill="#0b0b0b" font-weight="600">262.9 tok/s</text>
-<text x="641.44" y="129.5" font-size="11" fill="#898781">2.04× vs 128.7 (exact)</text>
+<path d="M232.88,118 H509.6 Q513.6,118 513.6,122 V128 Q513.6,132 509.6,132 H232.88 Z" fill="#1baf7a"><title>Native engines (DSpark ON — upper bound on synthetic NATO completions*) · RTX PRO 6000 · Strata native†: 262.9 tok/s 2.04× vs 128.7 (exact)</title></path>
+<text x="521.6" y="129.5" font-size="12" fill="#0b0b0b" font-weight="600">262.9 tok/s</text>
+<text x="611.44" y="129.5" font-size="11" fill="#898781">2.04× vs 128.7 (exact)</text>
 <text x="24" y="155.5" font-size="12" fill="#52514e">RTX Spark · vLLM (NVFP4)*</text>
-<path d="M232.88,144 H445.76 Q449.76,144 449.76,148 V154 Q449.76,158 445.76,158 H232.88 Z" fill="#2a78d6"><title>Native engines (DSpark ON — upper bound on synthetic NATO completions*) · RTX Spark · vLLM (NVFP4)*: 183.5 tok/s 4.11× (range 85–208)</title></path>
-<text x="457.76" y="155.5" font-size="12" fill="#0b0b0b" font-weight="600">183.5 tok/s</text>
-<text x="547.6" y="155.5" font-size="11" fill="#898781">4.11× (range 85–208)</text>
+<path d="M232.88,144 H424.82 Q428.82,144 428.82,148 V154 Q428.82,158 424.82,158 H232.88 Z" fill="#2a78d6"><title>Native engines (DSpark ON — upper bound on synthetic NATO completions*) · RTX Spark · vLLM (NVFP4)*: 183.5 tok/s 4.11× (range 85–208)</title></path>
+<text x="436.82" y="155.5" font-size="12" fill="#0b0b0b" font-weight="600">183.5 tok/s</text>
+<text x="526.66" y="155.5" font-size="11" fill="#898781">4.11× (range 85–208)</text>
 <text x="24" y="181.5" font-size="12" fill="#52514e">DGX Spark · vLLM (NVFP4)*</text>
-<path d="M232.88,170 H396.72 Q400.72,170 400.72,174 V180 Q400.72,184 396.72,184 H232.88 Z" fill="#2a78d6"><title>Native engines (DSpark ON — upper bound on synthetic NATO completions*) · DGX Spark · vLLM (NVFP4)*: 142.0 tok/s 3.81× (range 68–160)</title></path>
-<text x="408.72" y="181.5" font-size="12" fill="#0b0b0b" font-weight="600">142.0 tok/s</text>
-<text x="498.56" y="181.5" font-size="11" fill="#898781">3.81× (range 68–160)</text>
+<path d="M232.88,170 H380.52 Q384.52,170 384.52,174 V180 Q384.52,184 380.52,184 H232.88 Z" fill="#2a78d6"><title>Native engines (DSpark ON — upper bound on synthetic NATO completions*) · DGX Spark · vLLM (NVFP4)*: 142.0 tok/s 3.81× (range 68–160)</title></path>
+<text x="392.52" y="181.5" font-size="12" fill="#0b0b0b" font-weight="600">142.0 tok/s</text>
+<text x="482.36" y="181.5" font-size="11" fill="#898781">3.81× (range 68–160)</text>
 <text x="24" y="207.5" font-size="12" fill="#52514e">RTX Spark · SGLang (NVFP4)*</text>
-<path d="M232.88,196 H394.7 Q398.7,196 398.7,200 V206 Q398.7,210 394.7,210 H232.88 Z" fill="#6250d6"><title>Native engines (DSpark ON — upper bound on synthetic NATO completions*) · RTX Spark · SGLang (NVFP4)*: 140.3 tok/s 3.14× (range 92–185)</title></path>
-<text x="406.7" y="207.5" font-size="12" fill="#0b0b0b" font-weight="600">140.3 tok/s</text>
-<text x="496.54" y="207.5" font-size="11" fill="#898781">3.14× (range 92–185)</text>
+<path d="M232.88,196 H378.69 Q382.69,196 382.69,200 V206 Q382.69,210 378.69,210 H232.88 Z" fill="#6250d6"><title>Native engines (DSpark ON — upper bound on synthetic NATO completions*) · RTX Spark · SGLang (NVFP4)*: 140.3 tok/s 3.14× (range 92–185)</title></path>
+<text x="390.69" y="207.5" font-size="12" fill="#0b0b0b" font-weight="600">140.3 tok/s</text>
+<text x="480.53" y="207.5" font-size="11" fill="#898781">3.14× (range 92–185)</text>
 <text x="24" y="233.5" font-size="12" fill="#52514e">DGX Spark · SGLang (NVFP4)*</text>
-<path d="M232.88,222 H370.34 Q374.34,222 374.34,226 V232 Q374.34,236 370.34,236 H232.88 Z" fill="#6250d6"><title>Native engines (DSpark ON — upper bound on synthetic NATO completions*) · DGX Spark · SGLang (NVFP4)*: 119.7 tok/s 3.23× (range 73–148)</title></path>
-<text x="382.34" y="233.5" font-size="12" fill="#0b0b0b" font-weight="600">119.7 tok/s</text>
-<text x="472.18" y="233.5" font-size="11" fill="#898781">3.23× (range 73–148)</text>
+<path d="M232.88,222 H356.68 Q360.68,222 360.68,226 V232 Q360.68,236 356.68,236 H232.88 Z" fill="#6250d6"><title>Native engines (DSpark ON — upper bound on synthetic NATO completions*) · DGX Spark · SGLang (NVFP4)*: 119.7 tok/s 3.23× (range 73–148)</title></path>
+<text x="368.68" y="233.5" font-size="12" fill="#0b0b0b" font-weight="600">119.7 tok/s</text>
+<text x="458.52" y="233.5" font-size="11" fill="#898781">3.23× (range 73–148)</text>
 <line x1="232.88" y1="114" x2="232.88" y2="240" stroke="#c3c2b7" stroke-width="1"/>
 <text x="24" y="309" font-size="13" fill="#0b0b0b" font-weight="600">llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative)</text>
 <text x="24" y="333.5" font-size="12" fill="#52514e">RTX PRO 6000 · llama.cpp</text>
-<path d="M232.88,322 H288.22 Q292.22,322 292.22,326 V332 Q292.22,336 288.22,336 H232.88 Z" fill="#e34948"><title>llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative) · RTX PRO 6000 · llama.cpp: 50.2 tok/s 0.58× vs 87.1 (6.0% acc)</title></path>
-<text x="300.22" y="333.5" font-size="12" fill="#0b0b0b" font-weight="600">50.2 tok/s</text>
-<text x="382.62" y="333.5" font-size="11" fill="#898781">0.58× vs 87.1 (6.0% acc)</text>
+<path d="M232.88,322 H282.49 Q286.49,322 286.49,326 V332 Q286.49,336 282.49,336 H232.88 Z" fill="#e34948"><title>llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative) · RTX PRO 6000 · llama.cpp: 50.2 tok/s 0.58× vs 87.1 (6.0% acc)</title></path>
+<text x="294.49" y="333.5" font-size="12" fill="#0b0b0b" font-weight="600">50.2 tok/s</text>
+<text x="376.89" y="333.5" font-size="11" fill="#898781">0.58× vs 87.1 (6.0% acc)</text>
 <text x="24" y="359.5" font-size="12" fill="#52514e">RTX 5090 · llama.cpp</text>
-<path d="M232.88,348 H281.36 Q285.36,348 285.36,352 V358 Q285.36,362 281.36,362 H232.88 Z" fill="#e34948"><title>llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative) · RTX 5090 · llama.cpp: 44.4 tok/s 0.54× vs 82.7 (7.5% acc)</title></path>
-<text x="293.36" y="359.5" font-size="12" fill="#0b0b0b" font-weight="600">44.4 tok/s</text>
-<text x="375.76" y="359.5" font-size="11" fill="#898781">0.54× vs 82.7 (7.5% acc)</text>
+<path d="M232.88,348 H276.29 Q280.29,348 280.29,352 V358 Q280.29,362 276.29,362 H232.88 Z" fill="#e34948"><title>llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative) · RTX 5090 · llama.cpp: 44.4 tok/s 0.54× vs 82.7 (7.5% acc)</title></path>
+<text x="288.29" y="359.5" font-size="12" fill="#0b0b0b" font-weight="600">44.4 tok/s</text>
+<text x="370.69" y="359.5" font-size="11" fill="#898781">0.54× vs 82.7 (7.5% acc)</text>
 <text x="24" y="385.5" font-size="12" fill="#52514e">M4 Max · llama.cpp (Metal)</text>
-<path d="M232.88,374 H250.75 Q254.75,374 254.75,378 V384 Q254.75,388 250.75,388 H232.88 Z" fill="#eb6834"><title>llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative) · M4 Max · llama.cpp (Metal): 18.5 tok/s 0.57× vs 32.6 (10.1% acc)</title></path>
-<text x="262.75" y="385.5" font-size="12" fill="#0b0b0b" font-weight="600">18.5 tok/s</text>
-<text x="345.15" y="385.5" font-size="11" fill="#898781">0.57× vs 32.6 (10.1% acc)</text>
+<path d="M232.88,374 H248.63 Q252.63,374 252.63,378 V384 Q252.63,388 248.63,388 H232.88 Z" fill="#eb6834"><title>llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative) · M4 Max · llama.cpp (Metal): 18.5 tok/s 0.57× vs 32.6 (10.1% acc)</title></path>
+<text x="260.63" y="385.5" font-size="12" fill="#0b0b0b" font-weight="600">18.5 tok/s</text>
+<text x="343.03" y="385.5" font-size="11" fill="#898781">0.57× vs 32.6 (10.1% acc)</text>
 <text x="24" y="411.5" font-size="12" fill="#52514e">DGX Spark · llama.cpp</text>
-<path d="M232.88,400 H250.1 Q254.1,400 254.1,404 V410 Q254.1,414 250.1,414 H232.88 Z" fill="#eb6834"><title>llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative) · DGX Spark · llama.cpp: 18.0 tok/s 0.46× vs 39.0 (8.3% acc)</title></path>
-<text x="262.1" y="411.5" font-size="12" fill="#0b0b0b" font-weight="600">18.0 tok/s</text>
-<text x="344.5" y="411.5" font-size="11" fill="#898781">0.46× vs 39.0 (8.3% acc)</text>
+<path d="M232.88,400 H248.05 Q252.05,400 252.05,404 V410 Q252.05,414 248.05,414 H232.88 Z" fill="#eb6834"><title>llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative) · DGX Spark · llama.cpp: 18.0 tok/s 0.46× vs 39.0 (8.3% acc)</title></path>
+<text x="260.05" y="411.5" font-size="12" fill="#0b0b0b" font-weight="600">18.0 tok/s</text>
+<text x="342.45" y="411.5" font-size="11" fill="#898781">0.46× vs 39.0 (8.3% acc)</text>
 <text x="24" y="437.5" font-size="12" fill="#52514e">RTX Spark · llama.cpp</text>
-<path d="M232.88,426 H249.04 Q253.04,426 253.04,430 V436 Q253.04,440 249.04,440 H232.88 Z" fill="#eb6834"><title>llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative) · RTX Spark · llama.cpp: 17.1 tok/s 0.45× vs 37.8 (13.4% acc)</title></path>
-<text x="261.04" y="437.5" font-size="12" fill="#0b0b0b" font-weight="600">17.1 tok/s</text>
-<text x="343.44" y="437.5" font-size="11" fill="#898781">0.45× vs 37.8 (13.4% acc)</text>
+<path d="M232.88,426 H247.1 Q251.1,426 251.1,430 V436 Q251.1,440 247.1,440 H232.88 Z" fill="#eb6834"><title>llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative) · RTX Spark · llama.cpp: 17.1 tok/s 0.45× vs 37.8 (13.4% acc)</title></path>
+<text x="259.1" y="437.5" font-size="12" fill="#0b0b0b" font-weight="600">17.1 tok/s</text>
+<text x="341.5" y="437.5" font-size="11" fill="#898781">0.45× vs 37.8 (13.4% acc)</text>
 <text x="24" y="463.5" font-size="12" fill="#52514e">M3 Ultra · llama.cpp (Metal)</text>
-<path d="M232.88,452 H247.79 Q251.79,452 251.79,456 V462 Q251.79,466 247.79,466 H232.88 Z" fill="#eb6834"><title>llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative) · M3 Ultra · llama.cpp (Metal): 16.0 tok/s 0.58× vs 27.7 (7.1% acc)</title></path>
-<text x="259.79" y="463.5" font-size="12" fill="#0b0b0b" font-weight="600">16.0 tok/s</text>
-<text x="342.19" y="463.5" font-size="11" fill="#898781">0.58× vs 27.7 (7.1% acc)</text>
+<path d="M232.88,452 H245.96 Q249.96,452 249.96,456 V462 Q249.96,466 245.96,466 H232.88 Z" fill="#eb6834"><title>llama.cpp Unsloth mix GGUF drafter (DSpark ON — 6/6 hosts negative) · M3 Ultra · llama.cpp (Metal): 16.0 tok/s 0.58× vs 27.7 (7.1% acc)</title></path>
+<text x="257.96" y="463.5" font-size="12" fill="#0b0b0b" font-weight="600">16.0 tok/s</text>
+<text x="340.36" y="463.5" font-size="11" fill="#898781">0.58× vs 27.7 (7.1% acc)</text>
 <line x1="232.88" y1="318" x2="232.88" y2="470" stroke="#c3c2b7" stroke-width="1"/>
 <text x="420" y="494" font-size="11" fill="#898781" text-anchor="middle">Decode throughput with DSpark enabled (tok/s)</text>
 <text x="24" y="520" font-size="11" fill="#898781">*Caveat: vLLM/SGLang Track J ran raw NATO-filler completions that looped on 1-word tokens, inflating acceptance (upper</text>

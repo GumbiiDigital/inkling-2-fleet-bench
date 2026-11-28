@@ -293,6 +293,44 @@ def build_07_apple_vs_nvidia(theme: Theme) -> str:
     return bar_panels(caption, [q4_512, q4_128k, bf16_512, bf16_32k], theme, columns=2)
 
 
+def build_08_apple_deep_dive(theme: Theme) -> str:
+    q_512 = BarPanel(
+        title="Precision ladder @512 (M4 Max leads short ctx)",
+        rows=[
+            BarRow("M4 Max · IQ4_NL", 35.23, "35.2 tok/s", "aqua", "fastest Metal"),
+            BarRow("M4 Max · Q4_K_XL", 32.57, "32.6 tok/s", "aqua", "+17% vs M3U"),
+            BarRow("M3 Ultra · IQ4_NL", 30.19, "30.2 tok/s", "orange", "fastest M3U"),
+            BarRow("M4 Max · Q8_K_XL", 29.63, "29.6 tok/s", "aqua", "+12% vs M3U"),
+            BarRow("M3 Ultra · Q4_K_XL", 27.89, "27.9 tok/s", "orange", "baseline"),
+            BarRow("M3 Ultra · Q8_K_XL", 26.50, "26.5 tok/s", "orange", "—"),
+            BarRow("M4 Max · BF16", 26.47, "26.5 tok/s", "aqua", "+33% vs DGX"),
+            BarRow("M3 Ultra · BF16", 25.62, "25.6 tok/s", "orange", "+29% vs DGX"),
+        ],
+    )
+    long_ctx = BarPanel(
+        title="Long-context decode @32K & @128K (M3 Ultra takes over)",
+        rows=[
+            BarRow("M4 Max · IQ4_NL @32K", 27.64, "27.6 tok/s", "aqua", "+3.5% vs M3U"),
+            BarRow("M3 Ultra · IQ4_NL @32K", 26.70, "26.7 tok/s", "orange", "fastest M3U"),
+            BarRow("M4 Max · Q4_K_XL @32K", 26.03, "26.0 tok/s", "aqua", "+4.2% vs M3U"),
+            BarRow("M3 Ultra · Q4_K_XL @32K", 24.97, "25.0 tok/s", "orange", "baseline"),
+            BarRow("M3 Ultra · BF16 @32K", 23.13, "23.1 tok/s", "orange", "+12% vs M4 Max"),
+            BarRow("M4 Max · BF16 @32K", 20.64, "20.6 tok/s", "aqua", "+24% vs DGX"),
+            BarRow("M3 Ultra · Q4 @128K", 21.04, "21.0 tok/s", "orange", "passes Sparks"),
+            BarRow("M4 Max · Q4 @128K", 18.40, "18.4 tok/s", "aqua", "−12.5% vs M3U"),
+        ],
+    )
+    caption = Caption(
+        title="M3 Ultra 256GB vs M4 Max 128GB: short-context clock speed vs long-context bandwidth",
+        subtitle=("Identical llama.cpp Metal harness & GGUFs. M4 Max wins short contexts; M3 Ultra (~800 GB/s) pulls ahead at 32K BF16, 128K, and 1M.",),
+        footnotes=(
+            "On Metal, IQ4_NL (mainline 418fe97) is the fastest quant on both Macs; BF16 beats both NVIDIA Sparks (+24% to +39%).",
+            "30-min soak stayed flat with pmset nominal thermals on both Macs (M4 Max 27.3 tok/s, M3 Ultra 24.4 tok/s; no sudo for wattage).",
+        ),
+    )
+    return bar_panels(caption, [q_512, long_ctx], theme, columns=2)
+
+
 def main() -> None:
     write_themed("01-single-stream-decode", build_01_speed_ladder)
     write_themed("02-dspark-reversal", build_02_dspark_reversal)
@@ -301,6 +339,7 @@ def main() -> None:
     write_themed("05-rtx6000-engines", build_05_rtx6000_engines)
     write_themed("06-1m-breakthrough", build_06_1m_breakthrough)
     write_themed("07-apple-silicon-vs-nvidia", build_07_apple_vs_nvidia)
+    write_themed("08-apple-silicon-deep-dive", build_08_apple_deep_dive)
 
 
 if __name__ == "__main__":

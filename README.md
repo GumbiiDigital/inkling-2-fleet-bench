@@ -105,6 +105,11 @@ Median of 3 runs, plain decode (no speculation):
   <img alt="Apple Silicon Metal vs NVIDIA Unified-Memory Sparks on llama.cpp" src="charts/07-apple-silicon-vs-nvidia-light.svg">
 </picture>
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/08-apple-silicon-deep-dive-dark.svg">
+  <img alt="M3 Ultra 256GB vs M4 Max 128GB Metal precision and long-context comparison" src="charts/08-apple-silicon-deep-dive-light.svg">
+</picture>
+
 - **Q4_K_XL crossover at long context:** On identical `llama.cpp` weights, the NVIDIA Sparks lead at 512 ctx (`38.5` / `36.3` vs M4 Max `33.0` / M3 Ultra `27.9 tok/s`), but **M3 Ultra (`21.0 tok/s`) overtakes both Sparks (`19.6` / `20.4`) and M4 Max (`18.4`) at 128K** as KV-cache bandwidth dominates.
 - **Full-precision BF16 win for Apple Silicon:** Both Macs (**M4 Max `26.5`** / **M3 Ultra `25.6`** @512; **M3 Ultra `23.1`** @32K) beat both NVIDIA Sparks (**`19.9–20.6`** @512; **`16.7–17.6`** @32K) by **+25% to +39%**.
 - **Prefill stays an NVIDIA strength:** At 128K `llama.cpp`, DGX Spark prefills in `364 s` vs M3 Ultra `935 s` vs M4 Max `1,443 s` (and `51–63 s` on native Spark `vLLM`/`SGLang`). At 1M context, M3 Ultra completed all 3 runs in ~12.5 h/run (`23.1 tok/s` prefill, `5.6 tok/s` decode, `0/3` chat, `1/3` found in reasoning); M4 Max completed all 3 runs on-box in `18.2 / 18.8 / 28.2 h` (`3.0–3.6 tok/s` decode).

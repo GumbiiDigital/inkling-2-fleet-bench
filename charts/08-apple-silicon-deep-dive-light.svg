@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="652" viewBox="0 0 840 652" role="img" aria-label="M3 Ultra 256GB vs M4 Max 128GB: short-context clock speed vs long-context bandwidth Identical llama.cpp Metal harness &amp; GGUFs. M4 Max wins short contexts; M3 Ultra (~800 GB/s) pulls ahead at 32K BF16, 128K, and 1M." font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" data-x-scale="linear" data-y-scale="linear">
+<title>M3 Ultra 256GB vs M4 Max 128GB: short-context clock speed vs long-context bandwidth Identical llama.cpp Metal harness &amp; GGUFs. M4 Max wins short contexts; M3 Ultra (~800 GB/s) pulls ahead at 32K BF16, 128K, and 1M.</title>
+<rect x="0.5" y="0.5" width="839" height="651" fill="#fcfcfb" rx="8" stroke="#e1e0d9" stroke-width="1"/>
+<text x="24" y="40" font-size="16" fill="#0b0b0b" font-weight="600">M3 Ultra 256GB vs M4 Max 128GB: short-context clock speed vs long-context bandwidth</text>
+<text x="24" y="57" font-size="12" fill="#52514e">Identical llama.cpp Metal harness &amp; GGUFs. M4 Max wins short contexts; M3 Ultra (~800 GB/s) pulls ahead at</text>
+<text x="24" y="74" font-size="12" fill="#52514e">32K BF16, 128K, and 1M.</text>
+<text x="24" y="105" font-size="13" fill="#0b0b0b" font-weight="600">Precision ladder @512 (M4 Max leads short ctx)</text>
+<text x="24" y="129.5" font-size="12" fill="#52514e">M4 Max · IQ4_NL</text>
+<path d="M192.56,118 H577.36 Q581.36,118 581.36,122 V128 Q581.36,132 577.36,132 H192.56 Z" fill="#1baf7a"><title>Precision ladder @512 (M4 Max leads short ctx) · M4 Max · IQ4_NL: 35.2 tok/s fastest Metal</title></path>
+<text x="589.36" y="129.5" font-size="12" fill="#0b0b0b" font-weight="600">35.2 tok/s</text>
+<text x="671.76" y="129.5" font-size="11" fill="#898781">fastest Metal</text>
+<text x="24" y="155.5" font-size="12" fill="#52514e">M4 Max · Q4_K_XL</text>
+<path d="M192.56,144 H548 Q552,144 552,148 V154 Q552,158 548,158 H192.56 Z" fill="#1baf7a"><title>Precision ladder @512 (M4 Max leads short ctx) · M4 Max · Q4_K_XL: 32.6 tok/s +17% vs M3U</title></path>
+<text x="560" y="155.5" font-size="12" fill="#0b0b0b" font-weight="600">32.6 tok/s</text>
+<text x="642.4" y="155.5" font-size="11" fill="#898781">+17% vs M3U</text>
+<text x="24" y="181.5" font-size="12" fill="#52514e">M3 Ultra · IQ4_NL</text>
+<path d="M192.56,170 H521.74 Q525.74,170 525.74,174 V180 Q525.74,184 521.74,184 H192.56 Z" fill="#eb6834"><title>Precision ladder @512 (M4 Max leads short ctx) · M3 Ultra · IQ4_NL: 30.2 tok/s fastest M3U</title></path>
+<text x="533.74" y="181.5" font-size="12" fill="#0b0b0b" font-weight="600">30.2 tok/s</text>
+<text x="616.14" y="181.5" font-size="11" fill="#898781">fastest M3U</text>
+<text x="24" y="207.5" font-size="12" fill="#52514e">M4 Max · Q8_K_XL</text>
+<path d="M192.56,196 H515.56 Q519.56,196 519.56,200 V206 Q519.56,210 515.56,210 H192.56 Z" fill="#1baf7a"><title>Precision ladder @512 (M4 Max leads short ctx) · M4 Max · Q8_K_XL: 29.6 tok/s +12% vs M3U</title></path>
+<text x="527.56" y="207.5" font-size="12" fill="#0b0b0b" font-weight="600">29.6 tok/s</text>
+<text x="609.96" y="207.5" font-size="11" fill="#898781">+12% vs M3U</text>
+<text x="24" y="233.5" font-size="12" fill="#52514e">M3 Ultra · Q4_K_XL</text>
+<path d="M192.56,222 H496.36 Q500.36,222 500.36,226 V232 Q500.36,236 496.36,236 H192.56 Z" fill="#eb6834"><title>Precision ladder @512 (M4 Max leads short ctx) · M3 Ultra · Q4_K_XL: 27.9 tok/s baseline</title></path>
+<text x="508.36" y="233.5" font-size="12" fill="#0b0b0b" font-weight="600">27.9 tok/s</text>
+<text x="590.76" y="233.5" font-size="11" fill="#898781">baseline</text>
+<text x="24" y="259.5" font-size="12" fill="#52514e">M3 Ultra · Q8_K_XL</text>
+<path d="M192.56,248 H481.02 Q485.02,248 485.02,252 V258 Q485.02,262 481.02,262 H192.56 Z" fill="#eb6834"><title>Precision ladder @512 (M4 Max leads short ctx) · M3 Ultra · Q8_K_XL: 26.5 tok/s —</title></path>
+<text x="493.02" y="259.5" font-size="12" fill="#0b0b0b" font-weight="600">26.5 tok/s</text>
+<text x="575.42" y="259.5" font-size="11" fill="#898781">—</text>
+<text x="24" y="285.5" font-size="12" fill="#52514e">M4 Max · BF16</text>
+<path d="M192.56,274 H480.68 Q484.68,274 484.68,278 V284 Q484.68,288 480.68,288 H192.56 Z" fill="#1baf7a"><title>Precision ladder @512 (M4 Max leads short ctx) · M4 Max · BF16: 26.5 tok/s +33% vs DGX</title></path>
+<text x="492.68" y="285.5" font-size="12" fill="#0b0b0b" font-weight="600">26.5 tok/s</text>
+<text x="575.08" y="285.5" font-size="11" fill="#898781">+33% vs DGX</text>
+<text x="24" y="311.5" font-size="12" fill="#52514e">M3 Ultra · BF16</text>
+<path d="M192.56,300 H471.3 Q475.3,300 475.3,304 V310 Q475.3,314 471.3,314 H192.56 Z" fill="#eb6834"><title>Precision ladder @512 (M4 Max leads short ctx) · M3 Ultra · BF16: 25.6 tok/s +29% vs DGX</title></path>
+<text x="483.3" y="311.5" font-size="12" fill="#0b0b0b" font-weight="600">25.6 tok/s</text>
+<text x="565.7" y="311.5" font-size="11" fill="#898781">+29% vs DGX</text>
+<line x1="192.56" y1="114" x2="192.56" y2="318" stroke="#c3c2b7" stroke-width="1"/>
+<text x="24" y="361" font-size="13" fill="#0b0b0b" font-weight="600">Long-context decode @32K &amp; @128K (M3 Ultra takes over)</text>
+<text x="24" y="385.5" font-size="12" fill="#52514e">M4 Max · IQ4_NL @32K</text>
+<path d="M192.56,374 H577.36 Q581.36,374 581.36,378 V384 Q581.36,388 577.36,388 H192.56 Z" fill="#1baf7a"><title>Long-context decode @32K &amp; @128K (M3 Ultra takes over) · M4 Max · IQ4_NL @32K: 27.6 tok/s +3.5% vs M3U</title></path>
+<text x="589.36" y="385.5" font-size="12" fill="#0b0b0b" font-weight="600">27.6 tok/s</text>
+<text x="671.76" y="385.5" font-size="11" fill="#898781">+3.5% vs M3U</text>
+<text x="24" y="411.5" font-size="12" fill="#52514e">M3 Ultra · IQ4_NL @32K</text>
+<path d="M192.56,400 H564.14 Q568.14,400 568.14,404 V410 Q568.14,414 564.14,414 H192.56 Z" fill="#eb6834"><title>Long-context decode @32K &amp; @128K (M3 Ultra takes over) · M3 Ultra · IQ4_NL @32K: 26.7 tok/s fastest M3U</title></path>
+<text x="576.14" y="411.5" font-size="12" fill="#0b0b0b" font-weight="600">26.7 tok/s</text>
+<text x="658.54" y="411.5" font-size="11" fill="#898781">fastest M3U</text>
+<text x="24" y="437.5" font-size="12" fill="#52514e">M4 Max · Q4_K_XL @32K</text>
+<path d="M192.56,426 H554.71 Q558.71,426 558.71,430 V436 Q558.71,440 554.71,440 H192.56 Z" fill="#1baf7a"><title>Long-context decode @32K &amp; @128K (M3 Ultra takes over) · M4 Max · Q4_K_XL @32K: 26.0 tok/s +4.2% vs M3U</title></path>
+<text x="566.71" y="437.5" font-size="12" fill="#0b0b0b" font-weight="600">26.0 tok/s</text>
+<text x="649.11" y="437.5" font-size="11" fill="#898781">+4.2% vs M3U</text>
+<text x="24" y="463.5" font-size="12" fill="#52514e">M3 Ultra · Q4_K_XL @32K</text>
+<path d="M192.56,452 H539.8 Q543.8,452 543.8,456 V462 Q543.8,466 539.8,466 H192.56 Z" fill="#eb6834"><title>Long-context decode @32K &amp; @128K (M3 Ultra takes over) · M3 Ultra · Q4_K_XL @32K: 25.0 tok/s baseline</title></path>
+<text x="551.8" y="463.5" font-size="12" fill="#0b0b0b" font-weight="600">25.0 tok/s</text>
+<text x="634.2" y="463.5" font-size="11" fill="#898781">baseline</text>
+<text x="24" y="489.5" font-size="12" fill="#52514e">M3 Ultra · BF16 @32K</text>
+<path d="M192.56,478 H513.92 Q517.92,478 517.92,482 V488 Q517.92,492 513.92,492 H192.56 Z" fill="#eb6834"><title>Long-context decode @32K &amp; @128K (M3 Ultra takes over) · M3 Ultra · BF16 @32K: 23.1 tok/s +12% vs M4 Max</title></path>
+<text x="525.92" y="489.5" font-size="12" fill="#0b0b0b" font-weight="600">23.1 tok/s</text>
+<text x="608.32" y="489.5" font-size="11" fill="#898781">+12% vs M4 Max</text>
+<text x="24" y="515.5" font-size="12" fill="#52514e">M4 Max · BF16 @32K</text>
+<path d="M192.56,504 H478.89 Q482.89,504 482.89,508 V514 Q482.89,518 478.89,518 H192.56 Z" fill="#1baf7a"><title>Long-context decode @32K &amp; @128K (M3 Ultra takes over) · M4 Max · BF16 @32K: 20.6 tok/s +24% vs DGX</title></path>
+<text x="490.89" y="515.5" font-size="12" fill="#0b0b0b" font-weight="600">20.6 tok/s</text>
+<text x="573.29" y="515.5" font-size="11" fill="#898781">+24% vs DGX</text>
+<text x="24" y="541.5" font-size="12" fill="#52514e">M3 Ultra · Q4 @128K</text>
+<path d="M192.56,530 H484.52 Q488.52,530 488.52,534 V540 Q488.52,544 484.52,544 H192.56 Z" fill="#eb6834"><title>Long-context decode @32K &amp; @128K (M3 Ultra takes over) · M3 Ultra · Q4 @128K: 21.0 tok/s passes Sparks</title></path>
+<text x="496.52" y="541.5" font-size="12" fill="#0b0b0b" font-weight="600">21.0 tok/s</text>
+<text x="578.92" y="541.5" font-size="11" fill="#898781">passes Sparks</text>
+<text x="24" y="567.5" font-size="12" fill="#52514e">M4 Max · Q4 @128K</text>
+<path d="M192.56,556 H447.38 Q451.38,556 451.38,560 V566 Q451.38,570 447.38,570 H192.56 Z" fill="#1baf7a"><title>Long-context decode @32K &amp; @128K (M3 Ultra takes over) · M4 Max · Q4 @128K: 18.4 tok/s −12.5% vs M3U</title></path>
+<text x="459.38" y="567.5" font-size="12" fill="#0b0b0b" font-weight="600">18.4 tok/s</text>
+<text x="541.78" y="567.5" font-size="11" fill="#898781">−12.5% vs M3U</text>
+<line x1="192.56" y1="370" x2="192.56" y2="574" stroke="#c3c2b7" stroke-width="1"/>
+<text x="24" y="604" font-size="11" fill="#898781">On Metal, IQ4_NL (mainline 418fe97) is the fastest quant on both Macs; BF16 beats both NVIDIA Sparks (+24% to +39%).</text>
+<text x="24" y="620" font-size="11" fill="#898781">30-min soak stayed flat with pmset nominal thermals on both Macs (M4 Max 27.3 tok/s, M3 Ultra 24.4 tok/s; no sudo for</text>
+<text x="24" y="636" font-size="11" fill="#898781">wattage).</text>
+</svg>

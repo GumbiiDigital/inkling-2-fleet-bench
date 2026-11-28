@@ -6,75 +6,75 @@
 <text x="24" y="74" font-size="12" fill="#52514e">wins BF16 and 128K decode.</text>
 <text x="24" y="105" font-size="13" fill="#0b0b0b" font-weight="600">llama.cpp Q4_K_XL decode @512 (same engine)</text>
 <text x="24" y="129.5" font-size="12" fill="#52514e">DGX Spark (GB10, CUDA)</text>
-<path d="M185.84,118 H607.36 Q611.36,118 611.36,122 V128 Q611.36,132 607.36,132 H185.84 Z" fill="#2a78d6"><title>llama.cpp Q4_K_XL decode @512 (same engine) · DGX Spark (GB10, CUDA): 38.5 tok/s 1.38× M3U</title></path>
-<text x="619.36" y="129.5" font-size="12" fill="#0b0b0b" font-weight="600">38.5 tok/s</text>
-<text x="701.76" y="129.5" font-size="11" fill="#898781">1.38× M3U</text>
+<path d="M185.84,118 H577.36 Q581.36,118 581.36,122 V128 Q581.36,132 577.36,132 H185.84 Z" fill="#2a78d6"><title>llama.cpp Q4_K_XL decode @512 (same engine) · DGX Spark (GB10, CUDA): 38.5 tok/s 1.38× M3U</title></path>
+<text x="589.36" y="129.5" font-size="12" fill="#0b0b0b" font-weight="600">38.5 tok/s</text>
+<text x="671.76" y="129.5" font-size="11" fill="#898781">1.38× M3U</text>
 <text x="24" y="155.5" font-size="12" fill="#52514e">RTX Spark (N1X, CUDA)</text>
-<path d="M185.84,144 H582.84 Q586.84,144 586.84,148 V154 Q586.84,158 582.84,158 H185.84 Z" fill="#6250d6"><title>llama.cpp Q4_K_XL decode @512 (same engine) · RTX Spark (N1X, CUDA): 36.3 tok/s 1.30× M3U</title></path>
-<text x="594.84" y="155.5" font-size="12" fill="#0b0b0b" font-weight="600">36.3 tok/s</text>
-<text x="677.24" y="155.5" font-size="11" fill="#898781">1.30× M3U</text>
+<path d="M185.84,144 H554.57 Q558.57,144 558.57,148 V154 Q558.57,158 554.57,158 H185.84 Z" fill="#6250d6"><title>llama.cpp Q4_K_XL decode @512 (same engine) · RTX Spark (N1X, CUDA): 36.3 tok/s 1.30× M3U</title></path>
+<text x="566.57" y="155.5" font-size="12" fill="#0b0b0b" font-weight="600">36.3 tok/s</text>
+<text x="648.97" y="155.5" font-size="11" fill="#898781">1.30× M3U</text>
 <text x="24" y="181.5" font-size="12" fill="#52514e">M4 Max 128GB (Metal)</text>
-<path d="M185.84,170 H546.29 Q550.29,170 550.29,174 V180 Q550.29,184 546.29,184 H185.84 Z" fill="#1baf7a"><title>llama.cpp Q4_K_XL decode @512 (same engine) · M4 Max 128GB (Metal): 33.0 tok/s 1.18× M3U</title></path>
-<text x="558.29" y="181.5" font-size="12" fill="#0b0b0b" font-weight="600">33.0 tok/s</text>
-<text x="640.69" y="181.5" font-size="11" fill="#898781">1.18× M3U</text>
+<path d="M185.84,170 H520.59 Q524.59,170 524.59,174 V180 Q524.59,184 520.59,184 H185.84 Z" fill="#1baf7a"><title>llama.cpp Q4_K_XL decode @512 (same engine) · M4 Max 128GB (Metal): 33.0 tok/s 1.18× M3U</title></path>
+<text x="532.59" y="181.5" font-size="12" fill="#0b0b0b" font-weight="600">33.0 tok/s</text>
+<text x="614.99" y="181.5" font-size="11" fill="#898781">1.18× M3U</text>
 <text x="24" y="207.5" font-size="12" fill="#52514e">M3 Ultra 256GB (Metal)</text>
-<path d="M185.84,196 H489.52 Q493.52,196 493.52,200 V206 Q493.52,210 489.52,210 H185.84 Z" fill="#eb6834"><title>llama.cpp Q4_K_XL decode @512 (same engine) · M3 Ultra 256GB (Metal): 27.9 tok/s baseline</title></path>
-<text x="501.52" y="207.5" font-size="12" fill="#0b0b0b" font-weight="600">27.9 tok/s</text>
-<text x="583.92" y="207.5" font-size="11" fill="#898781">baseline</text>
+<path d="M185.84,196 H467.83 Q471.83,196 471.83,200 V206 Q471.83,210 467.83,210 H185.84 Z" fill="#eb6834"><title>llama.cpp Q4_K_XL decode @512 (same engine) · M3 Ultra 256GB (Metal): 27.9 tok/s baseline</title></path>
+<text x="479.83" y="207.5" font-size="12" fill="#0b0b0b" font-weight="600">27.9 tok/s</text>
+<text x="562.23" y="207.5" font-size="11" fill="#898781">baseline</text>
 <line x1="185.84" y1="114" x2="185.84" y2="214" stroke="#c3c2b7" stroke-width="1"/>
 <text x="24" y="257" font-size="13" fill="#0b0b0b" font-weight="600">llama.cpp Q4_K_XL decode @128K (crossover!)</text>
 <text x="24" y="281.5" font-size="12" fill="#52514e">M3 Ultra 256GB (Metal)</text>
-<path d="M185.84,270 H607.36 Q611.36,270 611.36,274 V280 Q611.36,284 607.36,284 H185.84 Z" fill="#eb6834"><title>llama.cpp Q4_K_XL decode @128K (crossover!) · M3 Ultra 256GB (Metal): 21.0 tok/s passes Sparks!</title></path>
-<text x="619.36" y="281.5" font-size="12" fill="#0b0b0b" font-weight="600">21.0 tok/s</text>
-<text x="701.76" y="281.5" font-size="11" fill="#898781">passes Sparks!</text>
+<path d="M185.84,270 H577.36 Q581.36,270 581.36,274 V280 Q581.36,284 577.36,284 H185.84 Z" fill="#eb6834"><title>llama.cpp Q4_K_XL decode @128K (crossover!) · M3 Ultra 256GB (Metal): 21.0 tok/s passes Sparks!</title></path>
+<text x="589.36" y="281.5" font-size="12" fill="#0b0b0b" font-weight="600">21.0 tok/s</text>
+<text x="671.76" y="281.5" font-size="11" fill="#898781">passes Sparks!</text>
 <text x="24" y="307.5" font-size="12" fill="#52514e">RTX Spark (N1X, CUDA)</text>
-<path d="M185.84,296 H593.81 Q597.81,296 597.81,300 V306 Q597.81,310 593.81,310 H185.84 Z" fill="#6250d6"><title>llama.cpp Q4_K_XL decode @128K (crossover!) · RTX Spark (N1X, CUDA): 20.4 tok/s −3.2% vs M3U</title></path>
-<text x="605.81" y="307.5" font-size="12" fill="#0b0b0b" font-weight="600">20.4 tok/s</text>
-<text x="688.21" y="307.5" font-size="11" fill="#898781">−3.2% vs M3U</text>
+<path d="M185.84,296 H564.77 Q568.77,296 568.77,300 V306 Q568.77,310 564.77,310 H185.84 Z" fill="#6250d6"><title>llama.cpp Q4_K_XL decode @128K (crossover!) · RTX Spark (N1X, CUDA): 20.4 tok/s −3.2% vs M3U</title></path>
+<text x="576.77" y="307.5" font-size="12" fill="#0b0b0b" font-weight="600">20.4 tok/s</text>
+<text x="659.17" y="307.5" font-size="11" fill="#898781">−3.2% vs M3U</text>
 <text x="24" y="333.5" font-size="12" fill="#52514e">DGX Spark (GB10, CUDA)</text>
-<path d="M185.84,322 H578.03 Q582.03,322 582.03,326 V332 Q582.03,336 578.03,336 H185.84 Z" fill="#2a78d6"><title>llama.cpp Q4_K_XL decode @128K (crossover!) · DGX Spark (GB10, CUDA): 19.6 tok/s −6.9% vs M3U</title></path>
-<text x="590.03" y="333.5" font-size="12" fill="#0b0b0b" font-weight="600">19.6 tok/s</text>
-<text x="672.43" y="333.5" font-size="11" fill="#898781">−6.9% vs M3U</text>
+<path d="M185.84,322 H550.1 Q554.1,322 554.1,326 V332 Q554.1,336 550.1,336 H185.84 Z" fill="#2a78d6"><title>llama.cpp Q4_K_XL decode @128K (crossover!) · DGX Spark (GB10, CUDA): 19.6 tok/s −6.9% vs M3U</title></path>
+<text x="562.1" y="333.5" font-size="12" fill="#0b0b0b" font-weight="600">19.6 tok/s</text>
+<text x="644.5" y="333.5" font-size="11" fill="#898781">−6.9% vs M3U</text>
 <text x="24" y="359.5" font-size="12" fill="#52514e">M4 Max 128GB (Metal)</text>
-<path d="M185.84,348 H553.97 Q557.97,348 557.97,352 V358 Q557.97,362 553.97,362 H185.84 Z" fill="#1baf7a"><title>llama.cpp Q4_K_XL decode @128K (crossover!) · M4 Max 128GB (Metal): 18.4 tok/s −12.5% vs M3U</title></path>
-<text x="565.97" y="359.5" font-size="12" fill="#0b0b0b" font-weight="600">18.4 tok/s</text>
-<text x="648.37" y="359.5" font-size="11" fill="#898781">−12.5% vs M3U</text>
+<path d="M185.84,348 H527.73 Q531.73,348 531.73,352 V358 Q531.73,362 527.73,362 H185.84 Z" fill="#1baf7a"><title>llama.cpp Q4_K_XL decode @128K (crossover!) · M4 Max 128GB (Metal): 18.4 tok/s −12.5% vs M3U</title></path>
+<text x="539.73" y="359.5" font-size="12" fill="#0b0b0b" font-weight="600">18.4 tok/s</text>
+<text x="622.13" y="359.5" font-size="11" fill="#898781">−12.5% vs M3U</text>
 <line x1="185.84" y1="266" x2="185.84" y2="366" stroke="#c3c2b7" stroke-width="1"/>
 <text x="24" y="409" font-size="13" fill="#0b0b0b" font-weight="600">llama.cpp BF16 decode @512 (full precision)</text>
 <text x="24" y="433.5" font-size="12" fill="#52514e">M4 Max 128GB (Metal)</text>
-<path d="M185.84,422 H607.36 Q611.36,422 611.36,426 V432 Q611.36,436 607.36,436 H185.84 Z" fill="#1baf7a"><title>llama.cpp BF16 decode @512 (full precision) · M4 Max 128GB (Metal): 26.5 tok/s +33% vs DGX</title></path>
-<text x="619.36" y="433.5" font-size="12" fill="#0b0b0b" font-weight="600">26.5 tok/s</text>
-<text x="701.76" y="433.5" font-size="11" fill="#898781">+33% vs DGX</text>
+<path d="M185.84,422 H577.36 Q581.36,422 581.36,426 V432 Q581.36,436 577.36,436 H185.84 Z" fill="#1baf7a"><title>llama.cpp BF16 decode @512 (full precision) · M4 Max 128GB (Metal): 26.5 tok/s +33% vs DGX</title></path>
+<text x="589.36" y="433.5" font-size="12" fill="#0b0b0b" font-weight="600">26.5 tok/s</text>
+<text x="671.76" y="433.5" font-size="11" fill="#898781">+33% vs DGX</text>
 <text x="24" y="459.5" font-size="12" fill="#52514e">M3 Ultra 256GB (Metal)</text>
-<path d="M185.84,448 H593.7 Q597.7,448 597.7,452 V458 Q597.7,462 593.7,462 H185.84 Z" fill="#eb6834"><title>llama.cpp BF16 decode @512 (full precision) · M3 Ultra 256GB (Metal): 25.6 tok/s +29% vs DGX</title></path>
-<text x="605.7" y="459.5" font-size="12" fill="#0b0b0b" font-weight="600">25.6 tok/s</text>
-<text x="688.1" y="459.5" font-size="11" fill="#898781">+29% vs DGX</text>
+<path d="M185.84,448 H564.66 Q568.66,448 568.66,452 V458 Q568.66,462 564.66,462 H185.84 Z" fill="#eb6834"><title>llama.cpp BF16 decode @512 (full precision) · M3 Ultra 256GB (Metal): 25.6 tok/s +29% vs DGX</title></path>
+<text x="576.66" y="459.5" font-size="12" fill="#0b0b0b" font-weight="600">25.6 tok/s</text>
+<text x="659.06" y="459.5" font-size="11" fill="#898781">+29% vs DGX</text>
 <text x="24" y="485.5" font-size="12" fill="#52514e">RTX Spark (N1X, CUDA)</text>
-<path d="M185.84,474 H513 Q517,474 517,478 V484 Q517,488 513,488 H185.84 Z" fill="#6250d6"><title>llama.cpp BF16 decode @512 (full precision) · RTX Spark (N1X, CUDA): 20.6 tok/s +3.5% vs DGX</title></path>
-<text x="525" y="485.5" font-size="12" fill="#0b0b0b" font-weight="600">20.6 tok/s</text>
-<text x="607.4" y="485.5" font-size="11" fill="#898781">+3.5% vs DGX</text>
+<path d="M185.84,474 H489.65 Q493.65,474 493.65,478 V484 Q493.65,488 489.65,488 H185.84 Z" fill="#6250d6"><title>llama.cpp BF16 decode @512 (full precision) · RTX Spark (N1X, CUDA): 20.6 tok/s +3.5% vs DGX</title></path>
+<text x="501.65" y="485.5" font-size="12" fill="#0b0b0b" font-weight="600">20.6 tok/s</text>
+<text x="584.05" y="485.5" font-size="11" fill="#898781">+3.5% vs DGX</text>
 <text x="24" y="511.5" font-size="12" fill="#52514e">DGX Spark (GB10, CUDA)</text>
-<path d="M185.84,500 H501.74 Q505.74,500 505.74,504 V510 Q505.74,514 501.74,514 H185.84 Z" fill="#2a78d6"><title>llama.cpp BF16 decode @512 (full precision) · DGX Spark (GB10, CUDA): 19.9 tok/s baseline</title></path>
-<text x="513.74" y="511.5" font-size="12" fill="#0b0b0b" font-weight="600">19.9 tok/s</text>
-<text x="596.14" y="511.5" font-size="11" fill="#898781">baseline</text>
+<path d="M185.84,500 H479.19 Q483.19,500 483.19,504 V510 Q483.19,514 479.19,514 H185.84 Z" fill="#2a78d6"><title>llama.cpp BF16 decode @512 (full precision) · DGX Spark (GB10, CUDA): 19.9 tok/s baseline</title></path>
+<text x="491.19" y="511.5" font-size="12" fill="#0b0b0b" font-weight="600">19.9 tok/s</text>
+<text x="573.59" y="511.5" font-size="11" fill="#898781">baseline</text>
 <line x1="185.84" y1="418" x2="185.84" y2="518" stroke="#c3c2b7" stroke-width="1"/>
 <text x="24" y="561" font-size="13" fill="#0b0b0b" font-weight="600">llama.cpp BF16 decode @32K (bandwidth wins)</text>
 <text x="24" y="585.5" font-size="12" fill="#52514e">M3 Ultra 256GB (Metal)</text>
-<path d="M185.84,574 H607.36 Q611.36,574 611.36,578 V584 Q611.36,588 607.36,588 H185.84 Z" fill="#eb6834"><title>llama.cpp BF16 decode @32K (bandwidth wins) · M3 Ultra 256GB (Metal): 23.1 tok/s +39% vs DGX</title></path>
-<text x="619.36" y="585.5" font-size="12" fill="#0b0b0b" font-weight="600">23.1 tok/s</text>
-<text x="701.76" y="585.5" font-size="11" fill="#898781">+39% vs DGX</text>
+<path d="M185.84,574 H577.36 Q581.36,574 581.36,578 V584 Q581.36,588 577.36,588 H185.84 Z" fill="#eb6834"><title>llama.cpp BF16 decode @32K (bandwidth wins) · M3 Ultra 256GB (Metal): 23.1 tok/s +39% vs DGX</title></path>
+<text x="589.36" y="585.5" font-size="12" fill="#0b0b0b" font-weight="600">23.1 tok/s</text>
+<text x="671.76" y="585.5" font-size="11" fill="#898781">+39% vs DGX</text>
 <text x="24" y="611.5" font-size="12" fill="#52514e">M4 Max 128GB (Metal)</text>
-<path d="M185.84,600 H561.55 Q565.55,600 565.55,604 V610 Q565.55,614 561.55,614 H185.84 Z" fill="#1baf7a"><title>llama.cpp BF16 decode @32K (bandwidth wins) · M4 Max 128GB (Metal): 20.6 tok/s +24% vs DGX</title></path>
-<text x="573.55" y="611.5" font-size="12" fill="#0b0b0b" font-weight="600">20.6 tok/s</text>
-<text x="655.95" y="611.5" font-size="11" fill="#898781">+24% vs DGX</text>
+<path d="M185.84,600 H534.78 Q538.78,600 538.78,604 V610 Q538.78,614 534.78,614 H185.84 Z" fill="#1baf7a"><title>llama.cpp BF16 decode @32K (bandwidth wins) · M4 Max 128GB (Metal): 20.6 tok/s +24% vs DGX</title></path>
+<text x="546.78" y="611.5" font-size="12" fill="#0b0b0b" font-weight="600">20.6 tok/s</text>
+<text x="629.18" y="611.5" font-size="11" fill="#898781">+24% vs DGX</text>
 <text x="24" y="637.5" font-size="12" fill="#52514e">RTX Spark (N1X, CUDA)</text>
-<path d="M185.84,626 H506.36 Q510.36,626 510.36,630 V636 Q510.36,640 506.36,640 H185.84 Z" fill="#6250d6"><title>llama.cpp BF16 decode @32K (bandwidth wins) · RTX Spark (N1X, CUDA): 17.6 tok/s +5.6% vs DGX</title></path>
-<text x="518.36" y="637.5" font-size="12" fill="#0b0b0b" font-weight="600">17.6 tok/s</text>
-<text x="600.76" y="637.5" font-size="11" fill="#898781">+5.6% vs DGX</text>
+<path d="M185.84,626 H483.48 Q487.48,626 487.48,630 V636 Q487.48,640 483.48,640 H185.84 Z" fill="#6250d6"><title>llama.cpp BF16 decode @32K (bandwidth wins) · RTX Spark (N1X, CUDA): 17.6 tok/s +5.6% vs DGX</title></path>
+<text x="495.48" y="637.5" font-size="12" fill="#0b0b0b" font-weight="600">17.6 tok/s</text>
+<text x="577.88" y="637.5" font-size="11" fill="#898781">+5.6% vs DGX</text>
 <text x="24" y="663.5" font-size="12" fill="#52514e">DGX Spark (GB10, CUDA)</text>
-<path d="M185.84,652 H489.07 Q493.07,652 493.07,656 V662 Q493.07,666 489.07,666 H185.84 Z" fill="#2a78d6"><title>llama.cpp BF16 decode @32K (bandwidth wins) · DGX Spark (GB10, CUDA): 16.7 tok/s baseline</title></path>
-<text x="501.07" y="663.5" font-size="12" fill="#0b0b0b" font-weight="600">16.7 tok/s</text>
-<text x="583.47" y="663.5" font-size="11" fill="#898781">baseline</text>
+<path d="M185.84,652 H467.41 Q471.41,652 471.41,656 V662 Q471.41,666 467.41,666 H185.84 Z" fill="#2a78d6"><title>llama.cpp BF16 decode @32K (bandwidth wins) · DGX Spark (GB10, CUDA): 16.7 tok/s baseline</title></path>
+<text x="479.41" y="663.5" font-size="12" fill="#0b0b0b" font-weight="600">16.7 tok/s</text>
+<text x="561.81" y="663.5" font-size="11" fill="#898781">baseline</text>
 <line x1="185.84" y1="570" x2="185.84" y2="670" stroke="#c3c2b7" stroke-width="1"/>
 <text x="24" y="700" font-size="11" fill="#898781">Prefill @128K remains an NVIDIA win: DGX Spark 364 s vs M3 Ultra 935 s vs M4 Max 1,443 s (and 51–63 s on native Spark</text>
 <text x="24" y="716" font-size="11" fill="#898781">vLLM/SGLang).</text>

@@ -188,7 +188,7 @@ def _value_width(rows: Sequence[BarRow]) -> float:
         if row.note:
             width += 10 + text_width(row.note, NOTE_SIZE)
         widest = max(widest, width)
-    return widest + 34
+    return widest + 64
 
 
 def _value_label(canvas: Canvas, x: float, baseline: float, row: BarRow) -> None:
